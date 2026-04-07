@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <!--
+    aesthetic_dna: Premium, High-Trust Affiliate Aggregator, Minimalist Japanese Elegance, Tactical Dark Mode
+    ui_paradigm: Dynamic Single-Page Data Hub. Seamless view transitions mimicking a multi-page app with robust architectural layers (sticky elements, complex grids, multi-tier ranking displays).
+    palette choice: Primary #FF6B35 (Sunset Orange), Dark Ground #121212, Light Ground #FFFFFF, Metallic Accents.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ベストナビ | あなたに最適な選択を</title>
+
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind CSS (Script setup for complete custom config in single file) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            DEFAULT: '#FF6B35',
+                            hover: '#E85A28',
+                            light: '#FFF0EB',
+                            dark: '#3A1A0D',
+                        },
+                        ui: {
+                            light: '#FFFFFF',
+                            lightAlt: '#F5F5F5',
+                            dark: '#121212',
+                            darkAlt: '#1E1E1E',
+                            borderLight: '#E8E8E8',
+                            borderDark: '#2A2A2A',
+                            textLight: '#333333',
+                            textDark: '#E8E8E8',
+                            mutedLight: '#666666',
+                            mutedDark: '#A0A0A0'
+                        },
+                        metal: {
+                            gold: '#FFD700',
+                            goldDark: '#B29600',
+                            silver: '#C0C0C0',
+                            silverDark: '#8A8A8A',
+                            bronze: '#CD7F32',
+                            bronzeDark: '#8F5822'
+                        }
+                    },
+                    boxShadow: {
+                        'premium': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'premium-dark': '0 10px 40px -10px rgba(0,0,0,0.5)',
+                        'glow': '0 0 20px rgba(255, 107, 53, 0.4)',
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'hero-pattern': "url('https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=2000&auto=format&fit=crop')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Core System Settings */
+        :root {
+            --touch-target: 48px;
+        }
+
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* View Management */
+        .page-view {
+            display: none;
+            opacity: 0;
+            animation: fadeInView 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .page-view.active {
+            display: block;
+        }
+        @keyframes fadeInView {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Scroll Animations (Framer Motion feel) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+
+        /* Metallic Gradients */
+        .grade-gold { background: linear-gradient(135deg, #FFF8D6 0%, #FFD700 50%, #B29600 100%); }
+        .grade-silver { background: linear-gradient(135deg, #F8F9FA 0%, #C0C0C0 50%, #8A8A8A 100%); }
+        .grade-bronze { background: linear-gradient(135deg, #FCE8D8 0%, #CD7F32 50%, #8F5822 100%); }
+        
+        .dark .grade-gold { background: linear-gradient(135deg, #B29600 0%, #FFD700 80%); }
+        .dark .grade-silver { background: linear-gradient(135deg, #5A5A5A 0%, #C0C0C0 80%); }
+        .dark .grade-bronze { background: linear-gradient(135deg, #5C3814 0%, #CD7F32 80%); }
+
+        /* Micro-interactions */
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Glassmorphism utility */
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass {
+            background: rgba(18, 18, 18, 0.85);
+        }
+
+        /* Grid specific */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        @media (min-width: 1024px) {
+            .bento-layout {
+                display: grid;
+                grid-template-columns: 2fr 1fr 1fr;
+                grid-template-rows: auto auto;
+                gap: 1.5rem;
+            }
+            .bento-1 { grid-column: 1 / 2; grid-row: 1 / 3; }
+            .bento-2 { grid-column: 2 / 3; }
+            .bento-3 { grid-column: 3 / 4; }
+            .bento-4 { grid-column: 2 / 3; }
+            .bento-5 { grid-column: 3 / 4; }
+        }
+
+        /* Table styling */
+        th, td { border-bottom-width: 1px; }
+        .dark th, .dark td { border-color: rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body class="bg-ui-light text-ui-textLight dark:bg-ui-dark dark:text-ui-textDark min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Global Header -->
+    <header class="fixed top-0 inset-x-0 z-50 glass border-b border-ui-borderLight dark:border-ui-borderDark transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <button onclick="navigate('home')" class="flex items-center gap-2 group outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-lg p-1">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand to-[#FF8C61] flex items-center justify-center text-white shadow-lg group-hover:shadow-glow transition-all">
+                        <i class="ph-bold ph-compass text-2xl"></i>
+                    </div>
+                    <span class="text-2xl font-black tracking-tight tracking-widest text-ui-textLight dark:text-ui-textDark">
+                        BEST<span class="text-brand">NAVI</span>
+                    </span>
+                </button>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <button onclick="navigate('home')" class="nav-link font-medium hover:text-brand transition-colors">ホーム</button>
+                    <button onclick="navigate('ranking')" class="nav-link font-medium hover:text-brand transition-colors">ランキング</button>
+                    <div class="h-4 w-px bg-ui-borderLight dark:bg-ui-borderDark"></div>
+                    <button id="theme-toggle" class="w-12 h-12 flex items-center justify-center rounded-full bg-ui-lightAlt dark:bg-ui-darkAlt hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors focus-visible:ring-2 focus-visible:ring-brand outline-none" aria-label="Toggle Dark Mode">
+                        <i class="ph-fill ph-moon text-xl dark:hidden text-gray-700"></i>
+                        <i class="ph-fill ph-sun text-xl hidden dark:block text-yellow-400"></i>
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center gap-3">
+                    <button id="theme-toggle-mobile" class="w-12 h-12 flex items-center justify-center rounded-full bg-ui-lightAlt dark:bg-ui-darkAlt" aria-label="Toggle Dark Mode">
+                        <i class="ph-fill ph-moon text-xl dark:hidden"></i>
+                        <i class="ph-fill ph-sun text-xl hidden dark:block text-yellow-400"></i>
+                    </button>
+                    <button class="w-12 h-12 flex items-center justify-center text-2xl">
+                        <i class="ph ph-list"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container (Router Target) -->
+    <main class="flex-grow pt-20">
+
+        <!-- ========================================== -->
+        <!-- PAGE 1: HOME -->
+        <!-- ========================================== -->
+        <section id="view-home" class="page-view active min-h-screen">
+            <!-- Hero -->
+            <div class="relative w-full overflow-hidden bg-ui-dark rounded-b-[40px] md:rounded-b-[60px] isolation">
+                <!-- Abstract Hero Background -->
+                <div class="absolute inset-0 bg-hero-pattern bg-cover bg-center opacity-40 dark:opacity-20 mix-blend-overlay"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-ui-dark via-ui-dark/80 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-ui-dark via-transparent to-ui-dark hidden md:block"></div>
+                
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-48 flex flex-col items-center text-center">
+                    <span class="reveal text-brand font-bold tracking-[0.2em] text-sm md:text-base uppercase mb-4 border border-brand/30 bg-brand/10 px-4 py-1.5 rounded-full backdrop-blur-sm">
+                        Verified Rankings 2024
+                    </span>
+                    <h1 class="reveal delay-100 text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6 leading-tight tracking-tight">
+                        あなたに<span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-yellow-400">最適な選択</span>を
+                    </h1>
+                    <p class="reveal delay-200 text-lg md:text-xl text-gray-300 max-w-2xl mb-10 font-medium leading-relaxed">
+                        専門家による徹底比較と、リアルな口コミ。情報過多な時代に、迷わず「正解」へ導くコンシェルジュ。
+                    </p>
+                    <div class="reveal delay-300 w-full md:w-auto flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="navigate('ranking')" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white bg-gradient-to-r from-brand to-[#FF8C61] rounded-xl overflow-hidden shadow-glow min-w-[200px] min-h-[48px] hover:scale-105 transition-transform duration-300">
+                            <span class="relative z-10 flex items-center gap-2">
+                                ランキングを見る
+                                <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                            </span>
+                            <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust Stats -->
+            <div class="max-w-5xl mx-auto px-4 -mt-12 relative z-10 mb-20 reveal">
+                <div class="bg-white dark:bg-ui-darkAlt rounded-2xl shadow-premium dark:shadow-premium-dark p-6 md:p-10 border border-ui-borderLight dark:border-white/5">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-ui-borderLight dark:divide-white/10">
+                        <div class="text-center md:px-4">
+                            <div class="text-3xl font-black text-brand mb-1">500+</div>
+                            <div class="text-sm text-ui-mutedLight dark:text-ui-mutedDark font-medium">徹底比較したサービス数</div>
+                        </div>
+                        <div class="text-center pt-8 md:pt-0 md:px-4">
+                            <div class="flex items-center justify-center gap-1 text-3xl font-black text-ui-textLight dark:text-white mb-1">
+                                4.8 <i class="ph-fill ph-star text-brand text-2xl"></i>
+                            </div>
+                            <div class="text-sm text-ui-mutedLight dark:text-ui-mutedDark font-medium">ユーザー平均満足度</div>
+                        </div>
+                        <div class="text-center pt-8 md:pt-0 md:px-4">
+                            <div class="text-3xl font-black text-ui-textLight dark:text-white mb-1">10<span class="text-xl">万+</span></div>
+                            <div class="text-sm text-ui-mutedLight dark:text-ui-mutedDark font-medium">月間利用者数</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories (Bento Layout) -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="flex items-end justify-between mb-10 reveal">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-black mb-2">カテゴリから探す</h2>
+                        <p class="text-ui-mutedLight dark:text-ui-mutedDark">ライフスタイルに合わせた最適なサービスを</p>
+                    </div>
+                </div>
+
+                <div class="bento-layout reveal">
+                    <!-- Item 1 (Large) -->
+                    <button onclick="navigate('ranking')" class="bento-1 group text-left relative overflow-hidden rounded-[24px] bg-ui-lightAlt dark:bg-ui-darkAlt hover-lift shadow-sm hover:shadow-premium min-h-[300px] border border-ui-borderLight dark:border-white/5">
+                        <div class="absolute inset-0">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80" alt="Credit Card Banner" class="w-full h-full object-cover opacity-20 dark:opacity-40 group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <div class="relative h-full flex flex-col p-8 z-10 w-full bg-gradient-to-t from-white/90 via-white/50 to-transparent dark:from-ui-darkAlt/90 dark:via-ui-darkAlt/50">
+                            <div class="w-14 h-14 rounded-full bg-brand/10 text-brand flex items-center justify-center mb-auto backdrop-blur-md">
+                                <i class="ph-fill ph-credit-card text-2xl"></i>
+                            </div>
+                            <div class="mt-8">
+                                <div class="flex items-center gap-2 text-brand font-bold text-sm mb-2">
+                                    <span>人気No.1</span>
+                                </div>
+                                <h3 class="text-2xl font-black mb-2">クレジットカード</h3>
+                                <p class="text-ui-mutedLight dark:text-ui-mutedDark text-sm font-medium">還元率・年会費・付帯保険から、あなたに最強の1枚を導き出します。</p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <!-- Item 2 -->
+                    <button class="bento-2 group text-left relative overflow-hidden rounded-[24px] bg-white dark:bg-ui-darkAlt hover-lift shadow-sm hover:shadow-premium min-h-[160px] p-6 border border-ui-borderLight dark:border-white/5">
+                        <div class="flex flex-col h-full justify-between">
+                            <div class="w-10 h-10 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center">
+                                <i class="ph-fill ph-device-mobile text-xl"></i>
+                            </div>
+                            <div class="mt-4">
+                                <h3 class="text-lg font-bold mb-1">格安SIM</h3>
+                                <p class="text-xs text-ui-mutedLight dark:text-ui-mutedDark">通信費を賢く節約</p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <!-- Item 3 -->
+                    <button class="bento-3 group text-left relative overflow-hidden rounded-[24px] bg-white dark:bg-ui-darkAlt hover-lift shadow-sm hover:shadow-premium min-h-[160px] p-6 border border-ui-borderLight dark:border-white/5">
+                        <div class="flex flex-col h-full justify-between">
+                            <div class="w-10 h-10 rounded-full bg-purple-500/10 text-purple-500 flex items-center justify-center">
+                                <i class="ph-fill ph-wifi-high text-xl"></i>
+                            </div>
+                            <div class="mt-4">
+                                <h3 class="text-lg font-bold mb-1">光回線</h3>
+                                <p class="text-xs text-ui-mutedLight dark:text-ui-mutedDark">快適なネット環境</p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <!-- Item 4 -->
+                    <button class="bento-4 group text-left relative overflow-hidden rounded-[24px] bg-white dark:bg-ui-darkAlt hover-lift shadow-sm hover:shadow-premium min-h-[160px] p-6 border border-ui-borderLight dark:border-white/5">
+                        <div class="flex flex-col h-full justify-between">
+                            <div class="w-10 h-10 rounded-full bg-cyan-500/10 text-cyan-500 flex items-center justify-center">
+                                <i class="ph-fill ph-drop text-xl"></i>
+                            </div>
+                            <div class="mt-4">
+                                <h3 class="text-lg font-bold mb-1">ウォーターサーバー</h3>
+                                <p class="text-xs text-ui-mutedLight dark:text-ui-mutedDark">デザインと水質で選ぶ</p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <!-- Item 5 -->
+                    <button class="bento-5 group text-left relative overflow-hidden rounded-[24px] bg-white dark:bg-ui-darkAlt hover-lift shadow-sm hover:shadow-premium min-h-[160px] p-6 border border-ui-borderLight dark:border-white/5">
+                     <div class="flex flex-col h-full justify-between">
+                            <div class="w-10 h-10 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+                                <i class="ph-fill ph-briefcase text-xl"></i>
+                            </div>
+                            <div class="mt-4">
+                                <h3 class="text-lg font-bold mb-1">転職エージェント</h3>
+                                <p class="text-xs text-ui-mutedLight dark:text-ui-mutedDark">キャリアアップの成功へ</p>
+                            </div>
+                        </div>
+                    </button>
+                    <!-- Small gap filler for mobile -->
+                     <button onclick="navigate('ranking')" class="md:hidden w-full py-4 text-center text-sm font-bold text-brand bg-brand/5 rounded-xl border border-brand/20">
+                        すべてのカテゴリを見る
+                    </button>
+                </div>
+            </div>
+
+            <!-- Featured Rankings Teaser -->
+            <div class="bg-ui-lightAlt dark:bg-[#18181B] border-y border-ui-borderLight dark:border-white/5 py-24 mb-20">
+                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12 reveal">
+                        <h2 class="text-3xl md:text-4xl font-black mb-4">注目のランキング</h2>
+                        <p class="text-ui-mutedLight dark:text-ui-mutedDark max-w-2xl mx-auto">今月、最も選ばれているトップサービスをピックアップ。</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Teaser Card -->
+                        <div class="bg-white dark:bg-ui-dark rounded-2xl p-6 shadow-sm border border-ui-borderLight dark:border-white/5 reveal delay-100 flex flex-col">
+                            <div class="text-xs font-bold text-brand bg-brand/10 w-max px-2 py-1 rounded mb-3">クレジットカード</div>
+                            <h3 class="text-xl font-bold mb-2">年会費無料で高還元。究極のメインカードTOP3</h3>
+                            <div class="flex items-center gap-1 text-sm text-yellow-500 mb-4">
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-half ph-star"></i>
+                            </div>
+                            <button onclick="navigate('ranking')" class="mt-auto flex items-center justify-between w-full p-4 rounded-xl bg-ui-lightAlt dark:bg-ui-darkAlt hover:bg-gray-100 dark:hover:bg-white/5 transition-colors group">
+                                <span class="font-bold text-sm">ランキングを見る</span>
+                                <i class="ph-bold ph-arrow-right text-brand group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </div>
+                         <!-- Teaser Card 2 -->
+                         <div class="bg-white dark:bg-ui-dark rounded-2xl p-6 shadow-sm border border-ui-borderLight dark:border-white/5 reveal delay-200 flex flex-col">
+                            <div class="text-xs font-bold text-blue-500 bg-blue-500/10 w-max px-2 py-1 rounded mb-3">格安SIM</div>
+                            <h3 class="text-xl font-bold mb-2">通信品質で選ぶ。乗り換えおすすめランキング</h3>
+                            <div class="flex items-center gap-1 text-sm mb-4 text-ui-mutedLight dark:text-ui-mutedDark">
+                               <i class="ph-fill ph-users"></i> 1,200人が読んでいます
+                            </div>
+                            <button class="mt-auto flex items-center justify-between w-full p-4 rounded-xl bg-ui-lightAlt dark:bg-ui-darkAlt hover:bg-gray-100 dark:hover:bg-white/5 transition-colors group">
+                                <span class="font-bold text-sm">ランキングを見る</span>
+                                <i class="ph-bold ph-arrow-right text-blue-500 group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </div>
+                         <!-- Teaser Card 3 -->
+                         <div class="bg-white dark:bg-ui-dark rounded-2xl p-6 shadow-sm border border-ui-borderLight dark:border-white/5 reveal delay-300 flex flex-col">
+                            <div class="text-xs font-bold text-emerald-500 bg-emerald-500/10 w-max px-2 py-1 rounded mb-3">転職エージェント</div>
+                            <h3 class="text-xl font-bold mb-2">20代向け・未経験からITへ。エージェント徹底比較</h3>
+                             <div class="flex items-center gap-2 mb-4">
+                                <img src="https://i.pravatar.cc/100?img=32" alt="Reviewer" class="w-6 h-6 rounded-full border border-white">
+                                <span class="text-xs text-ui-mutedLight dark:text-ui-mutedDark">キャリアコンサルタント監修</span>
+                            </div>
+                            <button class="mt-auto flex items-center justify-between w-full p-4 rounded-xl bg-ui-lightAlt dark:bg-ui-darkAlt hover:bg-gray-100 dark:hover:bg-white/5 transition-colors group">
+                                <span class="font-bold text-sm">ランキングを見る</span>
+                                <i class="ph-bold ph-arrow-right text-emerald-500 group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- PAGE 2: RANKING -->
+        <!-- ========================================== -->
+        <section id="view-ranking" class="page-view min-h-screen pb-24">
+            <!-- Header Area -->
+            <div class="bg-ui-lightAlt dark:bg-[#18181B] border-b border-ui-borderLight dark:border-white/5 pt-10 pb-16">
+                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- Breadcrumbs -->
+                    <nav class="flex text-sm text-ui-mutedLight dark:text-ui-mutedDark mb-6" aria-label="Breadcrumb">
+                        <ol class="inline-flex items-center gap-2">
+                            <li class="inline-flex items-center">
+                                <button onclick="navigate('home')" class="hover:text-brand transition-colors"><i class="ph-fill ph-house"></i></button>
+                            </li>
+                            <li><i class="ph-bold ph-caret-right text-xs"></i></li>
+                            <li>
+                                <span class="text-ui-textLight dark:text-ui-textDark font-medium">クレジットカードランキング</span>
+                            </li>
+                        </ol>
+                    </nav>
+
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 reveal">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-12 h-12 rounded-2xl bg-brand/10 text-brand flex items-center justify-center">
+                                    <i class="ph-fill ph-credit-card text-2xl"></i>
+                                </div>
+                                <span class="px-3 py-1 bg-ui-light dark:bg-ui-dark border border-ui-borderLight dark:border-white/10 rounded-full text-xs font-bold font-mono tracking-widest text-ui-mutedLight dark:text-ui-mutedDark">UPDATED: 2024.05</span>
+                            </div>
+                            <h1 class="text-3xl md:text-5xl font-black mb-4 tracking-tight">クレジットカード<br class="md:hidden" />総合ランキング</h1>
+                            <p class="text-ui-mutedLight dark:text-ui-mutedDark max-w-2xl leading-relaxed">
+                                年会費、ポイント還元率、特典、付帯保険など、独自の評価基準に基づき徹底比較。本当に価値のある1枚をランキング形式で発表します。
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white dark:bg-ui-dark px-4 py-3 rounded-xl border border-ui-borderLight dark:border-white/5 shadow-sm">
+                             <div class="text-xs font-bold text-ui-mutedLight dark:text-ui-mutedDark">監修</div>
+                             <div class="flex items-center gap-2">
+                                <img src="https://i.pravatar.cc/150?img=11" alt="Expert" class="w-8 h-8 rounded-full grayscale">
+                                <div class="text-sm font-bold">山田 太郎 <span class="block text-[10px] font-normal text-ui-mutedLight dark:text-ui-mutedDark">FP1級 / 金融アナリスト</span></div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
+                
+                <!-- TOP 3 Cards -->
+                <div class="flex flex-col gap-8 mb-20">
+                    
+                    <!-- GOLD RANK 1 -->
+                    <div class="group bg-white dark:bg-ui-darkAlt rounded-[24px] shadow-premium dark:shadow-premium-dark border border-yellow-400/30 overflow-hidden reveal hover-lift relative p-[2px]">
+                        <!-- Gold Border Gradient Wrapper for high-end feel -->
+                        <div class="absolute inset-0 grade-gold opacity-50 dark:opacity-20 z-0"></div>
+                        <div class="relative bg-white dark:bg-ui-dark z-10 rounded-[22px] h-full flex flex-col md:flex-row">
+                            
+                            <!-- Left: Image & Badge -->
+                            <div class="relative w-full md:w-1/3 bg-gray-50 dark:bg-black/20 p-8 flex items-center justify-center border-b md:border-b-0 md:border-r border-ui-borderLight dark:border-white/5">
+                                <div class="absolute top-0 left-0 grade-gold text-ui-dark font-black px-6 py-2 rounded-br-[22px] rounded-tl-[22px] shadow-lg flex items-center gap-2">
+                                    <i class="ph-fill ph-crown text-xl"></i>
+                                    <span class="text-lg">第1位</span>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=400&q=80" alt="Card Placeholder" class="w-48 drop-shadow-2xl transform group-hover:-rotate-3 group-hover:scale-105 transition-transform duration-500">
+                            </div>
+
+                            <!-- Right: Content -->
+                            <div class="w-full md:w-2/3 p-6 md:p-8 flex flex-col justify-between">
+                                <div>
+                                    <h2 class="text-2xl md:text-3xl font-black mb-3 text-ui-textLight dark:text-white">JCB W ゴールド(仮)</h2>
+                                    <div class="flex flex-wrap items-center gap-4 mb-4">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                                            <span class="font-bold text-ui-textLight dark:text-white ml-1">5.0</span>
+                                        </div>
+                                        <span class="text-xs font-bold px-2 py-1 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded">年会費永年無料</span>
+                                        <span class="text-xs font-bold px-2 py-1 bg-brand/10 text-brand rounded">基本還元率 1.0%~</span>
+                                    </div>
+                                    <p class="text-ui-mutedLight dark:text-ui-mutedDark mb-6 text-sm md:text-base leading-relaxed">
+                                        Amazon、スタバなどの特約店でポイント最大10倍以上。ポイントの使い道も豊富で、初めての一枚にもサブカードにも最適な完成されたスペック。
+                                    </p>
+                                    
+                                    <!-- Specs Grid -->
+                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 bg-ui-lightAlt dark:bg-black/30 p-4 rounded-xl text-sm">
+                                        <div><div class="text-[10px] text-ui-mutedLight dark:text-ui-mutedDark mb-1">年会費</div><div class="font-bold">無料</div></div>
+                                        <div><div class="text-[10px] text-ui-mutedLight dark:text-ui-mutedDark mb-1">還元率</div><div class="font-bold">1.0%〜5.0%</div></div>
+                                        <div><div class="text-[10px] text-ui-mutedLight dark:text-ui-mutedDark mb-1">発行スピード</div><div class="font-bold">最短5分</div></div>
+                                        <div><div class="text-[10px] text-ui-mutedLight dark:text-ui-mutedDark mb-1">国際ブランド</div>
+                                            <div class="flex gap-1 mt-1 text-lg">
+                                                <i class="ph-fill ph-stripe-logo text-blue-600"></i> <!-- fake brand icons -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+                                    <button onclick="navigate('article')" class="w-full sm:w-1/3 py-3 rounded-xl border-2 border-brand text-brand font-bold text-center hover:bg-brand/5 transition-colors min-h-[48px]">詳細レビュー</button>
+                                    <button class="w-full sm:w-2/3 py-3 rounded-xl bg-gradient-to-r from-brand to-[#FF8C61] text-white font-bold text-center shadow-glow hover:opacity-90 transition-opacity min-h-[48px] flex items-center justify-center gap-2">
+                                        公式サイトで申込む <i class="ph-bold ph-arrow-up-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SILVER RANK 2 -->
+                    <div class="group bg-white dark:bg-ui-darkAlt rounded-[24px] shadow-sm border border-ui-borderLight dark:border-white/5 overflow-hidden reveal delay-100 hover-lift relative p-[2px]">
+                         <div class="absolute inset-0 grade-silver opacity-50 dark:opacity-20 z-0"></div>
+                         <div class="relative bg-white dark:bg-ui-dark z-10 rounded-[22px] h-full flex flex-col md:flex-row">
+                            <div class="relative w-full md:w-1/3 bg-gray-50 dark:bg-black/20 p-8 flex items-center justify-center border-b md:border-b-0 md:border-r border-ui-borderLight dark:border-white/5">
+                                <div class="absolute top-0 left-0 grade-silver text-ui-dark font-black px-6 py-2 rounded-br-[22px] rounded-tl-[22px] shadow-sm flex items-center gap-2">
+                                    <span class="text-lg">第2位</span>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1607863680198-23d4b2565df0?auto=format&fit=crop&w=400&q=80" alt="Card Placeholder" class="w-48 drop-shadow-xl transform group-hover:-rotate-3 group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="w-full md:w-2/3 p-6 md:p-8 flex flex-col justify-between">
+                                <div>
+                                    <h2 class="text-2xl font-black mb-3">楽天カードプレミアム(仮)</h2>
+                                    <div class="flex flex-wrap items-center gap-4 mb-4">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-half ph-star"></i>
+                                            <span class="font-bold text-ui-textLight dark:text-white ml-1">4.7</span>
+                                        </div>
+                                         <span class="text-xs font-bold px-2 py-1 bg-brand/10 text-brand rounded">楽天市場で還元率3倍</span>
+                                    </div>
+                                    <p class="text-ui-mutedLight dark:text-ui-mutedDark mb-6 text-sm leading-relaxed">
+                                        楽天経済圏の住人なら必須。年会費はかかるものの、空港ラウンジや手厚い保険で簡単に元が取れるハイステータスカード。
+                                    </p>
+                                </div>
+                                <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+                                    <button class="w-full sm:w-2/3 py-3 rounded-xl bg-ui-dark text-white dark:bg-white dark:text-ui-dark font-bold text-center hover:opacity-90 transition-opacity min-h-[48px] ml-auto">
+                                        公式サイトを見る
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BRONZE RANK 3 -->
+                    <div class="group bg-white dark:bg-ui-darkAlt rounded-[24px] shadow-sm border border-ui-borderLight dark:border-white/5 overflow-hidden reveal delay-200 hover-lift relative p-[2px]">
+                         <div class="absolute inset-0 grade-bronze opacity-50 dark:opacity-20 z-0"></div>
+                         <div class="relative bg-white dark:bg-ui-dark z-10 rounded-[22px] h-full flex flex-col md:flex-row">
+                            <div class="relative w-full md:w-1/3 bg-gray-50 dark:bg-black/20 p-8 flex items-center justify-center border-b md:border-b-0 md:border-r border-ui-borderLight dark:border-white/5">
+                                <div class="absolute top-0 left-0 grade-bronze text-white font-black px-6 py-2 rounded-br-[22px] rounded-tl-[22px] shadow-sm flex items-center gap-2">
+                                    <span class="text-lg">第3位</span>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1589758438368-0ad531db3366?auto=format&fit=crop&w=400&q=80" alt="Card Placeholder" class="w-48 drop-shadow-xl transform group-hover:-rotate-3 group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="w-full md:w-2/3 p-6 md:p-8 flex flex-col justify-between">
+                                <div>
+                                    <h2 class="text-2xl font-black mb-3">三井住友 NL ゴールド(仮)</h2>
+                                    <div class="flex flex-wrap items-center gap-4 mb-4">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-star"></i>
+                                            <span class="font-bold text-ui-textLight dark:text-white ml-1">4.5</span>
+                                        </div>
+                                         <span class="text-xs font-bold px-2 py-1 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded">コンビニ5%還元</span>
+                                    </div>
+                                    <p class="text-ui-mutedLight dark:text-ui-mutedDark mb-6 text-sm leading-relaxed">
+                                        ナンバーレスで高いセキュリティ。対象のコンビニ・飲食店でタッチ決済を使うと最大5%還元という驚異的な特典が魅力。
+                                    </p>
+                                </div>
+                                <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+                                    <button class="w-full sm:w-2/3 py-3 rounded-xl bg-ui-dark text-white dark:bg-white dark:text-ui-dark font-bold text-center hover:opacity-90 transition-opacity min-h-[48px] ml-auto">
+                                        公式サイトを見る
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison Table -->
+                <div class="reveal mt-32 mb-10">
+                    <h2 class="text-2xl font-black mb-6 flex items-center gap-2">
+                        <i class="ph-fill ph-table text-brand"></i> トップ3スペック比較表
+                    </h2>
+                    <div class="overflow-x-auto rounded-2xl bg-white dark:bg-ui-darkAlt border border-ui-borderLight dark:border-white/5 shadow-sm">
+                        <table class="w-full text-left border-collapse min-w-[800px]">
+                            <thead>
+                                <tr class="bg-ui-lightAlt dark:bg-black/30 text-sm">
+                                    <th class="p-4 w-1/4 font-medium text-ui-mutedLight dark:text-ui-mutedDark border-r border-ui-borderLight dark:border-white/5">項目</th>
+                                    <th class="p-4 w-1/4 font-black border-r border-ui-borderLight dark:border-white/5 text-center"><span class="text-yellow-500">1位:</span> JCB W</th>
+                                    <th class="p-4 w-1/4 font-black border-r border-ui-borderLight dark:border-white/5 text-center text-gray-400">2位: 楽天</th>
+                                    <th class="p-4 w-1/4 font-black text-center text-orange-400">3位: 三井住友</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm">
+                                <tr>
+                                    <td class="p-4 font-bold border-r border-ui-borderLight dark:border-white/5">年会費</td>
+                                    <td class="p-4 text-center border-r border-ui-borderLight dark:border-white/5 text-brand font-bold">永年無料</td>
+                                    <td class="p-4 text-center border-r border-ui-borderLight dark:border-white/5">11,000円</td>
+                                    <td class="p-4 text-center">5,500円<br><span class="text-[10px] text-ui-mutedLight dark:text-ui-mutedDark">※条件つき無料</span></td>
+                                </tr>
+                                <tr class="bg-gray-50/50 dark:bg-white/[0.02]">
+                                    <td class="p-4 font-bold border-r border-ui-borderLight dark:border-white/5">基本還元率</td>
+                                    <td class="p-4 text-center border-r border-ui-borderLight dark:border-white/5 font-bold">1.0%</td>
+                                    <td class="p-4 text-center border-r border-ui-borderLight dark:border-white/5 font-bold">1.0%</td>
+                                    <td class="p-4 text-center font-bold">0.5%</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold border-r border-ui-borderLight dark:border-white/5">付帯保険</td>
+                                    <td class="p-4 text-center border-r border-ui-borderLight dark:border-white/5 text-green-600 dark:text-green-400"><i class="ph-bold ph-check-circle"></i> 海外最高2000万</td>
+                                    <td class="p-4 text-center border-r border-ui-borderLight dark:border-white/5 text-green-600 dark:text-green-400"><i class="ph-bold ph-check-circle"></i> 国内外5000万</td>
+                                    <td class="p-4 text-center text-red-500"><i class="ph-bold ph-x"></i> なし</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Load More / Content -->
+                <div class="text-center reveal">
+                    <button class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-ui-borderLight dark:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors font-bold text-sm min-h-[48px]">
+                        <i class="ph-bold ph-arrows-down"></i> 4位以下を見る
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- PAGE 3: ARTICLE DETAIL -->
+        <!-- ========================================== -->
+        <section id="view-article" class="page-view min-h-screen bg-white dark:bg-ui-dark pb-32">
+            
+            <!-- Article Hero Context -->
+            <div class="relative w-full h-[50vh] md:h-[60vh] bg-ui-dark overflow-hidden flex items-end">
+                 <!-- Fake image background -->
+                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1600&q=80" alt="Product Hero Space" class="absolute inset-0 w-full h-full object-cover opacity-30 dark:opacity-20 mix-blend-luminosity">
+                <div class="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-ui-dark dark:via-ui-dark/80 z-10"></div>
+                
+                <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 w-full flex flex-col md:flex-row gap-8 items-end">
+                    <div class="w-full md:w-2/3">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="bg-brand text-white text-xs font-bold px-2 py-1 rounded">レビュー</span>
+                            <span class="text-sm font-medium text-ui-mutedLight dark:text-ui-mutedDark">更新日: 2024.05.15</span>
+                        </div>
+                        <h1 class="text-3xl md:text-5xl font-black mb-4 leading-tight text-ui-textLight dark:text-white">JCB W ゴールド徹底レビュー：<br/>メインカードとして本当に最強か？</h1>
+                        <p class="text-lg text-ui-mutedLight dark:text-ui-mutedDark font-medium">実際に3ヶ月メインで使い倒して分かった、メリットと意外な落とし穴を正直に解説します。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+                <div class="flex flex-col lg:flex-row gap-12">
+                    
+                    <!-- Main Content (2/3) -->
+                    <article class="w-full lg:w-[65%] prose prose-lg dark:prose-invert max-w-none text-ui-textLight dark:text-ui-textDark">
+                        
+                        <!-- Author Box -->
+                        <div class="flex items-center gap-4 p-4 mb-10 rounded-2xl bg-ui-lightAlt dark:bg-[#18181B] border border-ui-borderLight dark:border-white/5 not-prose reveal">
+                             <img src="https://i.pravatar.cc/150?img=11" alt="Author" class="w-12 h-12 rounded-full">
+                             <div>
+                                 <div class="text-xs text-ui-mutedLight dark:text-ui-mutedDark">執筆・監修</div>
+                                 <div class="font-bold text-sm">金融アナリスト 山田太郎</div>
+                             </div>
+                        </div>
+
+                        <!-- Pros & Cons Bento -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 not-prose mb-12 reveal">
+                            <!-- Pros -->
+                            <div class="bg-green-50 dark:bg-green-900/10 border border-green-200 dark:border-green-900/50 rounded-[20px] p-6 shadow-sm">
+                                <h3 class="flex items-center gap-2 font-bold text-green-700 dark:text-green-400 text-xl mb-4">
+                                    <i class="ph-fill ph-check-circle text-2xl"></i> メリット
+                                </h3>
+                                <ul class="space-y-3 shrink-0">
+                                    <li class="flex items-start gap-2 text-sm text-green-900 dark:text-green-300 font-medium">
+                                        <i class="ph-bold ph-plus text-green-600 mt-0.5"></i> いつでもポイント2倍（還元率1.0%）
+                                    </li>
+                                    <li class="flex items-start gap-2 text-sm text-green-900 dark:text-green-300 font-medium">
+                                        <i class="ph-bold ph-plus text-green-600 mt-0.5"></i> Amazonでの買い物が驚異の還元率
+                                    </li>
+                                    <li class="flex items-start gap-2 text-sm text-green-900 dark:text-green-300 font-medium">
+                                        <i class="ph-bold ph-plus text-green-600 mt-0.5"></i> 年会費が完全永年無料
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Cons -->
+                            <div class="bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-900/50 rounded-[20px] p-6 shadow-sm">
+                                <h3 class="flex items-center gap-2 font-bold text-red-700 dark:text-red-400 text-xl mb-4">
+                                    <i class="ph-fill ph-warning-circle text-2xl"></i> デメリット（注意点）
+                                </h3>
+                                <ul class="space-y-3 shrink-0">
+                                    <li class="flex items-start gap-2 text-sm text-red-900 dark:text-red-300 font-medium">
+                                        <i class="ph-bold ph-minus text-red-600 mt-0.5"></i> 申込は39歳以下限定（発行後は継続可）
+                                    </li>
+                                    <li class="flex items-start gap-2 text-sm text-red-900 dark:text-red-300 font-medium">
+                                        <i class="ph-bold ph-minus text-red-600 mt-0.5"></i> 国際ブランドがJCBのみ（海外でやや不便）
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Article Text Simulation -->
+                        <h2 class="text-2xl md:text-3xl font-black mt-12 mb-6 border-b-2 border-brand pb-2 reveal inline-block text-ui-textLight dark:text-white">結論：どんな人におすすめか？</h2>
+                        <p class="leading-loose mb-6 reveal text-sm md:text-base">
+                            結論から言うと、<strong>「Amazonをよく利用する、39歳以下の方」</strong>にとっては、作らない理由がないレベルのクレジットカードです。通常、高還元率のカードは年会費やリボ払いの設定が必須なケースが多いですが、このカードは無条件で年会費無料、かつ基本還元率が1.0%と非常に優秀です。
+                        </p>
+                        
+                        <!-- Rich Image insertion -->
+                        <figure class="my-10 rounded-2xl overflow-hidden reveal">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=80" alt="Using card at cafe" class="w-full object-cover">
+                            <figcaption class="text-center text-xs text-ui-mutedLight dark:text-ui-mutedDark mt-2">※ スターバックスなどの特約店ではさらにポイントアップ</figcaption>
+                        </figure>
+
+                        <h3 class="text-xl font-bold mt-10 mb-4 flex items-center gap-2 reveal text-ui-textLight dark:text-white">
+                            <div class="w-1 h-6 bg-brand rounded-full"></div>ポイントの使い道が柔軟
+                        </h3>
+                        <p class="leading-loose mb-6 reveal text-sm md:text-base">
+                            貯まったOki Dokiポイントは、Amazonの買い物で「1ポイント＝3.5円分」としてそのまま使えるほか、マイルや他社ポイント（dポイント、楽天ポイントなど）への等価交換も可能です。「ポイントが貯まっても使い道がない」というよくある悩みを解決しています。
+                        </p>
+                        
+                        <!-- Spacer for bottom padding -->
+                        <div class="h-20"></div>
+                    </article>
+
+                    <!-- Sidebar (1/3) -->
+                    <aside class="w-full lg:w-[35%] relative">
+                        <div class="sticky top-28 flex flex-col gap-8 reveal delay-200">
+                            
+                            <!-- Conversion Card Sidebar -->
+                            <div class="bg-gradient-to-b from-brand/5 to-transparent border border-brand/20 rounded-2xl p-6 text-center shadow-sm">
+                                 <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=200&q=80" alt="Card" class="w-32 mx-auto drop-shadow-lg mb-4 -mt-12">
+                                 <h4 class="font-black text-xl mb-2">JCB W ゴールド</h4>
+                                 <div class="text-brand font-bold text-2xl mb-4">新規入会キャンペーン中</div>
+                                 <p class="text-xs text-ui-mutedLight dark:text-ui-mutedDark mb-6">最大10,000円相当ポイント還元</p>
+                                 <button class="w-full py-4 rounded-xl bg-gradient-to-r from-brand to-[#FF8C61] text-white font-bold shadow-glow hover:scale-[1.02] transition-transform flex justify-center items-center gap-2 min-h-[48px]">
+                                     公式サイトへ進む <i class="ph-bold ph-arrow-up-right"></i>
+                                 </button>
+                            </div>
+
+                            <!-- Related Articles -->
+                            <div class="bg-ui-lightAlt dark:bg-ui-darkAlt rounded-2xl p-6 border border-ui-borderLight dark:border-white/5">
+                                <h4 class="font-bold border-b border-ui-borderLight dark:border-white/10 pb-3 mb-4 text-ui-textLight dark:text-white">関連記事</h4>
+                                <ul class="flex flex-col gap-4">
+                                    <li>
+                                        <a href="#" class="group flex gap-3 items-center">
+                                            <div class="w-16 h-16 rounded overflow-hidden flex-shrink-0">
+                                                <img src="https://images.unsplash.com/photo-1607863680198-23d4b2565df0?w=100&q=80" alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                                            </div>
+                                            <div class="text-sm font-bold group-hover:text-brand transition-colors line-clamp-2">楽天カードとJCB W、2枚持ちするならどっち？徹底比較</div>
+                                        </a>
+                                    </li>
+                                     <li>
+                                        <a href="#" class="group flex gap-3 items-center">
+                                            <div class="w-16 h-16 rounded overflow-hidden flex-shrink-0">
+                                                <img src="https://images.unsplash.com/photo-1589758438368-0ad531db3366?w=100&q=80" alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                                            </div>
+                                            <div class="text-sm font-bold group-hover:text-brand transition-colors line-clamp-2">マイルがザクザク貯まる！旅行好きのためのカード3選</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </aside>
+                </div>
+            </div>
+
+            <!-- Sticky Bottom CTA Mobile (Appears only on this view) -->
+            <div id="sticky-cta" class="fixed bottom-0 inset-x-0 z-50 p-4 bg-white/90 dark:bg-ui-dark/90 backdrop-blur-md border-t border-ui-borderLight dark:border-white/10 transform translate-y-full transition-transform duration-300 md:hidden flex items-center justify-between gap-4 shadow-[0_-10px_20px_rgba(0,0,0,0.05)]">
+                <div class="flex flex-col">
+                    <span class="text-xs font-bold text-ui-mutedLight dark:text-ui-mutedDark truncate max-w-[120px]">JCB W ゴールド</span>
+                    <span class="text-xs text-brand font-bold">最短5分で発行</span>
+                </div>
+                <button class="flex-grow py-3 px-4 rounded-xl bg-brand text-white font-bold text-center flex items-center justify-center gap-1 min-h-[48px]">
+                    申込む <i class="ph-bold ph-caret-right"></i>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="bg-ui-lightAlt dark:bg-[#0a0a0a] border-t border-ui-borderLight dark:border-white/5 py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <!-- Logo -->
+                <div class="flex items-center gap-2 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer" onclick="navigate('home')">
+                    <div class="w-8 h-8 rounded-lg bg-ui-dark flex items-center justify-center text-white">
+                        <i class="ph-bold ph-compass text-lg"></i>
+                    </div>
+                    <span class="text-xl font-black tracking-widest text-ui-dark dark:text-white">
+                        BESTNAVI
+                    </span>
+                </div>
+                
+                <div class="flex gap-6 text-sm font-medium text-ui-mutedLight dark:text-ui-mutedDark">
+                    <a href="#" class="hover:text-brand transition-colors">運営会社</a>
+                    <a href="#" class="hover:text-brand transition-colors">利用規約</a>
+                    <a href="#" class="hover:text-brand transition-colors">プライバシーポリシー</a>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-xs text-ui-mutedLight dark:text-ui-mutedDark/50">
+                &copy; 2024 BestNavi Inc. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Logic Setup -->
+    <script>
+        // --- 1. View Router Simulation ---
+        function navigate(viewId) {
+            // Hide all views
+            document.querySelectorAll('.page-view').forEach(el => {
+                el.classList.remove('active');
+            });
+            // Show target view
+            const target = document.getElementById(`view-${viewId}`);
+            if(target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Trigger intersection observer again for new view elements
+                setTimeout(() => {
+                    observeElements();
+                }, 100);
+
+                // Handle specific UI states per view (e.g., sticky CTA only on article)
+                const stickyCTA = document.getElementById('sticky-cta');
+                if (viewId === 'article') {
+                    setTimeout(() => { stickyCTA.classList.remove('translate-y-full'); }, 500);
+                } else {
+                    stickyCTA.classList.add('translate-y-full');
+                }
+            }
+        }
+
+        // --- 2. Dark Mode Toggle ---
+        const htmlElement = document.documentElement;
+        const toggleBtn = document.getElementById('theme-toggle');
+        const toggleBtnMobile = document.getElementById('theme-toggle-mobile');
+
+        // Check system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            htmlElement.classList.add('dark');
+        }
+
+        function toggleTheme() {
+            htmlElement.classList.toggle('dark');
+        }
+
+        toggleBtn.addEventListener('click', toggleTheme);
+        toggleBtnMobile.addEventListener('click', toggleTheme);
+
+
+        // --- 3. Scroll Interactions (Framer Motion feel) ---
+        function observeElements() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        // Optional: unobserve after animating
+                        // observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.page-view.active .reveal');
+            revealElements.forEach(el => {
+                // reset class for re-entry if navigating back
+                el.classList.remove('in-view'); 
+                observer.observe(el);
+            });
+        }
+
+        // Initial setup on load
+        document.addEventListener('DOMContentLoaded', () => {
+            navigate('home'); // Default route
+        });
+
+    </script>
+</body>
+</html>
