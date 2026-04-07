@@ -4,9 +4,17 @@ import { Sidebar } from "@/components/Sidebar";
 import { getPostBySlug, getAllSlugs } from "@/lib/wordpress";
 import { notFound } from "next/navigation";
 
+// Allow dynamic params for posts not pre-rendered at build time
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
-  const slugs = await getAllSlugs();
-  return slugs.map((slug) => ({ slug }));
+  try {
+    const slugs = await getAllSlugs();
+    return slugs.map((slug) => ({ slug }));
+  } catch {
+    // If WP API unreachable during build, return empty and use ISR
+    return [];
+  }
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
