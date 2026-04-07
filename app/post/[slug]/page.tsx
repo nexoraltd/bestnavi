@@ -1,17 +1,17 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Sidebar } from "@/components/Sidebar";
-import { getPostBySlug, getAllSlugs } from "@/lib/wordpress";
+import { getPostBySlug } from "@/lib/wordpress";
 import { notFound } from "next/navigation";
 
-// Fully dynamic - fetch from WP API on every request
 export const dynamic = "force-dynamic";
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = await getPostBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
   if (!post) return { title: "記事が見つかりません" };
 
-  const title = post.title.rendered.replace(/&amp;/g, "&").replace(/&#8211;/g, "–").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+  const title = post.title.rendered.replace(/&amp;/g, "&").replace(/&#8211;/g, "\u2013").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
   const excerpt = post.excerpt.rendered.replace(/<[^>]+>/g, "").trim().slice(0, 160);
 
   return {
@@ -20,8 +20,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
-  const post = await getPostBySlug(params.slug);
+export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
   if (!post) notFound();
 
   const title = post.title.rendered;
@@ -33,75 +34,34 @@ export default async function PostPage({ params }: { params: { slug: string } })
       <Header />
 
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "32px 16px" }}>
-        {/* Breadcrumb */}
         <nav style={{ fontSize: 12, color: "#888", marginBottom: 16 }}>
           <a href="/" style={{ color: "#ff6b35", textDecoration: "none" }}>ホーム</a>
-          <span style={{ margin: "0 8px" }}>›</span>
+          <span style={{ margin: "0 8px" }}>&rsaquo;</span>
           <span dangerouslySetInnerHTML={{ __html: title }} />
         </nav>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 300px",
-            gap: 32,
-            alignItems: "start",
-          }}
-          className="main-grid"
-        >
-          {/* Main */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 300px", gap: 32, alignItems: "start" }} className="main-grid">
           <main>
-            <article
-              style={{
-                background: "#fff",
-                borderRadius: 12,
-                border: "1px solid var(--border)",
-                boxShadow: "var(--shadow-card)",
-                padding: 32,
-              }}
-            >
-              {/* Date */}
+            <article style={{ background: "#fff", borderRadius: 12, border: "1px solid var(--border)", boxShadow: "var(--shadow-card)", padding: 32 }}>
               <div style={{ fontSize: 12, color: "#888", marginBottom: 12 }}>
-                📅 公開: {date}
+                {"\u{1F4C5}"} 公開: {date}
                 {modified !== date && <span> | 更新: {modified}</span>}
               </div>
 
-              {/* Title */}
-              <h1
-                style={{
-                  fontSize: 26,
-                  fontWeight: 900,
-                  lineHeight: 1.5,
-                  color: "#1a1a1a",
-                  borderBottom: "3px solid #ff6b35",
-                  paddingBottom: 12,
-                  marginBottom: 24,
-                }}
-                dangerouslySetInnerHTML={{ __html: title }}
-              />
+              <h1 style={{ fontSize: 26, fontWeight: 900, lineHeight: 1.5, color: "#1a1a1a", borderBottom: "3px solid #ff6b35", paddingBottom: 12, marginBottom: 24 }} dangerouslySetInnerHTML={{ __html: title }} />
 
-              {/* Content */}
-              <div
-                className="wp-content"
-                dangerouslySetInnerHTML={{ __html: post.content.rendered }}
-              />
+              <div className="wp-content" dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
             </article>
           </main>
 
-          {/* Sidebar */}
-          <div className="sidebar-area">
-            <Sidebar />
-          </div>
+          <div className="sidebar-area"><Sidebar /></div>
         </div>
       </div>
 
       <Footer />
 
       <style>{`
-        @media (max-width: 768px) {
-          .main-grid { grid-template-columns: 1fr !important; }
-        }
-        /* WordPress content styles */
+        @media (max-width: 768px) { .main-grid { grid-template-columns: 1fr !important; } }
         .wp-content h2 { font-weight: 900; font-size: 22px; border-left: 4px solid #ff6b35; padding: 8px 16px; margin: 40px 0 20px; }
         .wp-content h3 { font-weight: 700; font-size: 18px; border-bottom: 2px dashed #e0e0e0; padding-bottom: 8px; margin: 32px 0 16px; }
         .wp-content p { line-height: 1.9; margin-bottom: 20px; }
