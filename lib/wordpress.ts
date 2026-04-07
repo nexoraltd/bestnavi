@@ -34,7 +34,7 @@ export async function getAllPosts(): Promise<WPPost[]> {
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {
   const res = await fetch(
     `${WP_API}/posts?slug=${encodeURIComponent(slug)}&_fields=id,slug,title,content,excerpt,date,modified,link,categories`,
-    { next: { revalidate: 3600 } }
+    { cache: "no-store" }
   );
   if (!res.ok) return null;
   const data = await res.json();
