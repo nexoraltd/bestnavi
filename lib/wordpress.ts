@@ -1,4 +1,5 @@
-const WP_API = "https://navi.next-aura.com/wp-json/wp/v2";
+const WP_HOST = process.env.NEXT_PUBLIC_WP_HOST || "navi.next-aura.com";
+const WP_API = `https://${WP_HOST}/wp-json/wp/v2`;
 
 export interface WPPost {
   id: number;

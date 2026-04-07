@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "navi.next-aura.com",
+        hostname: process.env.NEXT_PUBLIC_WP_HOST || "navi.next-aura.com",
         pathname: "/wp-content/**",
       },
     ],
