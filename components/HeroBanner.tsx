@@ -6,6 +6,9 @@ const categories = [
   { name: "AIツール", icon: "🤖", href: "/ranking/ai" },
   { name: "FX口座", icon: "📈", href: "/ranking/fx" },
   { name: "仮想通貨", icon: "₿", href: "/ranking/crypto" },
+  { name: "eSIM", icon: "📱", href: "/ranking/esim" },
+  { name: "スクール", icon: "🎓", href: "/ranking/school" },
+  { name: "英会話", icon: "🌍", href: "/ranking/english" },
 ];
 
 export function HeroBanner() {
