@@ -91,18 +91,7 @@ export function RankingCard({ item }: { item: RankingItem }) {
           <StarRating rating={item.rating} />
         </div>
 
-        {/* Product Image Placeholder */}
-        <div style={{
-          width: 80, height: 56,
-          background: "#f0f0f0",
-          borderRadius: 8,
-          display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: 10, color: "#aaa",
-          border: "1px solid #e0e0e0",
-          flexShrink: 0,
-        }}>
-          LOGO
-        </div>
+        {/* Product Image - will be replaced with actual logos */}
       </div>
 
       {/* Card Body */}

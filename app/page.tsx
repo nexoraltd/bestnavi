@@ -143,9 +143,8 @@ export default function Home() {
             }}>
               <span style={{ fontSize: 20, flexShrink: 0 }}>📌</span>
               <div>
-                <strong style={{ color: "#ff6b35" }}>編集部からのお知らせ：</strong>
-                当ランキングは実際にサービスを利用した上で、速度・安全性・コストパフォーマンスを総合的に評価しています。
-                <strong>毎月更新</strong>しているため、常に最新の情報をお届けしています。
+                当ランキングは各サービスの公式情報・料金・機能をもとに比較しています。
+                ※当サイトはアフィリエイトプログラムを利用しています。
               </div>
             </div>
 
@@ -175,12 +174,12 @@ export default function Home() {
               color: "#fff",
               boxShadow: "0 8px 30px rgba(255,107,53,0.25)",
             }}>
-              <div style={{ fontSize: 28, marginBottom: 8 }}>🏆</div>
-              <h3 style={{ fontSize: 22, fontWeight: 900, marginBottom: 8 }}>迷ったらNordVPNがおすすめ！</h3>
+              <div style={{ fontSize: 28, marginBottom: 8 }}>📊</div>
+              <h3 style={{ fontSize: 22, fontWeight: 900, marginBottom: 8 }}>他のカテゴリもチェック</h3>
               <p style={{ fontSize: 14, opacity: 0.9, marginBottom: 20 }}>
-                30日間の返金保証付き。まずは気軽にお試しください。
+                VPN以外にもFX・仮想通貨・サーバー・AIツールのランキングを公開中
               </p>
-              <a href="#" style={{
+              <a href="#categories" style={{
                 display: "inline-block",
                 background: "#fff",
                 color: "#ff6b35",
@@ -192,7 +191,7 @@ export default function Home() {
                 boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
                 transition: "transform 0.2s",
               }}>
-                NordVPN 公式サイトへ →
+                カテゴリ一覧を見る →
               </a>
             </div>
           </main>

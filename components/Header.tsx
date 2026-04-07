@@ -18,8 +18,7 @@ export function Header() {
     <>
       {/* Top bar */}
       <div style={{ background: "#333", color: "#ccc", fontSize: 12, padding: "6px 0" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 16px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <span>📞 お問い合わせ | 📧 info@bestnavi.jp</span>
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 16px", display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
           <span>🕐 最終更新: 2026年4月7日</span>
         </div>
       </div>
