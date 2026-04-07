@@ -19,7 +19,7 @@ export function Header() {
       {/* Top bar */}
       <div style={{ background: "#333", color: "#ccc", fontSize: 12, padding: "6px 0" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 16px", display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
-          <span>🕐 最終更新: 2026年4月7日</span>
+          <span>🕐 最終更新: {new Date().toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" })}</span>
         </div>
       </div>
 
@@ -43,7 +43,7 @@ export function Header() {
             }}>B</div>
             <div>
               <div style={{ fontSize: 20, fontWeight: 900, color: "#1a1a1a", lineHeight: 1.1 }}>ベストナビ</div>
-              <div style={{ fontSize: 9, color: "#888", letterSpacing: 1 }}>BEST NAVI — 比較ランキング</div>
+              <div style={{ fontSize: 9, color: "#888", letterSpacing: 1 }}>VPN・サーバー・FX・仮想通貨 おすすめ比較</div>
             </div>
           </Link>
 
