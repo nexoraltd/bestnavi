@@ -1,5 +1,5 @@
-const WP_HOST = process.env.NEXT_PUBLIC_WP_HOST || "navi.next-aura.com";
-const WP_API = `https://${WP_HOST}/wp-json/wp/v2`;
+import fs from "fs";
+import path from "path";
 
 export interface WPPost {
   id: number;
@@ -26,45 +26,36 @@ export const CATEGORY_MAP: Record<string, { wpId: number; title: string; icon: s
   security: { wpId: 44, title: "セキュリティソフト比較", icon: "🛡️", description: "ウイルス対策・セキュリティソフトを性能で比較" },
 };
 
-export async function getAllPosts(): Promise<WPPost[]> {
-  const posts: WPPost[] = [];
-  let page = 1;
-
-  while (true) {
-    const res = await fetch(
-      `${WP_API}/posts?per_page=50&page=${page}&_fields=id,slug,title,excerpt,date,modified,link,categories`,
-      { next: { revalidate: 3600 } }
-    );
-    if (!res.ok) break;
-    const data = await res.json();
-    if (!data.length) break;
-    posts.push(...data);
-    page++;
+// 静的JSONから全記事を読み込み（ビルド時に1回だけ）
+function loadPosts(): WPPost[] {
+  try {
+    const jsonPath = path.join(process.cwd(), "data", "posts.json");
+    const raw = fs.readFileSync(jsonPath, "utf-8");
+    return JSON.parse(raw);
+  } catch {
+    console.warn("Warning: data/posts.json not found, returning empty posts");
+    return [];
   }
+}
 
-  return posts;
+let _postsCache: WPPost[] | null = null;
+function getCachedPosts(): WPPost[] {
+  if (!_postsCache) _postsCache = loadPosts();
+  return _postsCache;
+}
+
+export async function getAllPosts(): Promise<WPPost[]> {
+  return getCachedPosts();
 }
 
 export async function getPostsByCategory(categoryId: number): Promise<WPPost[]> {
-  const res = await fetch(
-    `${WP_API}/posts?categories=${categoryId}&per_page=50&_fields=id,slug,title,excerpt,date,modified,link,categories`,
-    { next: { revalidate: 3600 } }
-  );
-  if (!res.ok) return [];
-  return res.json();
+  return getCachedPosts().filter((p) => p.categories.includes(categoryId));
 }
 
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {
-  const res = await fetch(
-    `${WP_API}/posts?slug=${encodeURIComponent(slug)}&_fields=id,slug,title,content,excerpt,date,modified,link,categories`,
-    { cache: "no-store" }
-  );
-  if (!res.ok) return null;
-  const data = await res.json();
-  return data[0] || null;
+  return getCachedPosts().find((p) => p.slug === slug) || null;
 }
 
 export async function getAllSlugs(): Promise<string[]> {
-  const posts = await getAllPosts();
-  return posts.map((p) => p.slug);
+  return getCachedPosts().map((p) => p.slug);
 }

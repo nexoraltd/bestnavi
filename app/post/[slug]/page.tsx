@@ -1,6 +1,8 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Sidebar } from "@/components/Sidebar";
+import { ArticleCTA } from "@/components/ArticleCTA";
+import { MobileFixedCTA } from "@/components/MobileFixedCTA";
 import { getPostBySlug } from "@/lib/wordpress";
 import { notFound } from "next/navigation";
 
@@ -44,6 +46,33 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const title = post.title.rendered;
   const date = new Date(post.date).toLocaleDateString("ja-JP");
   const modified = new Date(post.modified).toLocaleDateString("ja-JP");
+  const categoryIds = post.categories || [];
+
+  // Split content at first <h2 to insert CTA after intro
+  const content = post.content.rendered;
+  const h2Match = content.match(/^([\s\S]*?)(<h2[\s>])/i);
+  let contentBefore = "";
+  let contentAfter = content;
+  if (h2Match) {
+    contentBefore = h2Match[1];
+    contentAfter = content.slice(h2Match[1].length);
+  }
+
+  // Find middle h2 for mid-article CTA
+  const h2Regex = /<h2[\s>]/gi;
+  const h2Positions: number[] = [];
+  let match;
+  while ((match = h2Regex.exec(contentAfter)) !== null) {
+    h2Positions.push(match.index);
+  }
+  let contentFirstHalf = contentAfter;
+  let contentSecondHalf = "";
+  if (h2Positions.length >= 3) {
+    const midIdx = Math.floor(h2Positions.length / 2);
+    const splitAt = h2Positions[midIdx];
+    contentFirstHalf = contentAfter.slice(0, splitAt);
+    contentSecondHalf = contentAfter.slice(splitAt);
+  }
 
   return (
     <div style={{ background: "var(--bg-warm)", minHeight: "100vh" }}>
@@ -66,7 +95,29 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
               <h1 style={{ fontSize: 26, fontWeight: 900, lineHeight: 1.5, color: "#1a1a1a", borderBottom: "3px solid #ff6b35", paddingBottom: 12, marginBottom: 24 }} dangerouslySetInnerHTML={{ __html: title }} />
 
-              <div className="wp-content" dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+              {/* Intro section before first h2 */}
+              {contentBefore && (
+                <div className="wp-content" dangerouslySetInnerHTML={{ __html: contentBefore }} />
+              )}
+
+              {/* CTA: top position (after intro, before first h2) */}
+              <ArticleCTA categoryIds={categoryIds} position="top" />
+
+              {/* First half of content */}
+              <div className="wp-content" dangerouslySetInnerHTML={{ __html: contentFirstHalf }} />
+
+              {/* CTA: middle position (between content halves) */}
+              {contentSecondHalf && (
+                <ArticleCTA categoryIds={categoryIds} position="middle" />
+              )}
+
+              {/* Second half of content */}
+              {contentSecondHalf && (
+                <div className="wp-content" dangerouslySetInnerHTML={{ __html: contentSecondHalf }} />
+              )}
+
+              {/* CTA: bottom position (after all content) */}
+              <ArticleCTA categoryIds={categoryIds} position="bottom" />
             </article>
           </main>
 
@@ -74,6 +125,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         </div>
       </div>
 
+      <MobileFixedCTA />
       <Footer />
 
       <style>{`

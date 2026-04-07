@@ -34,9 +34,17 @@ export function Footer() {
           {/* Categories */}
           <div>
             <h4 style={{ color: "#fff", fontWeight: 900, fontSize: 14, marginBottom: 12 }}>カテゴリ</h4>
-            {["VPN", "レンタルサーバー", "AIツール", "FX口座", "仮想通貨取引所"].map((cat) => (
-              <Link key={cat} href="#" style={{ display: "block", color: "#999", fontSize: 13, marginBottom: 8, textDecoration: "none" }}>
-                › {cat}ランキング
+            {[
+              { name: "VPN", slug: "vpn" },
+              { name: "レンタルサーバー", slug: "server" },
+              { name: "AIツール", slug: "ai" },
+              { name: "FX口座", slug: "fx" },
+              { name: "仮想通貨取引所", slug: "crypto" },
+              { name: "eSIM", slug: "esim" },
+              { name: "セキュリティソフト", slug: "security" },
+            ].map((cat) => (
+              <Link key={cat.slug} href={`/ranking/${cat.slug}`} style={{ display: "block", color: "#999", fontSize: 13, marginBottom: 8, textDecoration: "none" }}>
+                › {cat.name}ランキング
               </Link>
             ))}
           </div>
@@ -44,11 +52,10 @@ export function Footer() {
           {/* Info */}
           <div>
             <h4 style={{ color: "#fff", fontWeight: 900, fontSize: 14, marginBottom: 12 }}>サイト情報</h4>
-            {["運営者情報", "プライバシーポリシー", "利用規約", "お問い合わせ", "広告掲載について"].map((item) => (
-              <Link key={item} href="#" style={{ display: "block", color: "#999", fontSize: 13, marginBottom: 8, textDecoration: "none" }}>
-                › {item}
-              </Link>
-            ))}
+            <Link href="/about" style={{ display: "block", color: "#999", fontSize: 13, marginBottom: 8, textDecoration: "none" }}>› 運営者情報</Link>
+            <Link href="/privacy" style={{ display: "block", color: "#999", fontSize: 13, marginBottom: 8, textDecoration: "none" }}>› プライバシーポリシー</Link>
+            <Link href="/terms" style={{ display: "block", color: "#999", fontSize: 13, marginBottom: 8, textDecoration: "none" }}>› 利用規約</Link>
+            <Link href="/contact" style={{ display: "block", color: "#999", fontSize: 13, marginBottom: 8, textDecoration: "none" }}>› お問い合わせ</Link>
           </div>
         </div>
 
