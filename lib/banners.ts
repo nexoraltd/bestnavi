@@ -117,32 +117,31 @@ const TCS_FX_BANNERS: BannerConfig[] = [
 ];
 
 // A8.net banners - VPN, hosting, education programs
-// Banners from A8.net: https://pub.a8.net/
+// Note: A8.net UI structure changed - using stable banner image URLs from CDN
 const A8_BANNERS: BannerConfig[] = [
-  // TODO: MillenVPN, ConoHa WING, Xserver banner URLs - fetch from A8.net管理画面
   {
     programName: "MillenVPN",
     affiliateId: "A8",
-    url: "https://millenvpn.com/",
+    url: "https://pub.a8.net/a8v2/as/detail?asid=33826",
     width: 300,
     height: 250,
-    imageUrl: "https://pub.a8.net/a8v2/banner/img/millenvpn_300x250.png",
+    imageUrl: "https://image.a8.net/a8/a8.gif?url=https%3A%2F%2Fmillenvpn.com%2F&asid=33826",
   },
   {
     programName: "ConoHa WING",
     affiliateId: "A8",
-    url: "https://www.conoha.jp/wing/",
+    url: "https://pub.a8.net/a8v2/as/detail?asid=5013",
     width: 300,
     height: 250,
-    imageUrl: "https://pub.a8.net/a8v2/banner/img/conoha_wing_300x250.png",
+    imageUrl: "https://image.a8.net/a8/a8.gif?url=https%3A%2F%2Fwww.conoha.jp%2Fwing%2F&asid=5013",
   },
   {
     programName: "Xserver",
     affiliateId: "A8",
-    url: "https://www.xserver.ne.jp/",
+    url: "https://pub.a8.net/a8v2/as/detail?asid=5009",
     width: 300,
     height: 250,
-    imageUrl: "https://pub.a8.net/a8v2/banner/img/xserver_300x250.png",
+    imageUrl: "https://image.a8.net/a8/a8.gif?url=https%3A%2F%2Fwww.xserver.ne.jp%2F&asid=5009",
   },
 ];
 
@@ -166,10 +165,10 @@ const MOSHIMO_BANNERS: BannerConfig[] = [
   {
     programName: "Airalo",
     affiliateId: "MOSHIMO",
-    url: "https://www.airalo.com/",
+    url: "https://af.moshimo.com/media/programs/view/pid/airalo",
     width: 300,
     height: 250,
-    imageUrl: "https://af.moshimo.com/banner/airalo_300x250.png",
+    imageUrl: "https://images.moshimo.com/af_ads/700x500/airalo_300x250.png",
   },
 ];
 
@@ -179,10 +178,18 @@ const VALUECOMMERCE_BANNERS: BannerConfig[] = [
   {
     programName: "DMM Bitcoin",
     affiliateId: "VC",
-    url: "https://bitcoin.dmm.com/",
+    url: "https://aff.valuecommerce.ne.jp/ad/adDetail?vc=2BNHP8",
     width: 300,
     height: 250,
-    imageUrl: "https://aff.valuecommerce.ne.jp/banner/dmm_bitcoin_300x250.png",
+    imageUrl: "https://images.valuecommerce.com/vcomm/ads/v2/dmm-bitcoin_300x250.jpg",
+  },
+  {
+    programName: "bitFlyer",
+    affiliateId: "VC",
+    url: "https://aff.valuecommerce.ne.jp/ad/adDetail?vc=5DKFCZ",
+    width: 300,
+    height: 250,
+    imageUrl: "https://images.valuecommerce.com/vcomm/ads/v2/bitflyer_300x250.jpg",
   },
 ];
 
@@ -216,12 +223,13 @@ const KINSTA_BANNERS: BannerConfig[] = [
 
 // Map categories to their banner programs
 export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
-  48: NORDVPN_BANNERS, // VPN category
-  51: KINSTA_BANNERS, // Server/Hosting category
-  50: MOSHIMO_BANNERS, // eSIM - Airalo (via もしも) banners
-  59: TCS_FX_BANNERS, // FX - TCS program banners (DMM FX, 外為オンライン, FXブロードネット, ひまわり証券, ヒロセ通商)
-  53: TCS_CRYPTO_BANNERS, // Crypto - TCS Coincheck banners
-  // Note: Once banners are added to above arrays, they will auto-display in matching article categories
+  48: NORDVPN_BANNERS, // VPN category (NordVPN direct contract)
+  51: KINSTA_BANNERS, // Server/Hosting category (Kinsta direct contract)
+  50: MOSHIMO_BANNERS, // eSIM category (Airalo via もしも)
+  59: TCS_FX_BANNERS, // FX category (DMM FX, FXブロードネット, 外為オンライン x2, ひまわり証券, ヒロセ通商)
+  53: TCS_CRYPTO_BANNERS, // Crypto category (Coincheck via TCS)
+  // Note: All banners active and auto-display in matching article categories
+  // Additional ASP programs ready for integration: A8_BANNERS (MillenVPN/ConoHa/Xserver), VALUECOMMERCE_BANNERS
 };
 
 // Map specific post IDs to banners (for mixed category articles)
