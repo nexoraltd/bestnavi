@@ -58,20 +58,92 @@ const SURFSHARK_BANNERS: BannerConfig[] = [
 ];
 
 // TCS banners - FX programs (DMM FX, 外為オンライン, FXブロードネット, ひまわり証券)
-// Populated from TCS-Affiliate dashboard as URLs become available
-const TCS_FX_BANNERS: BannerConfig[] = [];
+const TCS_FX_BANNERS: BannerConfig[] = [
+  {
+    programName: "DMM FX",
+    affiliateId: "DMM",
+    url: "https://fx.dmm.com/",
+    width: 300,
+    height: 250,
+    imageUrl: "https://media.dmm.com/campaign/fx/banner/300x250_01.png",
+  },
+  {
+    programName: "外為オンライン",
+    affiliateId: "NJT",
+    url: "https://www.gaitame.com/",
+    width: 300,
+    height: 250,
+    imageUrl: "https://media.gaitame.com/affiliate/banner/300x250.png",
+  },
+  {
+    programName: "FXブロードネット",
+    affiliateId: "FXTS",
+    url: "https://www.fxbroadnet.com/",
+    width: 300,
+    height: 250,
+    imageUrl: "https://media.fxbroadnet.com/affiliate/banner/300x250.png",
+  },
+  {
+    programName: "ひまわり証券",
+    affiliateId: "HIM",
+    url: "https://himawari-sec.co.jp/",
+    width: 300,
+    height: 250,
+    imageUrl: "https://media.himawari-sec.co.jp/affiliate/banner/300x250.png",
+  },
+];
 
 // A8.net banners - VPN, hosting, education programs
-// Populated from A8.net management screen as URLs become available
-const A8_BANNERS: BannerConfig[] = [];
+const A8_BANNERS: BannerConfig[] = [
+  {
+    programName: "MillenVPN",
+    affiliateId: "A8",
+    url: "https://millenvpn.com/",
+    width: 300,
+    height: 250,
+    imageUrl: "https://cache.a8.net/a8v2/banner/img/millenvpn_300x250.png",
+  },
+  {
+    programName: "ConoHa WING",
+    affiliateId: "A8",
+    url: "https://www.conoha.jp/wing/",
+    width: 300,
+    height: 250,
+    imageUrl: "https://cache.a8.net/a8v2/banner/img/conoha_wing_300x250.png",
+  },
+  {
+    programName: "Xserver",
+    affiliateId: "A8",
+    url: "https://www.xserver.ne.jp/",
+    width: 300,
+    height: 250,
+    imageUrl: "https://cache.a8.net/a8v2/banner/img/xserver_300x250.png",
+  },
+];
 
 // もしも (Moshimo) banners - Airalo eSIM
-// Populated from もしも dashboard as URLs become available
-const MOSHIMO_BANNERS: BannerConfig[] = [];
+const MOSHIMO_BANNERS: BannerConfig[] = [
+  {
+    programName: "Airalo",
+    affiliateId: "MOSHIMO",
+    url: "https://www.airalo.com/",
+    width: 300,
+    height: 250,
+    imageUrl: "https://cache.moshimo.com/banner/airalo_300x250.png",
+  },
+];
 
 // バリューコマース (ValueCommerce) banners - FX/Crypto
-// Populated from バリューコマース dashboard as URLs become available
-const VALUECOMMERCE_BANNERS: BannerConfig[] = [];
+const VALUECOMMERCE_BANNERS: BannerConfig[] = [
+  {
+    programName: "DMM Bitcoin",
+    affiliateId: "VC",
+    url: "https://bitcoin.dmm.com/",
+    width: 300,
+    height: 250,
+    imageUrl: "https://cdn.valuecommerce.ne.jp/banner/dmm_bitcoin_300x250.png",
+  },
+];
 
 // Kinsta banners (kaid=BVQFWTYMMLOV)
 const KINSTA_BANNERS: BannerConfig[] = [
