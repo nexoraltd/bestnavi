@@ -58,42 +58,44 @@ const SURFSHARK_BANNERS: BannerConfig[] = [
 ];
 
 // TCS banners - FX programs (DMM FX, 外為オンライン, FXブロードネット, ひまわり証券)
+// Banners from TCS-Affiliate: https://www.tcs-asp.net/
 const TCS_FX_BANNERS: BannerConfig[] = [
   {
-    programName: "DMM FX",
-    affiliateId: "DMM",
-    url: "https://fx.dmm.com/",
-    width: 300,
-    height: 250,
-    imageUrl: "https://media.dmm.com/campaign/fx/banner/300x250_01.png",
-  },
-  {
-    programName: "外為オンライン",
-    affiliateId: "NJT",
-    url: "https://www.gaitame.com/",
-    width: 300,
-    height: 250,
-    imageUrl: "https://media.gaitame.com/affiliate/banner/300x250.png",
-  },
-  {
-    programName: "FXブロードネット",
-    affiliateId: "FXTS",
-    url: "https://www.fxbroadnet.com/",
-    width: 300,
-    height: 250,
-    imageUrl: "https://media.fxbroadnet.com/affiliate/banner/300x250.png",
-  },
-  {
     programName: "ひまわり証券",
-    affiliateId: "HIM",
+    affiliateId: "HIM97",
     url: "https://himawari-sec.co.jp/",
     width: 300,
     height: 250,
-    imageUrl: "https://media.himawari-sec.co.jp/affiliate/banner/300x250.png",
+    imageUrl: "https://tcs-asp.net/banner/himawari_300x250.jpg",
+  },
+  {
+    programName: "FXブロードネット",
+    affiliateId: "FXTS1",
+    url: "https://www.fxbroadnet.com/",
+    width: 300,
+    height: 250,
+    imageUrl: "https://tcs-asp.net/banner/fxbroadnet_300x250.jpg",
+  },
+  {
+    programName: "外為オンライン",
+    affiliateId: "NJT2",
+    url: "https://www.gaitame.com/",
+    width: 300,
+    height: 250,
+    imageUrl: "https://tcs-asp.net/banner/gaitame_300x250.jpg",
+  },
+  {
+    programName: "DMM FX",
+    affiliateId: "DMM2",
+    url: "https://fx.dmm.com/",
+    width: 300,
+    height: 250,
+    imageUrl: "https://tcs-asp.net/banner/dmmfx_300x250.jpg",
   },
 ];
 
 // A8.net banners - VPN, hosting, education programs
+// Banners from A8.net: https://pub.a8.net/
 const A8_BANNERS: BannerConfig[] = [
   {
     programName: "MillenVPN",
@@ -101,7 +103,7 @@ const A8_BANNERS: BannerConfig[] = [
     url: "https://millenvpn.com/",
     width: 300,
     height: 250,
-    imageUrl: "https://cache.a8.net/a8v2/banner/img/millenvpn_300x250.png",
+    imageUrl: "https://pub.a8.net/a8v2/banner/img/millenvpn_300x250.png",
   },
   {
     programName: "ConoHa WING",
@@ -109,7 +111,7 @@ const A8_BANNERS: BannerConfig[] = [
     url: "https://www.conoha.jp/wing/",
     width: 300,
     height: 250,
-    imageUrl: "https://cache.a8.net/a8v2/banner/img/conoha_wing_300x250.png",
+    imageUrl: "https://pub.a8.net/a8v2/banner/img/conoha_wing_300x250.png",
   },
   {
     programName: "Xserver",
@@ -117,11 +119,12 @@ const A8_BANNERS: BannerConfig[] = [
     url: "https://www.xserver.ne.jp/",
     width: 300,
     height: 250,
-    imageUrl: "https://cache.a8.net/a8v2/banner/img/xserver_300x250.png",
+    imageUrl: "https://pub.a8.net/a8v2/banner/img/xserver_300x250.png",
   },
 ];
 
 // もしも (Moshimo) banners - Airalo eSIM
+// Banners from もしもアフィリエイト: https://af.moshimo.com/
 const MOSHIMO_BANNERS: BannerConfig[] = [
   {
     programName: "Airalo",
@@ -129,11 +132,12 @@ const MOSHIMO_BANNERS: BannerConfig[] = [
     url: "https://www.airalo.com/",
     width: 300,
     height: 250,
-    imageUrl: "https://cache.moshimo.com/banner/airalo_300x250.png",
+    imageUrl: "https://af.moshimo.com/banner/airalo_300x250.png",
   },
 ];
 
 // バリューコマース (ValueCommerce) banners - FX/Crypto
+// Banners from バリューコマース: https://aff.valuecommerce.ne.jp/
 const VALUECOMMERCE_BANNERS: BannerConfig[] = [
   {
     programName: "DMM Bitcoin",
@@ -141,7 +145,7 @@ const VALUECOMMERCE_BANNERS: BannerConfig[] = [
     url: "https://bitcoin.dmm.com/",
     width: 300,
     height: 250,
-    imageUrl: "https://cdn.valuecommerce.ne.jp/banner/dmm_bitcoin_300x250.png",
+    imageUrl: "https://aff.valuecommerce.ne.jp/banner/dmm_bitcoin_300x250.png",
   },
 ];
 
