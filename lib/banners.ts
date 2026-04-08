@@ -250,8 +250,8 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
   // VPN レビュー
   205: NORDVPN_BANNERS.filter(b => b.width <= 300),                 // NordVPNレビュー → NordVPNバナー
   206: SURFSHARK_BANNERS,                                            // Surfsharkレビュー → Surfsharkバナー
-  207: A8_BANNERS.filter(b => b.programName === "MillenVPN"),        // ExpressVPNレビュー → MillenVPN（VPN系）
-  61:  A8_BANNERS.filter(b => b.programName === "MillenVPN"),        // CyberGhostレビュー → MillenVPN（VPN系）
+  207: [],  // ExpressVPNレビュー → 競合VPNバナー非表示（専用バナー取得次第差し替え）
+  61:  [],  // CyberGhostレビュー → 競合VPNバナー非表示（専用バナー取得次第差し替え）
   189: [                                                             // VPNランキング → NordVPN+Surfshark+MillenVPN
     ...NORDVPN_BANNERS.filter(b => b.width <= 300),
     ...SURFSHARK_BANNERS,
@@ -278,8 +278,8 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
 };
 
 export function getBannersForArticle(postId: number, categoryIds: number[]): BannerConfig[] {
-  // First check post-specific banners
-  if (POST_BANNERS[postId]?.length) {
+  // Post-specific banners take priority (empty array = explicitly no banners, skip category fallback)
+  if (postId in POST_BANNERS) {
     return POST_BANNERS[postId];
   }
 
