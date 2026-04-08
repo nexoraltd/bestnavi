@@ -250,8 +250,6 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
   // VPN レビュー
   205: NORDVPN_BANNERS.filter(b => b.width <= 300),                 // NordVPNレビュー → NordVPNバナー
   206: SURFSHARK_BANNERS,                                            // Surfsharkレビュー → Surfsharkバナー
-  207: [],  // ExpressVPNレビュー → 競合VPNバナー非表示（専用バナー取得次第差し替え）
-  61:  [],  // CyberGhostレビュー → 競合VPNバナー非表示（専用バナー取得次第差し替え）
   189: [                                                             // VPNランキング → NordVPN+Surfshark+MillenVPN
     ...NORDVPN_BANNERS.filter(b => b.width <= 300),
     ...SURFSHARK_BANNERS,
