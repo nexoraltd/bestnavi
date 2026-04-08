@@ -1,5 +1,7 @@
 "use client";
 
+import { Star, Check, ExternalLink } from "lucide-react";
+
 export interface RankingItem {
   rank: number;
   name: string;
@@ -12,26 +14,29 @@ export interface RankingItem {
 }
 
 function StarRating({ rating }: { rating: number }) {
-  const full = Math.floor(rating);
-  const half = rating % 1 >= 0.5;
   return (
-    <span className="stars">
-      {"★".repeat(full)}
-      {half && "★"}
-      {"☆".repeat(5 - full - (half ? 1 : 0))}
-      <span style={{ color: "#1a1a1a", fontWeight: 700, fontSize: 18, marginLeft: 6 }}>{rating.toFixed(1)}</span>
-    </span>
+    <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+      <div style={{ display: "flex", gap: 1 }}>
+        {[1, 2, 3, 4, 5].map((i) => (
+          <Star
+            key={i}
+            size={14}
+            fill={i <= Math.round(rating) ? "#f59e0b" : "none"}
+            stroke={i <= Math.round(rating) ? "#f59e0b" : "#d1d5db"}
+            strokeWidth={2}
+          />
+        ))}
+      </div>
+      <span style={{ fontWeight: 700, fontSize: 15, color: "var(--text-primary)" }}>
+        {rating.toFixed(1)}
+      </span>
+    </div>
   );
 }
 
 function RankBadge({ rank }: { rank: number }) {
   const cls = rank <= 3 ? `rank-${rank}` : "rank-default";
-  const icons = ["👑", "🥈", "🥉"];
-  return (
-    <div className={`rank-badge ${cls}`}>
-      {rank <= 3 ? icons[rank - 1] : rank}
-    </div>
-  );
+  return <div className={`rank-badge ${cls}`}>{rank}</div>;
 }
 
 function TagBadge({ tag }: { tag: string }) {
@@ -49,106 +54,119 @@ function TagBadge({ tag }: { tag: string }) {
 }
 
 export function RankingCard({ item }: { item: RankingItem }) {
-  const rankBg = item.rank === 1 ? "var(--gold-bg)" : item.rank === 2 ? "var(--silver-bg)" : item.rank === 3 ? "var(--bronze-bg)" : "#fff";
-  const rankBorder = item.rank === 1 ? "var(--gold-border)" : item.rank === 2 ? "var(--silver-border)" : item.rank === 3 ? "var(--bronze-border)" : "var(--border)";
+  const isTop3 = item.rank <= 3;
 
   return (
-    <div style={{
-      background: "#fff",
-      borderRadius: 12,
-      border: `2px solid ${rankBorder}`,
-      overflow: "hidden",
-      boxShadow: item.rank === 1 ? "0 4px 20px rgba(218,165,32,0.15)" : "var(--shadow-card)",
-      transition: "box-shadow 0.2s, transform 0.2s",
-    }}
-    onMouseEnter={(e) => {
-      e.currentTarget.style.boxShadow = "0 8px 30px rgba(0,0,0,0.12)";
-      e.currentTarget.style.transform = "translateY(-2px)";
-    }}
-    onMouseLeave={(e) => {
-      e.currentTarget.style.boxShadow = item.rank === 1 ? "0 4px 20px rgba(218,165,32,0.15)" : "var(--shadow-card)";
-      e.currentTarget.style.transform = "translateY(0)";
-    }}
+    <div
+      style={{
+        background: "#fff",
+        borderRadius: "var(--radius-lg)",
+        border: isTop3 ? `1px solid ${item.rank === 1 ? "var(--gold-border)" : item.rank === 2 ? "var(--silver-border)" : "var(--bronze-border)"}` : "1px solid var(--border)",
+        overflow: "hidden",
+        boxShadow: "var(--shadow-card)",
+        transition: "box-shadow 0.15s, transform 0.15s",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = "var(--shadow-lg)";
+        e.currentTarget.style.transform = "translateY(-1px)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = "var(--shadow-card)";
+        e.currentTarget.style.transform = "translateY(0)";
+      }}
     >
-      {/* Card Header */}
-      <div style={{
-        background: rankBg,
-        padding: "16px 20px",
-        display: "flex",
-        alignItems: "center",
-        gap: 16,
-        borderBottom: `1px solid ${rankBorder}`,
-      }}>
+      {/* Header */}
+      <div
+        style={{
+          background: item.rank === 1 ? "var(--gold-bg)" : item.rank === 2 ? "var(--silver-bg)" : item.rank === 3 ? "var(--bronze-bg)" : "#fff",
+          padding: "14px 20px",
+          display: "flex",
+          alignItems: "center",
+          gap: 14,
+          borderBottom: "1px solid var(--border)",
+        }}
+      >
         <RankBadge rank={item.rank} />
-
         <div style={{ flex: 1 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 4 }}>
-            <h3 style={{ fontSize: 20, fontWeight: 900, color: "#1a1a1a", margin: 0 }}>{item.name}</h3>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap", marginBottom: 4 }}>
+            <h3 style={{ fontSize: 18, fontWeight: 800, color: "var(--text-primary)", margin: 0 }}>
+              {item.name}
+            </h3>
             {item.tags.map((tag) => (
               <TagBadge key={tag} tag={tag} />
             ))}
           </div>
           <StarRating rating={item.rating} />
         </div>
-
-        {/* Product Image - will be replaced with actual logos */}
       </div>
 
-      {/* Card Body */}
+      {/* Body */}
       <div style={{ padding: "16px 20px" }}>
-        <p style={{ fontSize: 14, color: "#555", lineHeight: 1.7, marginBottom: 16 }}>
+        <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.7, marginBottom: 14 }}>
           {item.description}
         </p>
 
-        {/* Specs Table */}
-        <table style={{
-          width: "100%", borderCollapse: "collapse",
-          marginBottom: 16, fontSize: 13,
-        }}>
+        {/* Specs */}
+        <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: 14, fontSize: 13 }}>
           <tbody>
             {item.specs.map((spec, i) => (
-              <tr key={spec.label} style={{ borderBottom: i < item.specs.length - 1 ? "1px solid #f0f0f0" : "none" }}>
-                <td style={{
-                  padding: "8px 12px", fontWeight: 700,
-                  color: "#555", background: "#fafafa",
-                  width: "35%", borderRight: "1px solid #f0f0f0"
-                }}>
+              <tr key={spec.label} style={{ borderBottom: i < item.specs.length - 1 ? "1px solid var(--bg-section)" : "none" }}>
+                <td
+                  style={{
+                    padding: "7px 12px",
+                    fontWeight: 600,
+                    color: "var(--text-secondary)",
+                    background: "var(--bg-section)",
+                    width: "35%",
+                  }}
+                >
                   {spec.label}
                 </td>
-                <td style={{ padding: "8px 12px", color: "#1a1a1a" }}>
-                  {spec.value}
-                </td>
+                <td style={{ padding: "7px 12px", color: "var(--text-primary)" }}>{spec.value}</td>
               </tr>
             ))}
           </tbody>
         </table>
 
         {/* Pros */}
-        <div style={{ marginBottom: 20 }}>
+        <div style={{ marginBottom: 16 }}>
           {item.pros.map((pro) => (
-            <div key={pro} style={{
-              display: "flex", alignItems: "flex-start", gap: 6,
-              marginBottom: 6, fontSize: 13, color: "#333"
-            }}>
-              <span style={{ color: "#ff6b35", fontWeight: 700, flexShrink: 0 }}>✓</span>
+            <div
+              key={pro}
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                gap: 6,
+                marginBottom: 5,
+                fontSize: 13,
+                color: "var(--text-secondary)",
+              }}
+            >
+              <Check size={14} style={{ color: "var(--green)", flexShrink: 0, marginTop: 3 }} strokeWidth={2.5} />
               {pro}
             </div>
           ))}
         </div>
 
         {/* Price + CTA */}
-        <div style={{
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          gap: 16, flexWrap: "wrap",
-          padding: "16px 0 0",
-          borderTop: "2px dashed #eee"
-        }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 16,
+            flexWrap: "wrap",
+            padding: "14px 0 0",
+            borderTop: "1px solid var(--border)",
+          }}
+        >
           <div>
-            <div style={{ fontSize: 11, color: "#888" }}>料金</div>
-            <div style={{ fontSize: 24, fontWeight: 900, color: "#ff6b35" }}>{item.price}</div>
+            <div style={{ fontSize: 11, color: "var(--text-muted)" }}>料金</div>
+            <div style={{ fontSize: 22, fontWeight: 800, color: "var(--cta)" }}>{item.price}</div>
           </div>
-          <a href="#" className="cta-primary" style={{ padding: "14px 36px" }}>
-            公式サイトへ →
+          <a href="#" className="cta-primary" style={{ gap: 6 }}>
+            公式サイトへ
+            <ExternalLink size={14} />
           </a>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ArrowRight } from "lucide-react";
 
 export function MobileFixedCTA() {
   const [visible, setVisible] = useState(false);
@@ -33,7 +34,7 @@ export function MobileFixedCTA() {
           left: 0,
           right: 0,
           zIndex: 9999,
-          background: "rgba(26,26,46,0.97)",
+          background: "rgba(255,255,255,0.97)",
           backdropFilter: "blur(8px)",
           padding: "10px 16px",
           display: "flex",
@@ -42,34 +43,26 @@ export function MobileFixedCTA() {
           gap: 12,
           transform: visible ? "translateY(0)" : "translateY(100%)",
           transition: "transform 0.3s ease",
-          boxShadow: "0 -4px 20px rgba(0,0,0,0.15)",
+          borderTop: "1px solid var(--border)",
+          boxShadow: "0 -2px 10px rgba(0,0,0,0.06)",
         }}
       >
         <div style={{ flex: 1, minWidth: 0 }}>
-          <p style={{ color: "#fff", fontWeight: 900, fontSize: 13, margin: 0, lineHeight: 1.3 }}>
+          <p style={{ color: "var(--text-primary)", fontWeight: 700, fontSize: 13, margin: 0, lineHeight: 1.3 }}>
             おすすめランキング
           </p>
-          <p style={{ color: "rgba(255,255,255,0.6)", fontSize: 11, margin: 0 }}>
-            カテゴリ別に徹底比較
+          <p style={{ color: "var(--text-muted)", fontSize: 11, margin: 0 }}>
+            カテゴリ別に比較
           </p>
         </div>
         <a
           href="/"
           onClick={handleClick}
-          style={{
-            display: "inline-block",
-            background: "linear-gradient(135deg, #ff6b35, #ff4500)",
-            color: "#fff",
-            padding: "10px 20px",
-            borderRadius: 50,
-            fontWeight: 900,
-            fontSize: 13,
-            textDecoration: "none",
-            whiteSpace: "nowrap",
-            flexShrink: 0,
-          }}
+          className="cta-primary"
+          style={{ padding: "9px 18px", fontSize: 13, gap: 4 }}
         >
-          ランキングを見る
+          見る
+          <ArrowRight size={14} />
         </a>
       </div>
       <style>{`

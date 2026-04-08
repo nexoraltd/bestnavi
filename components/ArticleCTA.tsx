@@ -1,22 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ExternalLink, ArrowRight } from "lucide-react";
 
-// カテゴリ別おすすめ案件マッピング
 const CATEGORY_CTA_MAP: Record<number, { serviceName: string; description: string; url: string; badge: string }> = {
-  48: { serviceName: "NordVPN", description: "世界60カ国以上のサーバー。軍事レベルの暗号化で安心。30日間返金保証付き。", url: "https://go.nordvpn.net/aff_c?offer_id=15&aff_id=142267&url_id=902", badge: "VPN人気No.1" },
-  51: { serviceName: "Xserver", description: "国内シェアNo.1のレンタルサーバー。高速・安定・サポート充実。", url: "https://px.a8.net/svt/ejp?a8mat=3Z3DWH+EXAMPLE+CO4+EXAMPLE", badge: "国内シェアNo.1" },
-  52: { serviceName: "ChatGPT Plus", description: "最新のGPT-4oモデルが使い放題。画像生成・分析・プログラミングまで対応。", url: "/ranking/ai", badge: "AI定番" },
-  59: { serviceName: "DMM FX", description: "スプレッド業界最狭水準。取引手数料0円。最短30分で取引開始。", url: "https://h.accesstrade.net/sp/cc?rk=0100pnot00nczs", badge: "FX口座人気No.1" },
-  53: { serviceName: "Coincheck", description: "取扱通貨数国内最多級。500円からビットコインが買える。アプリDL数No.1。", url: "/ranking/crypto", badge: "仮想通貨No.1" },
-  50: { serviceName: "Airalo", description: "200以上の国と地域で使えるeSIM。アプリで簡単購入・即利用開始。", url: "/ranking/esim", badge: "eSIM人気" },
-  56: { serviceName: "転職サービス", description: "あなたに合った転職サービスを比較して見つけよう。", url: "/ranking/career", badge: "転職" },
-  55: { serviceName: "プログラミングスクール", description: "未経験からエンジニアへ。スクールを比較して最適な学習環境を。", url: "/ranking/school", badge: "スクール" },
-  54: { serviceName: "オンライン英会話", description: "自宅から気軽にレッスン。料金・講師の質で比較。", url: "/ranking/english", badge: "英会話" },
-  44: { serviceName: "NordVPN", description: "世界60カ国以上のサーバー。軍事レベルの暗号化でセキュリティも万全。", url: "https://go.nordvpn.net/aff_c?offer_id=15&aff_id=142267&url_id=902", badge: "セキュリティ" },
+  48: { serviceName: "VPNおすすめランキング", description: "人気VPNを料金・速度・セキュリティで徹底比較。あなたに合った1本が見つかります。", url: "/ranking/vpn", badge: "VPN比較" },
+  51: { serviceName: "レンタルサーバー比較", description: "国内主要サーバーを速度・価格・サポートで比較。初心者にも安心の選び方ガイド。", url: "/ranking/server", badge: "サーバー比較" },
+  52: { serviceName: "AIツール比較ランキング", description: "ChatGPT・Gemini・Claude等を機能・料金で比較。目的別おすすめを紹介。", url: "/ranking/ai", badge: "AI比較" },
+  59: { serviceName: "FX口座おすすめランキング", description: "スプレッド・手数料・使いやすさで人気FX口座を比較。口座開設キャンペーン情報も。", url: "/ranking/fx", badge: "FX比較" },
+  53: { serviceName: "仮想通貨取引所比較", description: "手数料・取扱通貨・セキュリティで国内主要取引所を徹底比較。", url: "/ranking/crypto", badge: "仮想通貨比較" },
+  50: { serviceName: "eSIMおすすめランキング", description: "海外旅行・国内利用のeSIMを料金・対応エリアで比較。", url: "/ranking/esim", badge: "eSIM比較" },
+  56: { serviceName: "転職サービス比較", description: "転職エージェント・サイトを求人数・サポート質で比較。あなたに合ったサービスへ。", url: "/ranking/career", badge: "転職比較" },
+  55: { serviceName: "プログラミングスクール比較", description: "未経験からエンジニアへ。受講費・カリキュラム・就職率で主要スクールを比較。", url: "/ranking/school", badge: "スクール比較" },
+  54: { serviceName: "オンライン英会話比較", description: "料金・講師の質・システムで主要英会話サービスを比較。無料体験情報も。", url: "/ranking/english", badge: "英会話比較" },
+  44: { serviceName: "セキュリティソフト比較", description: "ウイルス対策・個人情報保護の定番ソフトを機能・価格で比較。", url: "/ranking/security", badge: "セキュリティ比較" },
 };
 
-// デフォルト（カテゴリ不明の場合）
 const DEFAULT_CTA = {
   serviceName: "ベストナビおすすめ",
   description: "カテゴリ別のおすすめランキングをチェック",
@@ -52,146 +51,117 @@ export function ArticleCTA({ categoryIds, position }: ArticleCTAProps) {
 
   if (!visible) return null;
 
+  // 全ポジション共通: カード全体をリンクにする
   if (position === "top") {
     return (
-      <div style={{
-        margin: "24px 0",
-        padding: "20px",
-        background: "linear-gradient(135deg, #fff8f5 0%, #fff 100%)",
-        borderRadius: 12,
-        border: "1px solid #ffe0d0",
-        display: "flex",
-        alignItems: "center",
-        gap: 16,
-        flexWrap: "wrap",
-      }}>
-        <div style={{
-          background: "#ff6b35",
-          color: "#fff",
-          fontSize: 11,
-          fontWeight: 900,
-          padding: "4px 10px",
-          borderRadius: 20,
-          whiteSpace: "nowrap",
-        }}>{cta.badge}</div>
-        <div style={{ flex: 1, minWidth: 200 }}>
-          <span style={{ fontWeight: 900, fontSize: 15, color: "#1a1a1a" }}>{cta.serviceName}</span>
-          <span style={{ fontSize: 13, color: "#666", marginLeft: 8 }}>{cta.description}</span>
-        </div>
-        <a
-          href={cta.url}
-          target={isExternal ? "_blank" : undefined}
-          rel={isExternal ? "noopener noreferrer" : undefined}
-          onClick={handleClick}
-          style={{
-            display: "inline-block",
-            background: "#ff6b35",
-            color: "#fff",
-            padding: "10px 24px",
-            borderRadius: 50,
-            fontWeight: 900,
-            fontSize: 13,
-            textDecoration: "none",
-            whiteSpace: "nowrap",
-            transition: "opacity 0.2s",
-          }}
-        >
-          詳しく見る →
-        </a>
-      </div>
-    );
-  }
-
-  if (position === "middle") {
-    return (
-      <div style={{
-        margin: "32px 0",
-        padding: "24px",
-        background: "#fff",
-        borderRadius: 12,
-        border: "2px solid #ff6b35",
-        textAlign: "center",
-      }}>
-        <div style={{
-          display: "inline-block",
-          background: "#ff6b35",
-          color: "#fff",
-          fontSize: 11,
-          fontWeight: 900,
-          padding: "3px 12px",
-          borderRadius: 20,
-          marginBottom: 10,
-        }}>{cta.badge}</div>
-        <p style={{ fontWeight: 900, fontSize: 18, color: "#1a1a1a", marginBottom: 6 }}>
-          {cta.serviceName}をチェック
-        </p>
-        <p style={{ fontSize: 13, color: "#666", marginBottom: 16 }}>
-          {cta.description}
-        </p>
-        <a
-          href={cta.url}
-          target={isExternal ? "_blank" : undefined}
-          rel={isExternal ? "noopener noreferrer" : undefined}
-          onClick={handleClick}
-          style={{
-            display: "inline-block",
-            background: "linear-gradient(135deg, #ff6b35, #ff8f42)",
-            color: "#fff",
-            padding: "14px 40px",
-            borderRadius: 50,
-            fontWeight: 900,
-            fontSize: 15,
-            textDecoration: "none",
-            boxShadow: "0 4px 15px rgba(255,107,53,0.3)",
-            transition: "transform 0.2s",
-          }}
-        >
-          無料で始める →
-        </a>
-      </div>
-    );
-  }
-
-  // bottom
-  return (
-    <div style={{
-      margin: "40px 0 20px",
-      padding: "28px 24px",
-      background: "linear-gradient(135deg, #1a1a2e, #16213e)",
-      borderRadius: 16,
-      textAlign: "center",
-    }}>
-      <p style={{ color: "#ffd700", fontSize: 13, fontWeight: 900, marginBottom: 6 }}>
-        ✨ この記事を読んだ方におすすめ
-      </p>
-      <p style={{ color: "#fff", fontSize: 20, fontWeight: 900, marginBottom: 8 }}>
-        {cta.serviceName}
-      </p>
-      <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, marginBottom: 20 }}>
-        {cta.description}
-      </p>
       <a
         href={cta.url}
         target={isExternal ? "_blank" : undefined}
         rel={isExternal ? "noopener noreferrer" : undefined}
         onClick={handleClick}
         style={{
-          display: "inline-block",
-          background: "linear-gradient(135deg, #ff6b35, #ff4500)",
-          color: "#fff",
-          padding: "16px 48px",
-          borderRadius: 50,
-          fontWeight: 900,
-          fontSize: 16,
+          display: "flex",
+          alignItems: "center",
+          gap: 14,
+          flexWrap: "wrap",
+          margin: "20px 0",
+          padding: "14px 18px",
+          background: "var(--cta-light)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--cta)",
           textDecoration: "none",
-          boxShadow: "0 4px 20px rgba(255,107,53,0.4)",
+          color: "inherit",
+          transition: "box-shadow 0.15s",
         }}
       >
-        今すぐチェック →
+        <span style={{ background: "var(--cta)", color: "#fff", fontSize: 11, fontWeight: 700, padding: "3px 8px", borderRadius: 4, whiteSpace: "nowrap" }}>
+          {cta.badge}
+        </span>
+        <div style={{ flex: 1, minWidth: 180 }}>
+          <span style={{ fontWeight: 700, fontSize: 14, color: "var(--text-primary)" }}>{cta.serviceName}</span>
+          <span style={{ fontSize: 13, color: "var(--text-secondary)", marginLeft: 8 }}>{cta.description}</span>
+        </div>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 4, background: "var(--cta)", color: "#fff", padding: "8px 20px", borderRadius: 6, fontSize: 13, fontWeight: 700, whiteSpace: "nowrap" }}>
+          詳しく見る
+          <ArrowRight size={14} />
+        </span>
       </a>
-      <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 11, marginTop: 12 }}>
+    );
+  }
+
+  if (position === "middle") {
+    return (
+      <a
+        href={cta.url}
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noopener noreferrer" : undefined}
+        onClick={handleClick}
+        style={{
+          display: "block",
+          margin: "28px 0",
+          padding: "22px",
+          background: "var(--cta-light)",
+          borderRadius: "var(--radius-lg)",
+          border: "1px solid var(--cta)",
+          textAlign: "center",
+          textDecoration: "none",
+          color: "inherit",
+          transition: "box-shadow 0.15s",
+        }}
+      >
+        <span style={{ display: "inline-block", background: "var(--cta)", color: "#fff", fontSize: 11, fontWeight: 700, padding: "2px 10px", borderRadius: 4, marginBottom: 10 }}>
+          {cta.badge}
+        </span>
+        <p style={{ fontWeight: 700, fontSize: 17, color: "var(--text-primary)", marginBottom: 4 }}>
+          {cta.serviceName}をチェック
+        </p>
+        <p style={{ fontSize: 13, color: "var(--text-secondary)", marginBottom: 16 }}>
+          {cta.description}
+        </p>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "var(--cta)", color: "#fff", padding: "12px 36px", borderRadius: 8, fontSize: 15, fontWeight: 700 }}>
+          無料で始める
+          <ExternalLink size={14} />
+        </span>
+      </a>
+    );
+  }
+
+  // bottom
+  return (
+    <a
+      href={cta.url}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+      onClick={handleClick}
+      style={{
+        display: "block",
+        margin: "36px 0 16px",
+        padding: "24px",
+        background: "var(--cta-light)",
+        borderRadius: "var(--radius-lg)",
+        border: "1px solid var(--cta)",
+        textAlign: "center",
+        textDecoration: "none",
+        color: "inherit",
+        transition: "box-shadow 0.15s",
+      }}
+    >
+      <p style={{ color: "var(--text-muted)", fontSize: 12, fontWeight: 600, marginBottom: 6 }}>
+        関連ランキング
+      </p>
+      <p style={{ color: "var(--text-primary)", fontSize: 18, fontWeight: 700, marginBottom: 6 }}>
+        {cta.serviceName}
+      </p>
+      <p style={{ color: "var(--text-secondary)", fontSize: 13, marginBottom: 18 }}>
+        {cta.description}
+      </p>
+      <span style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "var(--cta)", color: "#fff", padding: "14px 40px", borderRadius: 8, fontSize: 15, fontWeight: 700 }}>
+        ランキングを見る
+        <ArrowRight size={14} />
+      </span>
+      <p style={{ color: "var(--text-muted)", fontSize: 10, marginTop: 12 }}>
         ※当サイトはアフィリエイトプログラムを利用しています
       </p>
-    </div>
+    </a>
   );
 }

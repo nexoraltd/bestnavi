@@ -40,7 +40,7 @@ export default function FxLandingPage() {
       <header
         style={{
           background: "#fff",
-          borderBottom: "2px solid #ff6b35",
+          borderBottom: "2px solid #16a34a",
           padding: "12px 16px",
           textAlign: "center",
         }}
@@ -59,7 +59,7 @@ export default function FxLandingPage() {
           <div
             style={{
               display: "inline-block",
-              background: "#ff6b35",
+              background: "#16a34a",
               color: "#fff",
               padding: "4px 16px",
               borderRadius: 20,
@@ -81,7 +81,7 @@ export default function FxLandingPage() {
           >
             FX口座選びで
             <br />
-            <span style={{ color: "#ff6b35" }}>損していませんか？</span>
+            <span style={{ color: "#16a34a" }}>損していませんか？</span>
           </h1>
           <p
             style={{
@@ -126,7 +126,7 @@ export default function FxLandingPage() {
               }}
             >
               <div
-                style={{ fontSize: 22, fontWeight: 900, color: "#ff6b35" }}
+                style={{ fontSize: 22, fontWeight: 900, color: "#16a34a" }}
               >
                 {b.num}
               </div>
@@ -141,7 +141,7 @@ export default function FxLandingPage() {
             style={{
               fontSize: 20,
               fontWeight: 900,
-              borderLeft: "4px solid #ff6b35",
+              borderLeft: "4px solid #16a34a",
               paddingLeft: 12,
               marginBottom: 16,
             }}
@@ -150,7 +150,7 @@ export default function FxLandingPage() {
           </h2>
           <div
             style={{
-              background: "#fff4ef",
+              background: "#fff7ed",
               borderRadius: 12,
               padding: 20,
             }}
@@ -172,7 +172,7 @@ export default function FxLandingPage() {
                   lineHeight: 1.7,
                 }}
               >
-                <span style={{ color: "#ff6b35", flexShrink: 0 }}>▶</span>
+                <span style={{ color: "#16a34a", flexShrink: 0 }}>▶</span>
                 {item}
               </div>
             ))}
@@ -185,7 +185,7 @@ export default function FxLandingPage() {
             style={{
               fontSize: 20,
               fontWeight: 900,
-              borderLeft: "4px solid #ff6b35",
+              borderLeft: "4px solid #16a34a",
               paddingLeft: 12,
               marginBottom: 16,
             }}
@@ -197,13 +197,13 @@ export default function FxLandingPage() {
             style={{
               background: "#fff",
               borderRadius: 16,
-              border: "2px solid #ff6b35",
+              border: "2px solid #16a34a",
               overflow: "hidden",
             }}
           >
             <div
               style={{
-                background: "#ff6b35",
+                background: "#16a34a",
                 color: "#fff",
                 padding: "10px 20px",
                 fontWeight: 900,
@@ -299,7 +299,7 @@ export default function FxLandingPage() {
             style={{
               fontSize: 20,
               fontWeight: 900,
-              borderLeft: "4px solid #ff6b35",
+              borderLeft: "4px solid #16a34a",
               paddingLeft: 12,
               marginBottom: 16,
             }}

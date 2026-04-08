@@ -5,19 +5,28 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "ベストナビ｜VPN・サーバー・AI・FX・仮想通貨 おすすめ比較ランキング【2026年最新】",
   description: "VPN、レンタルサーバー、AIツール、FX口座、仮想通貨取引所を徹底比較。おすすめランキングを毎月更新。",
-  metadataBase: new URL("https://bestnavi.vercel.app"),
+  metadataBase: new URL("https://navi.next-aura.com"),
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     title: "ベストナビ｜おすすめ比較ランキング【2026年最新】",
     description: "VPN、レンタルサーバー、AIツール、FX口座、仮想通貨取引所を徹底比較。",
-    url: "https://bestnavi.vercel.app",
+    url: "https://navi.next-aura.com",
     siteName: "ベストナビ",
     type: "website",
     locale: "ja_JP",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "ベストナビ おすすめ比較ランキング" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "ベストナビ｜おすすめ比較ランキング",
     description: "VPN・サーバー・AI・FX・仮想通貨を徹底比較",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,

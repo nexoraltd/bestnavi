@@ -1,18 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Award, ExternalLink } from "lucide-react";
 
 interface ABTestCTAProps {
   affiliateUrl: string;
   serviceName: string;
-  /** Optional: override variant (for testing) */
   forceVariant?: "A" | "B";
 }
 
-/**
- * ABテスト対応CTAボタン
- * 50/50でバリアントA/Bを表示し、GA4にイベント送信
- */
 export function ABTestCTA({ affiliateUrl, serviceName, forceVariant }: ABTestCTAProps) {
   const [variant, setVariant] = useState<"A" | "B">("A");
 
@@ -21,7 +17,6 @@ export function ABTestCTA({ affiliateUrl, serviceName, forceVariant }: ABTestCTA
       setVariant(forceVariant);
       return;
     }
-    // Persistent variant per user (localStorage)
     const stored = localStorage.getItem(`ab_cta_${serviceName}`);
     if (stored === "A" || stored === "B") {
       setVariant(stored);
@@ -46,15 +41,16 @@ export function ABTestCTA({ affiliateUrl, serviceName, forceVariant }: ABTestCTA
 
   if (variant === "A") {
     return (
-      <div style={{
-        margin: "32px 0",
-        padding: "28px 24px",
-        background: "linear-gradient(135deg, #ff6b35, #ff8f42)",
-        borderRadius: 16,
-        textAlign: "center",
-        boxShadow: "0 8px 30px rgba(255,107,53,0.25)",
-      }}>
-        <p style={{ color: "#fff", fontSize: 18, fontWeight: 900, marginBottom: 8 }}>
+      <div
+        style={{
+          margin: "28px 0",
+          padding: "24px",
+          background: "var(--cta-gradient)",
+          borderRadius: "var(--radius-lg)",
+          textAlign: "center",
+        }}
+      >
+        <p style={{ color: "#fff", fontSize: 17, fontWeight: 700, marginBottom: 6 }}>
           {serviceName}で口座開設する
         </p>
         <p style={{ color: "rgba(255,255,255,0.85)", fontSize: 13, marginBottom: 16 }}>
@@ -66,44 +62,48 @@ export function ABTestCTA({ affiliateUrl, serviceName, forceVariant }: ABTestCTA
           rel="noopener noreferrer"
           onClick={handleClick}
           style={{
-            display: "inline-block",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 6,
             background: "#fff",
-            color: "#ff6b35",
-            padding: "16px 48px",
-            borderRadius: 50,
-            fontWeight: 900,
-            fontSize: 16,
+            color: "var(--cta)",
+            padding: "14px 40px",
+            borderRadius: 8,
+            fontWeight: 700,
+            fontSize: 15,
             textDecoration: "none",
-            boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
-            transition: "transform 0.2s",
+            transition: "transform 0.15s",
           }}
         >
-          無料で口座開設 →
+          無料で口座開設
+          <ExternalLink size={14} />
         </a>
       </div>
     );
   }
 
-  // Variant B: More trust-focused, darker design
+  // Variant B: Trust-focused
   return (
-    <div style={{
-      margin: "32px 0",
-      padding: "28px 24px",
-      background: "#1a1a2e",
-      borderRadius: 16,
-      textAlign: "center",
-      border: "2px solid #ff6b35",
-    }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 12 }}>
-        <span style={{ fontSize: 24 }}>🏆</span>
-        <p style={{ color: "#ffd700", fontSize: 16, fontWeight: 900, margin: 0 }}>
+    <div
+      style={{
+        margin: "28px 0",
+        padding: "24px",
+        background: "#fff",
+        borderRadius: "var(--radius-lg)",
+        textAlign: "center",
+        border: "2px solid var(--cta)",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, marginBottom: 10 }}>
+        <Award size={20} strokeWidth={2} style={{ color: "var(--gold)" }} />
+        <p style={{ color: "var(--gold)", fontSize: 14, fontWeight: 700, margin: 0 }}>
           人気No.1
         </p>
       </div>
-      <p style={{ color: "#fff", fontSize: 20, fontWeight: 900, marginBottom: 6 }}>
+      <p style={{ color: "var(--text-primary)", fontSize: 18, fontWeight: 700, marginBottom: 4 }}>
         {serviceName}
       </p>
-      <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, marginBottom: 20 }}>
+      <p style={{ color: "var(--text-secondary)", fontSize: 13, marginBottom: 18 }}>
         口座開設数No.1 | 取引手数料0円 | 最短即日取引
       </p>
       <a
@@ -111,22 +111,13 @@ export function ABTestCTA({ affiliateUrl, serviceName, forceVariant }: ABTestCTA
         target="_blank"
         rel="noopener noreferrer"
         onClick={handleClick}
-        style={{
-          display: "inline-block",
-          background: "linear-gradient(135deg, #ff6b35, #ff4500)",
-          color: "#fff",
-          padding: "16px 48px",
-          borderRadius: 50,
-          fontWeight: 900,
-          fontSize: 16,
-          textDecoration: "none",
-          boxShadow: "0 4px 20px rgba(255,107,53,0.4)",
-          transition: "transform 0.2s",
-        }}
+        className="cta-primary"
+        style={{ padding: "14px 40px", gap: 6 }}
       >
-        今すぐ無料で始める →
+        今すぐ無料で始める
+        <ExternalLink size={14} />
       </a>
-      <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 11, marginTop: 12 }}>
+      <p style={{ color: "var(--text-muted)", fontSize: 10, marginTop: 12 }}>
         ※当サイトはアフィリエイトプログラムを利用しています
       </p>
     </div>
