@@ -88,11 +88,7 @@ export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
 
 // Map specific post IDs to banners (for mixed category articles)
 export const POST_BANNERS: Record<number, BannerConfig[]> = {
-  189: NORDVPN_BANNERS, // VPN ranking
-  100: NORDVPN_BANNERS, // NordVPN review
-  206: SURFSHARK_BANNERS, // Surfshark review
-  265: [], // eSIM ranking - banners pending
-  523: [], // FX ranking - banners pending
+  // Post-specific overrides (empty by default, relies on category banners)
 };
 
 export function getBannersForArticle(postId: number, categoryIds: number[]): BannerConfig[] {
