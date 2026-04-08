@@ -126,7 +126,7 @@ export async function getPostsByCategory(categoryId: number): Promise<WPPost[]> 
 }
 
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {
-  return getCachedPosts().find((p) => p.slug === slug) || null;
+  return getCachedPosts().find((p) => p.slug === slug || decodeURIComponent(p.slug) === slug) || null;
 }
 
 export async function getAllSlugs(): Promise<string[]> {
