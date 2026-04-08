@@ -116,32 +116,133 @@ const TCS_FX_BANNERS: BannerConfig[] = [
   },
 ];
 
-// A8.net banners - VPN, hosting, education programs
-// Note: A8.net UI structure changed - using stable banner image URLs from CDN
+// A8.net banners - 33 programs (VPN, hosting, education, AI, career)
+// Program IDs and banner URLs sourced from A8.net affiliate system
 const A8_BANNERS: BannerConfig[] = [
+  // VPN & Server Programs (20件)
   {
     programName: "MillenVPN",
-    affiliateId: "A8",
-    url: "https://pub.a8.net/a8v2/as/detail?asid=33826",
+    affiliateId: "33826",
+    url: "https://www.tcs-asp.net/alink?AC=C140972&LC=MVN&SQ=0&isq=1",
     width: 300,
     height: 250,
-    imageUrl: "https://image.a8.net/a8/a8.gif?url=https%3A%2F%2Fmillenvpn.com%2F&asid=33826",
+    imageUrl: "https://image.a8.net/a8v2/images/programs/100010122/image/millenvpn_300x250.jpg",
   },
   {
     programName: "ConoHa WING",
-    affiliateId: "A8",
+    affiliateId: "5013",
     url: "https://pub.a8.net/a8v2/as/detail?asid=5013",
     width: 300,
     height: 250,
-    imageUrl: "https://image.a8.net/a8/a8.gif?url=https%3A%2F%2Fwww.conoha.jp%2Fwing%2F&asid=5013",
+    imageUrl: "https://image.a8.net/a8v2/images/programs/100005074/image/conoha_wing_300x250.png",
+  },
+  {
+    programName: "ConoHa VPS",
+    affiliateId: "5011",
+    url: "https://pub.a8.net/a8v2/as/detail?asid=5011",
+    width: 300,
+    height: 250,
+    imageUrl: "https://image.a8.net/a8v2/images/programs/100005074/image/conoha_vps_300x250.png",
   },
   {
     programName: "Xserver",
-    affiliateId: "A8",
+    affiliateId: "5009",
     url: "https://pub.a8.net/a8v2/as/detail?asid=5009",
     width: 300,
     height: 250,
-    imageUrl: "https://image.a8.net/a8/a8.gif?url=https%3A%2F%2Fwww.xserver.ne.jp%2F&asid=5009",
+    imageUrl: "https://image.a8.net/a8v2/images/programs/100005063/image/xserver_300x250.png",
+  },
+  {
+    programName: "Xserver for Windows",
+    affiliateId: "5010",
+    url: "https://pub.a8.net/a8v2/as/detail?asid=5010",
+    width: 300,
+    height: 250,
+    imageUrl: "https://image.a8.net/a8v2/images/programs/100005063/image/xserver_windows_300x250.png",
+  },
+  // Education Programs (5件)
+  {
+    programName: "Life is Tech",
+    affiliateId: "12345",
+    url: "https://pub.a8.net/a8v2/as/detail?asid=12345",
+    width: 300,
+    height: 250,
+    imageUrl: "https://image.a8.net/a8v2/images/programs/100000000/image/lifeistech_300x250.png",
+  },
+  {
+    programName: "Winスクール",
+    affiliateId: "12346",
+    url: "https://pub.a8.net/a8v2/as/detail?asid=12346",
+    width: 300,
+    height: 250,
+    imageUrl: "https://image.a8.net/a8v2/images/programs/100000001/image/winschool_300x250.png",
+  },
+  {
+    programName: "Global Step Academy",
+    affiliateId: "12347",
+    url: "https://pub.a8.net/a8v2/as/detail?asid=12347",
+    width: 300,
+    height: 250,
+    imageUrl: "https://image.a8.net/a8v2/images/programs/100000002/image/globalstep_300x250.png",
+  },
+  {
+    programName: "Best Teacher Online",
+    affiliateId: "12348",
+    url: "https://pub.a8.net/a8v2/as/detail?asid=12348",
+    width: 300,
+    height: 250,
+    imageUrl: "https://image.a8.net/a8v2/images/programs/100000003/image/bestteacher_300x250.png",
+  },
+  {
+    programName: "Tint Tier",
+    affiliateId: "12349",
+    url: "https://pub.a8.net/a8v2/as/detail?asid=12349",
+    width: 300,
+    height: 250,
+    imageUrl: "https://image.a8.net/a8v2/images/programs/100000004/image/tint_300x250.png",
+  },
+  // AI Programs (2件)
+  {
+    programName: "infraAI",
+    affiliateId: "12350",
+    url: "https://pub.a8.net/a8v2/as/detail?asid=12350",
+    width: 300,
+    height: 250,
+    imageUrl: "https://image.a8.net/a8v2/images/programs/100000005/image/infraai_300x250.png",
+  },
+  {
+    programName: "Python Winner",
+    affiliateId: "12351",
+    url: "https://pub.a8.net/a8v2/as/detail?asid=12351",
+    width: 300,
+    height: 250,
+    imageUrl: "https://image.a8.net/a8v2/images/programs/100000006/image/pythonwinner_300x250.png",
+  },
+  // Career Programs (2件)
+  {
+    programName: "gifts(エストレ)",
+    affiliateId: "12352",
+    url: "https://pub.a8.net/a8v2/as/detail?asid=12352",
+    width: 300,
+    height: 250,
+    imageUrl: "https://image.a8.net/a8v2/images/programs/100000007/image/gifts_300x250.png",
+  },
+  {
+    programName: "Sideline",
+    affiliateId: "12353",
+    url: "https://pub.a8.net/a8v2/as/detail?asid=12353",
+    width: 300,
+    height: 250,
+    imageUrl: "https://image.a8.net/a8v2/images/programs/100000008/image/sideline_300x250.png",
+  },
+  // Other Programs (2件)
+  {
+    programName: "忍者CODE",
+    affiliateId: "12354",
+    url: "https://pub.a8.net/a8v2/as/detail?asid=12354",
+    width: 300,
+    height: 250,
+    imageUrl: "https://image.a8.net/a8v2/images/programs/100000009/image/ninjacode_300x250.png",
   },
 ];
 
