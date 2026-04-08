@@ -9,7 +9,7 @@ export interface BannerConfig {
   clickTrackingUrl?: string;
 }
 
-// NordVPN banners (aff_id=142267)
+// NordVPN banners (aff_id=142267) - Self-hosted local images
 const NORDVPN_BANNERS: BannerConfig[] = [
   {
     programName: "NordVPN",
@@ -17,7 +17,7 @@ const NORDVPN_BANNERS: BannerConfig[] = [
     url: "https://visit.nordvpn.com/",
     width: 970,
     height: 250,
-    imageUrl: "https://media.go2speed.org/brand/files/nordvpn/15/20160616034751-NordVPN_970x250_1.gif",
+    imageUrl: "/images/banners/nordvpn-970x250.gif",
   },
   {
     programName: "NordVPN",
@@ -25,7 +25,7 @@ const NORDVPN_BANNERS: BannerConfig[] = [
     url: "https://visit.nordvpn.com/",
     width: 728,
     height: 90,
-    imageUrl: "https://media.go2speed.org/brand/files/nordvpn/15/NordVPN_728x90_1.gif",
+    imageUrl: "/images/banners/nordvpn-728x90.gif",
   },
   {
     programName: "NordVPN",
@@ -33,7 +33,7 @@ const NORDVPN_BANNERS: BannerConfig[] = [
     url: "https://visit.nordvpn.com/",
     width: 300,
     height: 250,
-    imageUrl: "https://media.go2speed.org/brand/files/nordvpn/15/20160616034636-NordVPN_300x250_1.gif",
+    imageUrl: "/images/banners/nordvpn-300x250.gif",
   },
   {
     programName: "NordVPN",
@@ -41,11 +41,11 @@ const NORDVPN_BANNERS: BannerConfig[] = [
     url: "https://visit.nordvpn.com/",
     width: 160,
     height: 600,
-    imageUrl: "https://media.go2speed.org/brand/files/nordvpn/15/NordVPN_160x600_1.gif",
+    imageUrl: "/images/banners/nordvpn-160x600.gif",
   },
 ];
 
-// Surfshark banners (aff_id=45127) - Limited options available
+// Surfshark banners (aff_id=45127) - Self-hosted local images
 const SURFSHARK_BANNERS: BannerConfig[] = [
   {
     programName: "Surfshark",
@@ -53,7 +53,7 @@ const SURFSHARK_BANNERS: BannerConfig[] = [
     url: "https://surfshark.com/",
     width: 300,
     height: 250,
-    imageUrl: "https://media.go2app.org/user_content/brand/logos/surfshark/logo_1713430575.png",
+    imageUrl: "/images/banners/surfshark-300x250.png",
   },
 ];
 
@@ -294,7 +294,7 @@ const VALUECOMMERCE_BANNERS: BannerConfig[] = [
   },
 ];
 
-// Kinsta banners (kaid=BVQFWTYMMLOV)
+// Kinsta banners (kaid=BVQFWTYMMLOV) - Self-hosted local images
 const KINSTA_BANNERS: BannerConfig[] = [
   {
     programName: "Kinsta",
@@ -302,7 +302,7 @@ const KINSTA_BANNERS: BannerConfig[] = [
     url: "https://kinsta.com/",
     width: 300,
     height: 250,
-    imageUrl: "https://affiliate.kinsta.com/img/affiliate-banners/JAPANESE/WordPress/300x250%20wp-dark-general.png",
+    imageUrl: "/images/banners/kinsta-300x250.png",
   },
   {
     programName: "Kinsta",
@@ -310,7 +310,7 @@ const KINSTA_BANNERS: BannerConfig[] = [
     url: "https://kinsta.com/",
     width: 728,
     height: 90,
-    imageUrl: "https://affiliate.kinsta.com/img/affiliate-banners/JAPANESE/WordPress/728x90%20wp-dark-general.png",
+    imageUrl: "/images/banners/kinsta-728x90.png",
   },
   {
     programName: "Kinsta",
@@ -318,7 +318,7 @@ const KINSTA_BANNERS: BannerConfig[] = [
     url: "https://kinsta.com/",
     width: 120,
     height: 120,
-    imageUrl: "https://affiliate.kinsta.com/img/affiliate-banners/JAPANESE/WordPress/120x120%20wp-light-general.png",
+    imageUrl: "/images/banners/kinsta-120x120.png",
   },
 ];
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { getBannersForArticle, BannerConfig } from "@/lib/banners";
 import { ExternalLink } from "lucide-react";
 
@@ -46,11 +47,13 @@ export function BannerSection({ postId, categoryIds, position = "middle" }: Bann
       }}
       className="banner-link"
     >
-      <img
+      <Image
         src={selectedBanner.imageUrl}
         alt={selectedBanner.programName}
         width={selectedBanner.width}
         height={selectedBanner.height}
+        priority={position === "top"}
+        quality={85}
         style={{
           maxWidth: "100%",
           height: "auto",
@@ -93,11 +96,12 @@ export function BannerGrid({ postId, categoryIds }: { postId: number; categoryId
             transition: "transform 0.15s, box-shadow 0.15s",
           }}
         >
-          <img
+          <Image
             src={banner.imageUrl}
             alt={banner.programName}
             width={banner.width}
             height={banner.height}
+            quality={85}
             style={{
               maxWidth: "100%",
               height: "auto",
