@@ -21,20 +21,20 @@ export interface CategoryMeta {
   productCount: number;       // 比較した製品数
   tags: string[];              // 対象者タグ
   trustBadge: string;          // 信頼性バッジテキスト
-  topPickReason: string;       // 1位に選ばれた理由（簡潔に）
+  topPickReason: string;       // 編集部おすすめポイント（この記事を読むべき理由）
 }
 
 export const CATEGORY_MAP: Record<string, CategoryMeta> = {
-  vpn: { wpId: 48, title: "VPN比較ランキング", iconKey: "shield", description: "おすすめVPNサービスを速度・安全性・料金で徹底比較", productCount: 12, tags: ["初心者向け", "海外利用"], trustBadge: "12社を実測テスト", topPickReason: "速度・セキュリティ・コスパの総合力で選出" },
-  server: { wpId: 51, title: "レンタルサーバー比較", iconKey: "server", description: "WordPress向けレンタルサーバーを性能・コスパで比較", productCount: 10, tags: ["WordPress向け", "ブログ初心者"], trustBadge: "10社を速度計測", topPickReason: "表示速度・安定性・サポート品質を総合評価" },
-  ai: { wpId: 52, title: "AIツール比較ランキング", iconKey: "bot", description: "ChatGPT・画像生成AIなど最新AIツールを徹底比較", productCount: 15, tags: ["ビジネス活用", "クリエイター"], trustBadge: "15ツールを実際に使用", topPickReason: "機能の幅広さと実用性で選出" },
-  fx: { wpId: 59, title: "FX口座比較ランキング", iconKey: "trending-up", description: "FX口座をスプレッド・取引ツール・信頼性で比較", productCount: 15, tags: ["初心者向け", "少額投資"], trustBadge: "15社のスプレッドを実測", topPickReason: "手数料の安さとツールの使いやすさで選出" },
-  crypto: { wpId: 53, title: "仮想通貨取引所比較", iconKey: "bitcoin", description: "仮想通貨取引所を手数料・セキュリティ・使いやすさで比較", productCount: 8, tags: ["初心者向け", "少額投資"], trustBadge: "8社を手数料検証", topPickReason: "取扱通貨数とセキュリティ体制で選出" },
-  esim: { wpId: 50, title: "eSIM比較ランキング", iconKey: "smartphone", description: "海外旅行・出張に便利なeSIMサービスを比較", productCount: 10, tags: ["海外旅行", "出張"], trustBadge: "10サービスを現地テスト", topPickReason: "対応国数と通信品質で選出" },
-  career: { wpId: 56, title: "キャリア・転職サービス比較", iconKey: "briefcase", description: "転職エージェント・キャリアサービスを比較", productCount: 8, tags: ["20-30代", "未経験OK"], trustBadge: "8サービスを徹底調査", topPickReason: "求人数とサポート体制で選出" },
-  school: { wpId: 55, title: "プログラミングスクール比較", iconKey: "graduation-cap", description: "プログラミングスクールを料金・カリキュラムで比較", productCount: 10, tags: ["未経験OK", "転職保証"], trustBadge: "10校を受講者取材", topPickReason: "カリキュラムと転職実績で選出" },
-  english: { wpId: 54, title: "英会話サービス比較", iconKey: "globe", description: "オンライン英会話サービスを料金・講師の質で比較", productCount: 12, tags: ["初心者向け", "ビジネス英語"], trustBadge: "12社を体験レッスン", topPickReason: "講師の質と料金バランスで選出" },
-  security: { wpId: 44, title: "セキュリティソフト比較", iconKey: "shield-check", description: "ウイルス対策・セキュリティソフトを性能で比較", productCount: 8, tags: ["Windows向け", "Mac対応"], trustBadge: "8製品を検出率テスト", topPickReason: "検出率とパフォーマンスへの影響で選出" },
+  vpn: { wpId: 48, title: "VPN比較ランキング", iconKey: "shield", description: "おすすめVPNサービスを速度・安全性・料金で徹底比較", productCount: 12, tags: ["初心者向け", "海外利用"], trustBadge: "12社を実測テスト", topPickReason: "10社を実機テストし、速度・安全性・料金で徹底比較" },
+  server: { wpId: 51, title: "レンタルサーバー比較", iconKey: "server", description: "WordPress向けレンタルサーバーを性能・コスパで比較", productCount: 10, tags: ["WordPress向け", "ブログ初心者"], trustBadge: "10社を速度計測", topPickReason: "10社の表示速度を実測し、WordPress対応度まで検証" },
+  ai: { wpId: 52, title: "AIツール比較ランキング", iconKey: "bot", description: "ChatGPT・画像生成AIなど最新AIツールを徹底比較", productCount: 15, tags: ["ビジネス活用", "クリエイター"], trustBadge: "15ツールを実際に使用", topPickReason: "15ツールを実際に使い、用途別に最適な選択肢を解説" },
+  fx: { wpId: 59, title: "FX口座比較ランキング", iconKey: "trending-up", description: "FX口座をスプレッド・取引ツール・信頼性で比較", productCount: 15, tags: ["初心者向け", "少額投資"], trustBadge: "15社のスプレッドを実測", topPickReason: "15社のスプレッド・取引ツール・信頼性を実測比較" },
+  crypto: { wpId: 53, title: "仮想通貨取引所比較", iconKey: "bitcoin", description: "仮想通貨取引所を手数料・セキュリティ・使いやすさで比較", productCount: 8, tags: ["初心者向け", "少額投資"], trustBadge: "8社を手数料検証", topPickReason: "8社の手数料・セキュリティ・使いやすさを実際に検証" },
+  esim: { wpId: 50, title: "eSIM比較ランキング", iconKey: "smartphone", description: "海外旅行・出張に便利なeSIMサービスを比較", productCount: 10, tags: ["海外旅行", "出張"], trustBadge: "10サービスを現地テスト", topPickReason: "10サービスを現地で通信テストし、対応国数・速度で比較" },
+  career: { wpId: 56, title: "キャリア・転職サービス比較", iconKey: "briefcase", description: "転職エージェント・キャリアサービスを比較", productCount: 8, tags: ["20-30代", "未経験OK"], trustBadge: "8サービスを徹底調査", topPickReason: "8サービスの求人数・サポート体制を利用者目線で調査" },
+  school: { wpId: 55, title: "プログラミングスクール比較", iconKey: "graduation-cap", description: "プログラミングスクールを料金・カリキュラムで比較", productCount: 10, tags: ["未経験OK", "転職保証"], trustBadge: "10校を受講者取材", topPickReason: "10校の受講者を取材し、カリキュラム・転職実績で比較" },
+  english: { wpId: 54, title: "英会話サービス比較", iconKey: "globe", description: "オンライン英会話サービスを料金・講師の質で比較", productCount: 12, tags: ["初心者向け", "ビジネス英語"], trustBadge: "12社を体験レッスン", topPickReason: "12社の体験レッスンを受講し、講師の質・料金で比較" },
+  security: { wpId: 44, title: "セキュリティソフト比較", iconKey: "shield-check", description: "ウイルス対策・セキュリティソフトを性能で比較", productCount: 8, tags: ["Windows向け", "Mac対応"], trustBadge: "8製品を検出率テスト", topPickReason: "8製品の検出率・動作負荷を実測し、コスパまで比較" },
 };
 
 // LOW CVR記事 = 情報系・ハウツー系（比較ランキングに直結しない）
@@ -58,11 +58,11 @@ const LOW_CVR_POST_IDS = new Set([
 // カテゴリ別の推し記事（最もCVRが高い記事を各カテゴリで固定）
 // これらがランキング1位・フィーチャーに優先表示される
 const PINNED_TOP_BY_CATEGORY: Record<number, number[]> = {
-  48: [189, 100, 206],     // VPN: おすすめランキング, NordVPN(直契約), Surfshark(直契約)
-  51: [209, 210, 259],     // Server: おすすめ比較, Xserver, ConoHa
-  52: [48, 355, 357],      // AI: おすすめ比較, ライティングツール, 画像生成
-  59: [523, 525, 526],     // FX: ランキング, DMM FX, 初心者向け比較
-  53: [361, 211],          // Crypto: 取引所比較, Coincheck
+  48: [189, 205, 206],     // VPN: おすすめランキング, NordVPN(直契約), Surfshark(直契約)
+  51: [210, 209, 259],     // Server: ランキング, Xserver, ConoHa
+  52: [48, 355, 357],      // AI: おすすめ比較, 画像生成, ライティング
+  59: [523, 525, 533],     // FX: ランキング, DMM FX, 外為オンライン
+  53: [522, 361, 211],     // Crypto: ランキング, BTC積立, Coincheck
   50: [265, 345, 347],     // eSIM: おすすめ比較
   56: [289, 375, 377],     // Career: 転職エージェント比較
   55: [287, 371, 373],     // School: スクール比較

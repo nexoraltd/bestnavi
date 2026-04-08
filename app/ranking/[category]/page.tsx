@@ -128,7 +128,7 @@ export default async function RankingPage({
                         </p>
 
                         <div style={{ background: "var(--gold-bg)", borderRadius: 6, padding: "10px 14px", marginBottom: 14 }}>
-                          <div style={{ fontSize: 11, fontWeight: 700, color: "var(--gold)", marginBottom: 3 }}>1位に選ばれた理由</div>
+                          <div style={{ fontSize: 11, fontWeight: 700, color: "var(--gold)", marginBottom: 3 }}>編集部のおすすめポイント</div>
                           <div style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.5 }}>{meta.topPickReason}</div>
                         </div>
 

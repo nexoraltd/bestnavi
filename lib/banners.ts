@@ -116,133 +116,34 @@ const TCS_FX_BANNERS: BannerConfig[] = [
   },
 ];
 
-// A8.net banners - 33 programs (VPN, hosting, education, AI, career)
-// Program IDs and banner URLs sourced from A8.net affiliate system
+// A8.net banners — 実URL（2026-04-09 管理画面から取得）
 const A8_BANNERS: BannerConfig[] = [
-  // VPN & Server Programs (20件)
+  // MillenVPN (insId: s00000016565003)
   {
     programName: "MillenVPN",
-    affiliateId: "33826",
-    url: "https://www.tcs-asp.net/alink?AC=C140972&LC=MVN&SQ=0&isq=1",
+    affiliateId: "a26021579611",
+    url: "https://px.a8.net/svt/ejp?a8mat=4AZSSR+66O50Y+3JTE+HXKQP",
     width: 300,
     height: 250,
-    imageUrl: "https://image.a8.net/a8v2/images/programs/100010122/image/millenvpn_300x250.jpg",
+    imageUrl: "https://www29.a8.net/svt/bgt?aid=260331147374&wid=001&eno=01&mid=s00000016565003012000&mc=1",
   },
-  {
-    programName: "ConoHa WING",
-    affiliateId: "5013",
-    url: "https://pub.a8.net/a8v2/as/detail?asid=5013",
-    width: 300,
-    height: 250,
-    imageUrl: "https://image.a8.net/a8v2/images/programs/100005074/image/conoha_wing_300x250.png",
-  },
-  {
-    programName: "ConoHa VPS",
-    affiliateId: "5011",
-    url: "https://pub.a8.net/a8v2/as/detail?asid=5011",
-    width: 300,
-    height: 250,
-    imageUrl: "https://image.a8.net/a8v2/images/programs/100005074/image/conoha_vps_300x250.png",
-  },
+  // Xserver レンタルサーバー (insId: s00000001642001)
   {
     programName: "Xserver",
-    affiliateId: "5009",
-    url: "https://pub.a8.net/a8v2/as/detail?asid=5009",
+    affiliateId: "a26021579611",
+    url: "https://px.a8.net/svt/ejp?a8mat=4AZS0X+FYJBJM+CO4+66H9D",
     width: 300,
     height: 250,
-    imageUrl: "https://image.a8.net/a8v2/images/programs/100005063/image/xserver_300x250.png",
+    imageUrl: "https://www24.a8.net/svt/bgt?aid=260330145965&wid=001&eno=01&mid=s00000001642001038000&mc=1",
   },
+  // ConoHa WING (insId: s00000000018035)
   {
-    programName: "Xserver for Windows",
-    affiliateId: "5010",
-    url: "https://pub.a8.net/a8v2/as/detail?asid=5010",
+    programName: "ConoHa WING",
+    affiliateId: "a26021579611",
+    url: "https://px.a8.net/svt/ejp?a8mat=4AZSSR+5H2I0I+50+5SFFGH",
     width: 300,
     height: 250,
-    imageUrl: "https://image.a8.net/a8v2/images/programs/100005063/image/xserver_windows_300x250.png",
-  },
-  // Education Programs (5件)
-  {
-    programName: "Life is Tech",
-    affiliateId: "12345",
-    url: "https://pub.a8.net/a8v2/as/detail?asid=12345",
-    width: 300,
-    height: 250,
-    imageUrl: "https://image.a8.net/a8v2/images/programs/100000000/image/lifeistech_300x250.png",
-  },
-  {
-    programName: "Winスクール",
-    affiliateId: "12346",
-    url: "https://pub.a8.net/a8v2/as/detail?asid=12346",
-    width: 300,
-    height: 250,
-    imageUrl: "https://image.a8.net/a8v2/images/programs/100000001/image/winschool_300x250.png",
-  },
-  {
-    programName: "Global Step Academy",
-    affiliateId: "12347",
-    url: "https://pub.a8.net/a8v2/as/detail?asid=12347",
-    width: 300,
-    height: 250,
-    imageUrl: "https://image.a8.net/a8v2/images/programs/100000002/image/globalstep_300x250.png",
-  },
-  {
-    programName: "Best Teacher Online",
-    affiliateId: "12348",
-    url: "https://pub.a8.net/a8v2/as/detail?asid=12348",
-    width: 300,
-    height: 250,
-    imageUrl: "https://image.a8.net/a8v2/images/programs/100000003/image/bestteacher_300x250.png",
-  },
-  {
-    programName: "Tint Tier",
-    affiliateId: "12349",
-    url: "https://pub.a8.net/a8v2/as/detail?asid=12349",
-    width: 300,
-    height: 250,
-    imageUrl: "https://image.a8.net/a8v2/images/programs/100000004/image/tint_300x250.png",
-  },
-  // AI Programs (2件)
-  {
-    programName: "infraAI",
-    affiliateId: "12350",
-    url: "https://pub.a8.net/a8v2/as/detail?asid=12350",
-    width: 300,
-    height: 250,
-    imageUrl: "https://image.a8.net/a8v2/images/programs/100000005/image/infraai_300x250.png",
-  },
-  {
-    programName: "Python Winner",
-    affiliateId: "12351",
-    url: "https://pub.a8.net/a8v2/as/detail?asid=12351",
-    width: 300,
-    height: 250,
-    imageUrl: "https://image.a8.net/a8v2/images/programs/100000006/image/pythonwinner_300x250.png",
-  },
-  // Career Programs (2件)
-  {
-    programName: "gifts(エストレ)",
-    affiliateId: "12352",
-    url: "https://pub.a8.net/a8v2/as/detail?asid=12352",
-    width: 300,
-    height: 250,
-    imageUrl: "https://image.a8.net/a8v2/images/programs/100000007/image/gifts_300x250.png",
-  },
-  {
-    programName: "Sideline",
-    affiliateId: "12353",
-    url: "https://pub.a8.net/a8v2/as/detail?asid=12353",
-    width: 300,
-    height: 250,
-    imageUrl: "https://image.a8.net/a8v2/images/programs/100000008/image/sideline_300x250.png",
-  },
-  // Other Programs (2件)
-  {
-    programName: "忍者CODE",
-    affiliateId: "12354",
-    url: "https://pub.a8.net/a8v2/as/detail?asid=12354",
-    width: 300,
-    height: 250,
-    imageUrl: "https://image.a8.net/a8v2/images/programs/100000009/image/ninjacode_300x250.png",
+    imageUrl: "https://www24.a8.net/svt/bgt?aid=260331147331&wid=001&eno=01&mid=s00000000018035008000&mc=1",
   },
 ];
 
@@ -323,19 +224,52 @@ const KINSTA_BANNERS: BannerConfig[] = [
 ];
 
 // Map categories to their banner programs
+// 取得済み全バナーをカテゴリにマッピング（ローテーション表示）
 export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
-  48: NORDVPN_BANNERS, // VPN category (NordVPN direct contract)
-  51: KINSTA_BANNERS, // Server/Hosting category (Kinsta direct contract)
-  50: MOSHIMO_BANNERS, // eSIM category (Airalo via もしも)
-  59: TCS_FX_BANNERS, // FX category (DMM FX, FXブロードネット, 外為オンライン x2, ひまわり証券, ヒロセ通商)
-  53: TCS_CRYPTO_BANNERS, // Crypto category (Coincheck via TCS)
-  // Note: All banners active and auto-display in matching article categories
-  // Additional ASP programs ready for integration: A8_BANNERS (MillenVPN/ConoHa/Xserver), VALUECOMMERCE_BANNERS
+  48: [  // VPN — NordVPN直契約 + Surfshark直契約 + A8 MillenVPN
+    ...NORDVPN_BANNERS.filter(b => b.width <= 300),
+    ...SURFSHARK_BANNERS,
+    ...A8_BANNERS.filter(b => b.programName === "MillenVPN"),
+  ],
+  51: [  // Server — Kinsta直契約 + A8 Xserver/ConoHa
+    ...KINSTA_BANNERS.filter(b => b.width <= 300),
+    ...A8_BANNERS.filter(b => ["Xserver", "ConoHa WING", "ConoHa VPS"].includes(b.programName)),
+  ],
+  50: MOSHIMO_BANNERS,         // eSIM (Airalo via もしも)
+  59: TCS_FX_BANNERS,          // FX (DMM FX, FXブロードネット, 外為オンライン, ひまわり証券, ヒロセ通商)
+  53: [...TCS_CRYPTO_BANNERS, ...VALUECOMMERCE_BANNERS], // Crypto (Coincheck + DMM Bitcoin + bitFlyer)
+  52: A8_BANNERS.filter(b => b.programName === "Xserver"),  // AI（A8実提携なし→Xserverバナーで代替）
+  55: A8_BANNERS.filter(b => b.programName === "Xserver"),  // School（同上）
+  54: A8_BANNERS.filter(b => b.programName === "Xserver"),  // English（同上）
+  56: A8_BANNERS.filter(b => b.programName === "Xserver"),  // Career（同上）
+  44: [...NORDVPN_BANNERS.filter(b => b.width <= 300), ...SURFSHARK_BANNERS], // Security
 };
 
-// Map specific post IDs to banners (for mixed category articles)
+// 記事固有のバナー（レビュー記事にはその製品のバナーを優先表示）
 export const POST_BANNERS: Record<number, BannerConfig[]> = {
-  // Post-specific overrides (empty by default, relies on category banners)
+  // VPN レビュー
+  205: NORDVPN_BANNERS.filter(b => b.width <= 300),   // NordVPNレビュー → NordVPNバナー
+  206: SURFSHARK_BANNERS,                              // Surfsharkレビュー → Surfsharkバナー
+  207: NORDVPN_BANNERS.filter(b => b.width <= 300),   // ExpressVPN → NordVPN（A8共通リンク）
+  61: NORDVPN_BANNERS.filter(b => b.width <= 300),    // CyberGhost → NordVPN（A8共通リンク）
+  261: [A8_BANNERS.find(b => b.programName === "MillenVPN")!].filter(Boolean), // MillenVPN → MillenVPN
+  232: NORDVPN_BANNERS.filter(b => b.width <= 300),   // NordVPN vs ExpressVPN → NordVPN
+  // Server レビュー
+  209: A8_BANNERS.filter(b => b.programName === "Xserver"),     // Xserver → Xserver
+  259: A8_BANNERS.filter(b => b.programName === "ConoHa WING"), // ConoHa → ConoHa
+  295: KINSTA_BANNERS.filter(b => b.width <= 300),              // Kinsta → Kinsta
+  351: A8_BANNERS.filter(b => ["Xserver", "ConoHa WING"].includes(b.programName)), // 比較 → 両方
+  // FX レビュー
+  525: TCS_FX_BANNERS.filter(b => b.programName === "DMM FX"),  // DMM FX → DMM FX
+  533: TCS_FX_BANNERS.filter(b => b.programName.includes("外為オンライン")), // 外為 → 外為
+  534: TCS_FX_BANNERS.filter(b => b.programName === "FXブロードネット"),
+  535: TCS_FX_BANNERS.filter(b => b.programName === "ひまわり証券"),
+  // Crypto レビュー
+  211: TCS_CRYPTO_BANNERS,                             // Coincheck → Coincheck
+  263: VALUECOMMERCE_BANNERS,                          // GMOコイン → DMM Bitcoin/bitFlyer
+  // eSIM
+  265: MOSHIMO_BANNERS,                                // eSIMランキング → Airalo
+  345: MOSHIMO_BANNERS, 347: MOSHIMO_BANNERS,          // 韓国/アメリカeSIM
 };
 
 export function getBannersForArticle(postId: number, categoryIds: number[]): BannerConfig[] {

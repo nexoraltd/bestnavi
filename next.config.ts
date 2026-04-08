@@ -20,6 +20,30 @@ const nextConfig: NextConfig = {
         hostname: "navi.next-aura.com",
         pathname: "/wp-content/**",
       },
+      {
+        protocol: "https",
+        hostname: "img.tcs-asp.net",
+      },
+      {
+        protocol: "https",
+        hostname: "image.a8.net",
+      },
+      {
+        protocol: "https",
+        hostname: "pub.a8.net",
+      },
+      {
+        protocol: "https",
+        hostname: "**.a8.net",
+      },
+      {
+        protocol: "https",
+        hostname: "images.moshimo.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.valuecommerce.com",
+      },
     ],
   },
 };

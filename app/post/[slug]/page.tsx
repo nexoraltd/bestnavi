@@ -6,6 +6,7 @@ import { ArticleContent } from "@/components/ArticleContent";
 import { BannerSection } from "@/components/BannerSection";
 import { MobileFixedCTA } from "@/components/MobileFixedCTA";
 import { getPostBySlug, isHighCvr, CATEGORY_MAP } from "@/lib/wordpress";
+import { getBannersForArticle } from "@/lib/banners";
 import { getCategoryIcon } from "@/lib/category-icons";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -61,6 +62,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     : null;
 
   const content = post.content.rendered;
+  const banners = getBannersForArticle(post.id, categoryIds);
 
   return (
     <div style={{ background: "var(--bg-warm)", minHeight: "100vh" }}>
@@ -120,7 +122,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               <h1 style={{ fontSize: 26, fontWeight: 800, lineHeight: 1.5, color: "var(--text-primary)", borderBottom: "2px solid var(--border)", paddingBottom: 12, marginBottom: 24 }} dangerouslySetInnerHTML={{ __html: title }} />
 
               {/* 記事本文 */}
-              <ArticleContent html={content} maxSections={3} />
+              <ArticleContent html={content} banners={banners} />
 
               {/* Banner section */}
               <BannerSection postId={post.id} categoryIds={categoryIds} position="middle" />
