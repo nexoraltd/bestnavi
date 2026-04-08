@@ -58,56 +58,19 @@ const SURFSHARK_BANNERS: BannerConfig[] = [
 ];
 
 // TCS banners - FX programs (DMM FX, 外為オンライン, FXブロードネット, ひまわり証券)
-// To add: Navigate to TCS-Affiliate dashboard → each program → 素材 (materials) → copy banner URLs
-const TCS_FX_BANNERS: BannerConfig[] = [
-  // DMM FX banners
-  {
-    programName: "DMM FX",
-    affiliateId: "DMM",
-    url: "https://fx.dmm.com/",
-    width: 300,
-    height: 250,
-    imageUrl: "", // TODO: Get from TCS dashboard → DMM FX program → 素材
-  },
-  // 外為オンライン (Gaitame Online) banners
-  {
-    programName: "外為オンライン",
-    affiliateId: "NJT",
-    url: "https://www.gaitame.com/",
-    width: 300,
-    height: 250,
-    imageUrl: "", // TODO: Get from TCS dashboard → 外為オンライン program → 素材
-  },
-];
+// Populated from TCS-Affiliate dashboard as URLs become available
+const TCS_FX_BANNERS: BannerConfig[] = [];
 
 // A8.net banners - VPN, hosting, education programs
-// To add: Navigate to A8.net → each program → 素材 (materials) section
-const A8_BANNERS: BannerConfig[] = [
-  {
-    programName: "MillenVPN",
-    affiliateId: "A8",
-    url: "https://millenvpn.com/",
-    width: 300,
-    height: 250,
-    imageUrl: "", // TODO: Get from A8.net → MillenVPN program → 素材
-  },
-];
+// Populated from A8.net management screen as URLs become available
+const A8_BANNERS: BannerConfig[] = [];
 
 // もしも (Moshimo) banners - Airalo eSIM
-// To add: もしも管理画面 → Airalo program → 広告素材
-const MOSHIMO_BANNERS: BannerConfig[] = [
-  {
-    programName: "Airalo",
-    affiliateId: "MOSHIMO",
-    url: "https://www.airalo.com/",
-    width: 300,
-    height: 250,
-    imageUrl: "", // TODO: Get from もしも dashboard → Airalo promotion → 広告素材
-  },
-];
+// Populated from もしも dashboard as URLs become available
+const MOSHIMO_BANNERS: BannerConfig[] = [];
 
 // バリューコマース (ValueCommerce) banners - FX/Crypto
-// To add: VC管理画面 → program → 広告素材
+// Populated from バリューコマース dashboard as URLs become available
 const VALUECOMMERCE_BANNERS: BannerConfig[] = [];
 
 // Kinsta banners (kaid=BVQFWTYMMLOV)
