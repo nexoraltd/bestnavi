@@ -248,10 +248,15 @@ export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
 // 記事固有のバナー（レビュー記事にはその製品のバナーを優先表示）
 export const POST_BANNERS: Record<number, BannerConfig[]> = {
   // VPN レビュー
-  205: NORDVPN_BANNERS.filter(b => b.width <= 300),   // NordVPNレビュー → NordVPNバナー
-  206: SURFSHARK_BANNERS,                              // Surfsharkレビュー → Surfsharkバナー
-  207: NORDVPN_BANNERS.filter(b => b.width <= 300),   // ExpressVPN → NordVPN（A8共通リンク）
-  61: NORDVPN_BANNERS.filter(b => b.width <= 300),    // CyberGhost → NordVPN（A8共通リンク）
+  205: NORDVPN_BANNERS.filter(b => b.width <= 300),                 // NordVPNレビュー → NordVPNバナー
+  206: SURFSHARK_BANNERS,                                            // Surfsharkレビュー → Surfsharkバナー
+  207: A8_BANNERS.filter(b => b.programName === "MillenVPN"),        // ExpressVPNレビュー → MillenVPN（VPN系）
+  61:  A8_BANNERS.filter(b => b.programName === "MillenVPN"),        // CyberGhostレビュー → MillenVPN（VPN系）
+  189: [                                                             // VPNランキング → NordVPN+Surfshark+MillenVPN
+    ...NORDVPN_BANNERS.filter(b => b.width <= 300),
+    ...SURFSHARK_BANNERS,
+    ...A8_BANNERS.filter(b => b.programName === "MillenVPN"),
+  ],
   261: [A8_BANNERS.find(b => b.programName === "MillenVPN")!].filter(Boolean), // MillenVPN → MillenVPN
   232: NORDVPN_BANNERS.filter(b => b.width <= 300),   // NordVPN vs ExpressVPN → NordVPN
   // Server レビュー
