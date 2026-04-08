@@ -2,9 +2,14 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Sidebar } from "@/components/Sidebar";
 import { ArticleCTA } from "@/components/ArticleCTA";
+import { ArticleContent } from "@/components/ArticleContent";
+import { BannerSection } from "@/components/BannerSection";
 import { MobileFixedCTA } from "@/components/MobileFixedCTA";
-import { getPostBySlug } from "@/lib/wordpress";
+import { getPostBySlug, isHighCvr, CATEGORY_MAP } from "@/lib/wordpress";
+import { getCategoryIcon } from "@/lib/category-icons";
 import { notFound } from "next/navigation";
+import Link from "next/link";
+import { ArrowRight, ShieldCheck, UserCircle, Calendar } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -47,77 +52,97 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const date = new Date(post.date).toLocaleDateString("ja-JP");
   const modified = new Date(post.modified).toLocaleDateString("ja-JP");
   const categoryIds = post.categories || [];
+  const postIsHighCvr = isHighCvr(post.id);
 
-  // Split content at first <h2 to insert CTA after intro
+  const relatedCategory = !postIsHighCvr
+    ? Object.entries(CATEGORY_MAP).find(([, meta]) =>
+        categoryIds.includes(meta.wpId)
+      )
+    : null;
+
   const content = post.content.rendered;
-  const h2Match = content.match(/^([\s\S]*?)(<h2[\s>])/i);
-  let contentBefore = "";
-  let contentAfter = content;
-  if (h2Match) {
-    contentBefore = h2Match[1];
-    contentAfter = content.slice(h2Match[1].length);
-  }
-
-  // Find middle h2 for mid-article CTA
-  const h2Regex = /<h2[\s>]/gi;
-  const h2Positions: number[] = [];
-  let match;
-  while ((match = h2Regex.exec(contentAfter)) !== null) {
-    h2Positions.push(match.index);
-  }
-  let contentFirstHalf = contentAfter;
-  let contentSecondHalf = "";
-  if (h2Positions.length >= 3) {
-    const midIdx = Math.floor(h2Positions.length / 2);
-    const splitAt = h2Positions[midIdx];
-    contentFirstHalf = contentAfter.slice(0, splitAt);
-    contentSecondHalf = contentAfter.slice(splitAt);
-  }
 
   return (
     <div style={{ background: "var(--bg-warm)", minHeight: "100vh" }}>
       <Header />
 
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "32px 16px" }}>
-        <nav style={{ fontSize: 12, color: "#888", marginBottom: 16 }}>
-          <a href="/" style={{ color: "#ff6b35", textDecoration: "none" }}>ホーム</a>
+        <nav style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 16 }}>
+          <a href="/" style={{ color: "var(--accent)", textDecoration: "none" }}>ホーム</a>
           <span style={{ margin: "0 8px" }}>&rsaquo;</span>
           <span dangerouslySetInnerHTML={{ __html: title }} />
         </nav>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 300px", gap: 32, alignItems: "start" }} className="main-grid">
           <main>
+            {/* LOW CVR記事にランキング導線バナー */}
+            {relatedCategory && (() => {
+              const [catKey, catMeta] = relatedCategory;
+              const Icon = getCategoryIcon(catMeta.iconKey);
+              return (
+                <Link
+                  href={`/ranking/${catKey}`}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 10,
+                    padding: "12px 16px",
+                    background: "var(--accent-light)",
+                    border: "1px solid var(--accent)",
+                    borderRadius: "var(--radius-md)",
+                    marginBottom: 16,
+                    textDecoration: "none",
+                    color: "var(--accent)",
+                    fontSize: 13,
+                    fontWeight: 600,
+                  }}
+                >
+                  <Icon size={16} strokeWidth={2} />
+                  <span style={{ flex: 1 }}>{catMeta.title}はこちら</span>
+                  <ArrowRight size={14} />
+                </Link>
+              );
+            })()}
+
             <article style={{ background: "#fff", borderRadius: 12, border: "1px solid var(--border)", boxShadow: "var(--shadow-card)", padding: 32 }}>
-              <div style={{ fontSize: 12, color: "#888", marginBottom: 12 }}>
-                {"\u{1F4C5}"} 公開: {date}
-                {modified !== date && <span> | 更新: {modified}</span>}
+              {/* 編集部バッジ + 日付 */}
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14, flexWrap: "wrap" }}>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11, fontWeight: 600, color: "var(--green)", background: "var(--green-light)", padding: "3px 8px", borderRadius: 4 }}>
+                  <ShieldCheck size={12} />
+                  編集部が検証済み
+                </span>
+                <span style={{ fontSize: 12, color: "var(--text-muted)", display: "flex", alignItems: "center", gap: 4 }}>
+                  <Calendar size={11} />
+                  {modified !== date ? `更新: ${modified}` : `公開: ${date}`}
+                </span>
               </div>
 
-              <h1 style={{ fontSize: 26, fontWeight: 900, lineHeight: 1.5, color: "#1a1a1a", borderBottom: "3px solid #ff6b35", paddingBottom: 12, marginBottom: 24 }} dangerouslySetInnerHTML={{ __html: title }} />
+              <h1 style={{ fontSize: 26, fontWeight: 800, lineHeight: 1.5, color: "var(--text-primary)", borderBottom: "2px solid var(--border)", paddingBottom: 12, marginBottom: 24 }} dangerouslySetInnerHTML={{ __html: title }} />
 
-              {/* Intro section before first h2 */}
-              {contentBefore && (
-                <div className="wp-content" dangerouslySetInnerHTML={{ __html: contentBefore }} />
-              )}
+              {/* 記事本文 */}
+              <ArticleContent html={content} maxSections={3} />
 
-              {/* CTA: top position (after intro, before first h2) */}
-              <ArticleCTA categoryIds={categoryIds} position="top" />
+              {/* Banner section */}
+              <BannerSection postId={post.id} categoryIds={categoryIds} position="middle" />
 
-              {/* First half of content */}
-              <div className="wp-content" dangerouslySetInnerHTML={{ __html: contentFirstHalf }} />
-
-              {/* CTA: middle position (between content halves) */}
-              {contentSecondHalf && (
-                <ArticleCTA categoryIds={categoryIds} position="middle" />
-              )}
-
-              {/* Second half of content */}
-              {contentSecondHalf && (
-                <div className="wp-content" dangerouslySetInnerHTML={{ __html: contentSecondHalf }} />
-              )}
-
-              {/* CTA: bottom position (after all content) */}
+              {/* CTA: bottom position */}
               <ArticleCTA categoryIds={categoryIds} position="bottom" />
+
+              {/* 著者プロフィール */}
+              <div style={{ marginTop: 32, padding: "20px", background: "var(--bg-section)", borderRadius: "var(--radius-md)" }}>
+                <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
+                  <div style={{ width: 48, height: 48, borderRadius: "50%", background: "var(--accent-light)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <UserCircle size={28} strokeWidth={1.5} style={{ color: "var(--accent)" }} />
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 11, color: "var(--text-muted)", marginBottom: 2 }}>この記事を書いた人</div>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: "var(--text-primary)", marginBottom: 4 }}>ベストナビ編集部</div>
+                    <p style={{ fontSize: 12, color: "var(--text-secondary)", lineHeight: 1.7, margin: 0 }}>
+                      各分野の専門知識を持つライターが、実際にサービスを使って検証。公平な視点で比較・レビューをお届けしています。
+                    </p>
+                  </div>
+                </div>
+              </div>
             </article>
           </main>
 
@@ -130,17 +155,63 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
       <style>{`
         @media (max-width: 768px) { .main-grid { grid-template-columns: 1fr !important; } }
-        .wp-content h2 { font-weight: 900; font-size: 22px; border-left: 4px solid #ff6b35; padding: 8px 16px; margin: 40px 0 20px; }
-        .wp-content h3 { font-weight: 700; font-size: 18px; border-bottom: 2px dashed #e0e0e0; padding-bottom: 8px; margin: 32px 0 16px; }
-        .wp-content p { line-height: 1.9; margin-bottom: 20px; }
-        .wp-content ul, .wp-content ol { margin: 16px 0; padding-left: 24px; }
-        .wp-content li { margin-bottom: 8px; line-height: 1.7; }
-        .wp-content table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        .wp-content table th { background: #f8f6f3; font-weight: 700; padding: 10px 14px; border: 1px solid #e8e5e0; }
-        .wp-content table td { padding: 10px 14px; border: 1px solid #e8e5e0; }
-        .wp-content img { max-width: 100%; height: auto; border-radius: 8px; }
-        .wp-content a { color: #ff6b35; }
-        .wp-content blockquote { border-left: 4px solid #ff6b35; padding: 16px 20px; margin: 20px 0; background: #fff4ef; border-radius: 0 8px 8px 0; }
+        .wp-content h2 { font-weight: 800; font-size: 20px; border-left: 3px solid var(--accent); padding: 6px 14px; margin: 36px 0 18px; }
+        .wp-content h3 { font-weight: 700; font-size: 17px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin: 28px 0 14px; }
+        .wp-content p { line-height: 1.9; margin-bottom: 18px; }
+        .wp-content ul, .wp-content ol { margin: 14px 0; padding-left: 24px; }
+        .wp-content li { margin-bottom: 6px; line-height: 1.7; }
+        .wp-content table { width: 100%; border-collapse: collapse; margin: 18px 0; }
+        .wp-content table th { background: var(--bg-section) !important; color: var(--text-primary) !important; font-weight: 600; padding: 9px 14px; border: 1px solid var(--border); }
+        .wp-content table td { padding: 9px 14px; border: 1px solid var(--border); color: var(--text-primary) !important; }
+        .wp-content table th[style], .wp-content table td[style] { color: var(--text-primary) !important; background-color: var(--bg-section) !important; }
+        .wp-content table tr th, .wp-content table tr td { color: var(--text-primary) !important; }
+        .wp-content img { max-width: 100%; height: auto; border-radius: 6px; }
+        .wp-content a { color: var(--accent); }
+        .wp-content a:has(> img) { display: block; }
+        .wp-content blockquote { border-left: 3px solid var(--accent); padding: 14px 18px; margin: 18px 0; background: var(--accent-light); border-radius: 0 6px 6px 0; }
+        /* WordPress ボタンブロック修正 — 青い空白ボックスを防止 */
+        .wp-content .wp-block-button__link,
+        .wp-content .wp-block-button a {
+          display: inline-block !important;
+          background: var(--cta) !important;
+          color: #fff !important;
+          padding: 12px 28px !important;
+          border-radius: 6px !important;
+          font-weight: 700 !important;
+          text-decoration: none !important;
+        }
+        .wp-content .wp-block-buttons,
+        .wp-content .wp-block-button {
+          margin: 16px 0;
+        }
+        /* 空のdiv/pを非表示 */
+        .wp-content div:empty,
+        .wp-content p:empty { display: none; }
+        /* WP columns/group の背景色リセット */
+        .wp-content .wp-block-group,
+        .wp-content .wp-block-columns {
+          background: transparent !important;
+          border: none !important;
+          padding: 0 !important;
+        }
+        /* WP本文内のインラインCTAボタン（旧オレンジ）を緑に統一 */
+        .wp-content a[style*="background:#ff6b35"],
+        .wp-content a[style*="background: #ff6b35"],
+        .wp-content a[style*="background-color:#ff6b35"],
+        .wp-content a[style*="background-color: #ff6b35"] {
+          background: var(--cta) !important;
+          border-radius: 8px !important;
+          box-shadow: 0 2px 8px rgba(22,163,74,0.3) !important;
+        }
+        .wp-content a[style*="background:#ff6b35"]:hover,
+        .wp-content a[style*="background: #ff6b35"]:hover {
+          background: var(--cta-hover) !important;
+        }
+        /* 空のdivで背景色がついたものをリセット */
+        .wp-content div[style*="background-color"]:empty,
+        .wp-content p[style*="background-color"]:empty {
+          display: none !important;
+        }
       `}</style>
     </div>
   );
