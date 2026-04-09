@@ -161,38 +161,20 @@ const TCS_CRYPTO_BANNERS: BannerConfig[] = [
   },
 ];
 
-// もしも (Moshimo) banners - Airalo eSIM
-// Banners from もしもアフィリエイト: https://af.moshimo.com/
-const MOSHIMO_BANNERS: BannerConfig[] = [
-  {
-    programName: "Airalo",
-    affiliateId: "MOSHIMO",
-    url: "https://af.moshimo.com/media/programs/view/pid/airalo",
-    width: 300,
-    height: 250,
-    imageUrl: "https://images.moshimo.com/af_ads/700x500/airalo_300x250.png",
-  },
+// もしも (Moshimo) banners - 提携中: Rakulink（日本VPN）・楽天市場
+// ⚠️ Airaloは未提携。Rakulinkのバナーは次回もしもログイン時に取得してから追加。
+// Banners from もしもアフィリエイト: https://af.moshimo.com/ (a_id: 1185762)
+const RAKULINK_BANNERS: BannerConfig[] = [
+  // TODO: もしも管理画面でRakulinkの「広告リンク」から正確なURLを取得する
+  // Rakulink: 海外で日本の動画を見るための日本VPN (30%成果)
+  // a_id=1185762, program_id・pc_id・pl_idは管理画面から要確認
 ];
 
-// バリューコマース (ValueCommerce) banners - FX/Crypto
-// Banners from バリューコマース: https://aff.valuecommerce.ne.jp/
+// バリューコマース (ValueCommerce) banners
+// ⚠️ 2026-04-09 管理画面URLが全てエラー → DMM Bitcoin・bitFlyerの提携状況・バナーURL未確認
+// TODO: ValueCommerce管理画面 (aff.valuecommerce.ne.jp) で提携プログラムを確認してURLを更新
 const VALUECOMMERCE_BANNERS: BannerConfig[] = [
-  {
-    programName: "DMM Bitcoin",
-    affiliateId: "VC",
-    url: "https://aff.valuecommerce.ne.jp/ad/adDetail?vc=2BNHP8",
-    width: 300,
-    height: 250,
-    imageUrl: "https://images.valuecommerce.com/vcomm/ads/v2/dmm-bitcoin_300x250.jpg",
-  },
-  {
-    programName: "bitFlyer",
-    affiliateId: "VC",
-    url: "https://aff.valuecommerce.ne.jp/ad/adDetail?vc=5DKFCZ",
-    width: 300,
-    height: 250,
-    imageUrl: "https://images.valuecommerce.com/vcomm/ads/v2/bitflyer_300x250.jpg",
-  },
+  // 提携確認後に追加
 ];
 
 // Kinsta banners (kaid=BVQFWTYMMLOV) - Self-hosted local images
@@ -233,15 +215,20 @@ export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
   ],
   51: [  // Server — Kinsta直契約 + A8 Xserver/ConoHa
     ...KINSTA_BANNERS.filter(b => b.width <= 300),
-    ...A8_BANNERS.filter(b => ["Xserver", "ConoHa WING", "ConoHa VPS"].includes(b.programName)),
+    ...A8_BANNERS.filter(b => ["Xserver", "ConoHa WING"].includes(b.programName)),
   ],
-  50: MOSHIMO_BANNERS,         // eSIM (Airalo via もしも)
-  59: TCS_FX_BANNERS,          // FX (DMM FX, FXブロードネット, 外為オンライン, ひまわり証券, ヒロセ通商)
-  53: [...TCS_CRYPTO_BANNERS, ...VALUECOMMERCE_BANNERS], // Crypto (Coincheck + DMM Bitcoin + bitFlyer)
-  52: A8_BANNERS.filter(b => b.programName === "Xserver"),  // AI（A8実提携なし→Xserverバナーで代替）
-  55: A8_BANNERS.filter(b => b.programName === "Xserver"),  // School（同上）
-  54: A8_BANNERS.filter(b => b.programName === "Xserver"),  // English（同上）
-  56: A8_BANNERS.filter(b => b.programName === "Xserver"),  // Career（同上）
+  // eSIM (50): Rakulink（もしも）が取得できるまでNordVPN/Surfsharkでクロスセル
+  // 「海外でeSIMを使うならVPNも一緒に」のクロスセル文脈で整合性あり
+  50: [
+    ...NORDVPN_BANNERS.filter(b => b.width <= 300),
+    ...SURFSHARK_BANNERS,
+  ],
+  59: TCS_FX_BANNERS,       // FX (DMM FX, FXブロードネット, 外為オンライン, ひまわり証券, ヒロセ通商)
+  53: TCS_CRYPTO_BANNERS,   // Crypto (Coincheck) — ValueCommerceは未確認のため除外
+  52: [],  // AI — 適切な提携バナーなし（TODO: A8スクール系追加）
+  55: [],  // School — WinスクールのA8バナー取得後に追加
+  54: [],  // English — ベストティーチャーのA8バナー取得後に追加
+  56: [],  // Career — 適切な提携バナーなし
   44: [...NORDVPN_BANNERS.filter(b => b.width <= 300), ...SURFSHARK_BANNERS], // Security
 };
 
@@ -256,23 +243,25 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
     ...A8_BANNERS.filter(b => b.programName === "MillenVPN"),
   ],
   261: [A8_BANNERS.find(b => b.programName === "MillenVPN")!].filter(Boolean), // MillenVPN → MillenVPN
-  232: NORDVPN_BANNERS.filter(b => b.width <= 300),   // NordVPN vs ExpressVPN → NordVPN
+  232: NORDVPN_BANNERS.filter(b => b.width <= 300),   // NordVPN比較 → NordVPN
   // Server レビュー
   209: A8_BANNERS.filter(b => b.programName === "Xserver"),     // Xserver → Xserver
   259: A8_BANNERS.filter(b => b.programName === "ConoHa WING"), // ConoHa → ConoHa
   295: KINSTA_BANNERS.filter(b => b.width <= 300),              // Kinsta → Kinsta
   351: A8_BANNERS.filter(b => ["Xserver", "ConoHa WING"].includes(b.programName)), // 比較 → 両方
   // FX レビュー
-  525: TCS_FX_BANNERS.filter(b => b.programName === "DMM FX"),  // DMM FX → DMM FX
-  533: TCS_FX_BANNERS.filter(b => b.programName.includes("外為オンライン")), // 外為 → 外為
+  525: TCS_FX_BANNERS.filter(b => b.programName === "DMM FX"),
+  533: TCS_FX_BANNERS.filter(b => b.programName.includes("外為オンライン")),
   534: TCS_FX_BANNERS.filter(b => b.programName === "FXブロードネット"),
   535: TCS_FX_BANNERS.filter(b => b.programName === "ひまわり証券"),
   // Crypto レビュー
-  211: TCS_CRYPTO_BANNERS,                             // Coincheck → Coincheck
-  263: VALUECOMMERCE_BANNERS,                          // GMOコイン → DMM Bitcoin/bitFlyer
-  // eSIM
-  265: MOSHIMO_BANNERS,                                // eSIMランキング → Airalo
-  345: MOSHIMO_BANNERS, 347: MOSHIMO_BANNERS,          // 韓国/アメリカeSIM
+  211: TCS_CRYPTO_BANNERS,   // Coincheck → Coincheck
+  263: TCS_CRYPTO_BANNERS,   // GMOコイン → Coincheck（ValueCommerce未確認のため）
+  // eSIM — Rakulinkバナー取得まではNordVPN/Surfsharkでクロスセル
+  265: [...NORDVPN_BANNERS.filter(b => b.width <= 300), ...SURFSHARK_BANNERS],
+  345: [...NORDVPN_BANNERS.filter(b => b.width <= 300), ...SURFSHARK_BANNERS],
+  347: [...NORDVPN_BANNERS.filter(b => b.width <= 300), ...SURFSHARK_BANNERS],
+  349: [...NORDVPN_BANNERS.filter(b => b.width <= 300), ...SURFSHARK_BANNERS],
 };
 
 export function getBannersForArticle(postId: number, categoryIds: number[]): BannerConfig[] {
