@@ -147,6 +147,41 @@ const A8_BANNERS: BannerConfig[] = [
   },
 ];
 
+// A8.net School banners（2026-04-09 管理画面から取得）
+const A8_SCHOOL_BANNERS: BannerConfig[] = [
+  // Winスクール (insId: s00000023621001) — EPC 114.38
+  {
+    programName: "Winスクール",
+    affiliateId: "a26021579611",
+    url: "https://px.a8.net/svt/ejp?a8mat=4AXCKE+67V08I+529E+5ZMCH",
+    width: 300,
+    height: 250,
+    imageUrl: "https://www21.a8.net/svt/bgt?aid=260216798376&wid=001&eno=01&mid=s00000023621001006000&mc=1",
+  },
+];
+
+// A8.net English banners（2026-04-09 管理画面から取得）
+const A8_ENGLISH_BANNERS: BannerConfig[] = [
+  // ベストティーチャー (insId: s00000013934001) — EPC 7.10
+  {
+    programName: "ベストティーチャー",
+    affiliateId: "a26021579611",
+    url: "https://px.a8.net/svt/ejp?a8mat=4AXCKE+68GFUA+2ZIK+601S1",
+    width: 300,
+    height: 250,
+    imageUrl: "https://www25.a8.net/svt/bgt?aid=260216798377&wid=001&eno=01&mid=s00000013934001008000&mc=1",
+  },
+  // Global Step Academy (insId: s00000019598001) — EPC 33.90
+  {
+    programName: "Global Step Academy",
+    affiliateId: "a26021579611",
+    url: "https://px.a8.net/svt/ejp?a8mat=4AXCKE+6F07HU+477W+5ZMCH",
+    width: 300,
+    height: 250,
+    imageUrl: "https://www26.a8.net/svt/bgt?aid=260216798388&wid=001&eno=01&mid=s00000019598001006000&mc=1",
+  },
+];
+
 // TCS Crypto banners - Coincheck
 // Banners from TCS-Affiliate: https://www.tcs-asp.net/
 const TCS_CRYPTO_BANNERS: BannerConfig[] = [
@@ -162,12 +197,17 @@ const TCS_CRYPTO_BANNERS: BannerConfig[] = [
 ];
 
 // もしも (Moshimo) banners - 提携中: Rakulink（日本VPN）・楽天市場
-// ⚠️ Airaloは未提携。Rakulinkのバナーは次回もしもログイン時に取得してから追加。
-// Banners from もしもアフィリエイト: https://af.moshimo.com/ (a_id: 1185762)
+// Banners from もしもアフィリエイト: https://af.moshimo.com/ (a_id: 5469336, promotion_id: 4914)
+// 取得日: 2026-04-09。バナーは300x300と378x200のみ（300x250なし）
 const RAKULINK_BANNERS: BannerConfig[] = [
-  // TODO: もしも管理画面でRakulinkの「広告リンク」から正確なURLを取得する
-  // Rakulink: 海外で日本の動画を見るための日本VPN (30%成果)
-  // a_id=1185762, program_id・pc_id・pl_idは管理画面から要確認
+  {
+    programName: "Rakulink",
+    affiliateId: "5469336",
+    url: "https://af.moshimo.com/af/c/click?a_id=5469336&p_id=4914&pc_id=13098&pl_id=68756",
+    width: 300,
+    height: 300,
+    imageUrl: "https://image.moshimo.com/af-img/4504/000000068756.png",
+  },
 ];
 
 // バリューコマース (ValueCommerce) banners
@@ -217,17 +257,17 @@ export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
     ...KINSTA_BANNERS.filter(b => b.width <= 300),
     ...A8_BANNERS.filter(b => ["Xserver", "ConoHa WING"].includes(b.programName)),
   ],
-  // eSIM (50): Rakulink（もしも）が取得できるまでNordVPN/Surfsharkでクロスセル
-  // 「海外でeSIMを使うならVPNも一緒に」のクロスセル文脈で整合性あり
+  // eSIM (50): Rakulink（日本VPN・30%成果）+ NordVPN/Surfsharkクロスセル
   50: [
+    ...RAKULINK_BANNERS,
     ...NORDVPN_BANNERS.filter(b => b.width <= 300),
     ...SURFSHARK_BANNERS,
   ],
   59: TCS_FX_BANNERS,       // FX (DMM FX, FXブロードネット, 外為オンライン, ひまわり証券, ヒロセ通商)
   53: TCS_CRYPTO_BANNERS,   // Crypto (Coincheck) — ValueCommerceは未確認のため除外
-  52: [],  // AI — 適切な提携バナーなし（TODO: A8スクール系追加）
-  55: [],  // School — WinスクールのA8バナー取得後に追加
-  54: [],  // English — ベストティーチャーのA8バナー取得後に追加
+  52: [],  // AI — 適切な提携バナーなし
+  55: A8_SCHOOL_BANNERS,    // School — Winスクール（EPC 114.38）
+  54: A8_ENGLISH_BANNERS,   // English — ベストティーチャー + Global Step Academy
   56: [],  // Career — 適切な提携バナーなし
   44: [...NORDVPN_BANNERS.filter(b => b.width <= 300), ...SURFSHARK_BANNERS], // Security
 };
@@ -257,11 +297,19 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
   // Crypto レビュー
   211: TCS_CRYPTO_BANNERS,   // Coincheck → Coincheck
   263: TCS_CRYPTO_BANNERS,   // GMOコイン → Coincheck（ValueCommerce未確認のため）
+  // School レビュー
+  287: A8_SCHOOL_BANNERS,   // スクール比較ランキング → Winスクール
+  371: A8_SCHOOL_BANNERS,   // スクールレビュー1 → Winスクール
+  373: A8_SCHOOL_BANNERS,   // スクールレビュー2 → Winスクール
+  // English レビュー
+  285: A8_ENGLISH_BANNERS,  // 英会話比較ランキング → ベストティーチャー + Global Step
+  367: [A8_ENGLISH_BANNERS.find(b => b.programName === "ベストティーチャー")!].filter(Boolean),
+  369: [A8_ENGLISH_BANNERS.find(b => b.programName === "Global Step Academy")!].filter(Boolean),
   // eSIM — Rakulinkバナー取得まではNordVPN/Surfsharkでクロスセル
-  265: [...NORDVPN_BANNERS.filter(b => b.width <= 300), ...SURFSHARK_BANNERS],
-  345: [...NORDVPN_BANNERS.filter(b => b.width <= 300), ...SURFSHARK_BANNERS],
-  347: [...NORDVPN_BANNERS.filter(b => b.width <= 300), ...SURFSHARK_BANNERS],
-  349: [...NORDVPN_BANNERS.filter(b => b.width <= 300), ...SURFSHARK_BANNERS],
+  265: [...RAKULINK_BANNERS, ...NORDVPN_BANNERS.filter(b => b.width <= 300), ...SURFSHARK_BANNERS],
+  345: [...RAKULINK_BANNERS, ...NORDVPN_BANNERS.filter(b => b.width <= 300), ...SURFSHARK_BANNERS],
+  347: [...RAKULINK_BANNERS, ...NORDVPN_BANNERS.filter(b => b.width <= 300), ...SURFSHARK_BANNERS],
+  349: [...RAKULINK_BANNERS, ...NORDVPN_BANNERS.filter(b => b.width <= 300), ...SURFSHARK_BANNERS],
 };
 
 export function getBannersForArticle(postId: number, categoryIds: number[]): BannerConfig[] {
