@@ -10,19 +10,30 @@ export async function GET(
 ) {
   const { slug } = await params;
 
-  // Read posts.json directly on server to see what slugs exist
   const jsonPath = path.join(process.cwd(), "data", "posts.json");
   const posts = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
   const post523 = posts.find((p: { id: number }) => p.id === 523);
-  const found = posts.find(
-    (p: { slug: string }) => p.slug === slug || decodeURIComponent(p.slug) === slug
-  );
+  const p523slug: string = post523?.slug ?? "";
+
+  // Compare char codes to detect invisible differences
+  const slugCodes = [...slug].map((c) => c.charCodeAt(0).toString(16));
+  const p523Codes = [...p523slug].map((c) => c.charCodeAt(0).toString(16));
+
+  // Try various normalizations
+  const exactMatch = p523slug === slug;
+  const nfcMatch = p523slug.normalize("NFC") === slug.normalize("NFC");
+  const nfdMatch = p523slug.normalize("NFD") === slug.normalize("NFD");
 
   return Response.json({
     receivedSlug: slug,
-    post523Slug: post523?.slug,
-    match: found ? { id: found.id, slug: found.slug } : null,
-    exactMatch: posts.some((p: { slug: string }) => p.slug === slug),
-    decodedMatch: posts.some((p: { slug: string }) => decodeURIComponent(p.slug) === slug),
+    post523Slug: p523slug,
+    exactMatch,
+    nfcMatch,
+    nfdMatch,
+    slugLength: slug.length,
+    p523Length: p523slug.length,
+    // Show first 20 char codes of each
+    slugCodes: slugCodes.slice(0, 20),
+    p523Codes: p523Codes.slice(0, 20),
   });
 }
