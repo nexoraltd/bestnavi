@@ -47,17 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
-  if (!post) {
-    // DEBUG: show what slug was received instead of notFound
-    return (
-      <div style={{padding: 40, fontFamily: "monospace"}}>
-        <h1>DEBUG: Post not found</h1>
-        <p>receivedSlug: {JSON.stringify(slug)}</p>
-        <p>slugLength: {slug.length}</p>
-        <p>slugChars: {[...slug].map(c => c.charCodeAt(0).toString(16)).join(",")}</p>
-      </div>
-    );
-  }
+  if (!post) notFound();
 
   const title = post.title.rendered;
   const date = new Date(post.date).toLocaleDateString("ja-JP");

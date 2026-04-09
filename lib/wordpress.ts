@@ -126,7 +126,11 @@ export async function getPostsByCategory(categoryId: number): Promise<WPPost[]> 
 }
 
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {
-  return getCachedPosts().find((p) => p.slug === slug || decodeURIComponent(p.slug) === slug) || null;
+  // In Next.js 16, page params receive URL-encoded slugs while API routes receive decoded.
+  // Decode the incoming slug so it matches the decoded slugs stored in posts.json.
+  let decodedSlug = slug;
+  try { decodedSlug = decodeURIComponent(slug); } catch { /* invalid encoding, use as-is */ }
+  return getCachedPosts().find((p) => p.slug === slug || p.slug === decodedSlug) || null;
 }
 
 export async function getAllSlugs(): Promise<string[]> {
