@@ -264,7 +264,7 @@ export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
     ...SURFSHARK_BANNERS,
   ],
   59: TCS_FX_BANNERS,       // FX (DMM FX, FXブロードネット, 外為オンライン, ひまわり証券, ヒロセ通商)
-  53: TCS_CRYPTO_BANNERS,   // Crypto (Coincheck) — ValueCommerceは未確認のため除外
+  53: [],  // Crypto — 未提携のため非表示
   52: [],  // AI — 適切な提携バナーなし
   55: A8_SCHOOL_BANNERS,    // School — Winスクール（EPC 114.38）
   54: A8_ENGLISH_BANNERS,   // English — ベストティーチャー + Global Step Academy
@@ -294,9 +294,9 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
   533: TCS_FX_BANNERS.filter(b => b.programName.includes("外為オンライン")),
   534: TCS_FX_BANNERS.filter(b => b.programName === "FXブロードネット"),
   535: TCS_FX_BANNERS.filter(b => b.programName === "ひまわり証券"),
-  // Crypto レビュー
-  211: TCS_CRYPTO_BANNERS,   // Coincheck → Coincheck
-  263: TCS_CRYPTO_BANNERS,   // GMOコイン → Coincheck（ValueCommerce未確認のため）
+  // Crypto レビュー — 未提携のためバナーなし
+  211: [],
+  263: [],
   // School レビュー
   287: A8_SCHOOL_BANNERS,   // スクール比較ランキング → Winスクール
   371: A8_SCHOOL_BANNERS,   // スクールレビュー1 → Winスクール
