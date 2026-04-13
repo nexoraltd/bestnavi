@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Shield, TrendingUp, Server, Bot, Bitcoin, Smartphone, GraduationCap, Globe } from "lucide-react";
+import { Shield, TrendingUp, Server, Bot, Bitcoin, Smartphone, GraduationCap, Globe } from "lucide-react";
 
 
 const categories = [
@@ -36,13 +36,6 @@ export function HeroBanner() {
               VPN・FX・ホスティング・AIツール・仮想通貨など。専門家による厳選レビューで、あなたに最適な製品が見つかります。
             </p>
 
-            {/* CTA buttons */}
-            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <Link href="/ranking/vpn" className="cta-primary" style={{ padding: "11px 28px", fontSize: 14 }}>
-                ランキングを見る
-                <ArrowRight size={15} />
-              </Link>
-            </div>
           </div>
         </div>
       </section>
