@@ -2,156 +2,125 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import {
-  Shield,
-  Server,
-  Bot,
-  TrendingUp,
-  Bitcoin,
-  Menu,
-  X,
-} from "lucide-react";
+import { Shield, Server, Bot, TrendingUp, Bitcoin, Smartphone, Search, Menu, X } from "lucide-react";
 
 const categories = [
   { name: "VPN", href: "/ranking/vpn", icon: Shield },
+  { name: "FX口座", href: "/ranking/fx", icon: TrendingUp },
   { name: "サーバー", href: "/ranking/server", icon: Server },
   { name: "AIツール", href: "/ranking/ai", icon: Bot },
-  { name: "FX口座", href: "/ranking/fx", icon: TrendingUp },
   { name: "仮想通貨", href: "/ranking/crypto", icon: Bitcoin },
+  { name: "eSIM", href: "/ranking/esim", icon: Smartphone },
 ];
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header
-      style={{
-        position: "sticky",
-        top: 0,
-        zIndex: 100,
-        background: "#fff",
-        borderBottom: "1px solid var(--border)",
-        boxShadow: "var(--shadow-sm)",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1100,
-          margin: "0 auto",
-          padding: "0 16px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          height: 56,
-        }}
-      >
-        {/* Logo */}
-        <Link
-          href="/"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            textDecoration: "none",
-          }}
-        >
-          <div
-            style={{
-              width: 32,
-              height: 32,
-              background: "var(--accent)",
-              borderRadius: 6,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#fff",
-              fontWeight: 800,
-              fontSize: 16,
-            }}
-          >
-            B
-          </div>
-          <div>
-            <div
-              style={{
-                fontSize: 17,
-                fontWeight: 800,
-                color: "var(--text-primary)",
-                lineHeight: 1.1,
-              }}
-            >
-              ベストナビ
-            </div>
-            <div style={{ fontSize: 9, color: "var(--text-muted)", letterSpacing: 0.5 }}>
-              比較・ランキング情報サイト
-            </div>
-          </div>
-        </Link>
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-200" style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.06)" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 60 }}>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex" style={{ alignItems: "center", gap: 2 }}>
-          {categories.map((cat) => {
-            const Icon = cat.icon;
-            return (
+          {/* Logo */}
+          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", flexShrink: 0 }}>
+            <div style={{
+              width: 36, height: 36,
+              background: "var(--accent)",
+              borderRadius: 8,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              color: "#fff", fontWeight: 800, fontSize: 18,
+              boxShadow: "0 2px 8px rgba(37,99,235,0.3)",
+            }}>B</div>
+            <div>
+              <div style={{ fontSize: 16, fontWeight: 800, color: "var(--text-primary)", lineHeight: 1.1 }}>ベストナビ</div>
+              <div style={{ fontSize: 9, color: "var(--text-muted)", letterSpacing: 0.5, fontWeight: 500 }}>比較・ランキング情報</div>
+            </div>
+          </Link>
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex" style={{ alignItems: "center", gap: 0 }}>
+            {categories.map((cat) => (
               <Link
                 key={cat.name}
                 href={cat.href}
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 5,
-                  padding: "6px 12px",
+                  padding: "6px 14px",
                   fontSize: 13,
                   fontWeight: 600,
                   color: "var(--text-secondary)",
                   textDecoration: "none",
                   borderRadius: 6,
-                  transition: "all 0.15s",
+                  transition: "color 0.15s, background 0.15s",
+                  whiteSpace: "nowrap",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "var(--bg-section)";
                   e.currentTarget.style.color = "var(--accent)";
+                  e.currentTarget.style.background = "var(--accent-light)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "transparent";
                   e.currentTarget.style.color = "var(--text-secondary)";
+                  e.currentTarget.style.background = "transparent";
                 }}
               >
-                <Icon size={15} strokeWidth={2} />
                 {cat.name}
               </Link>
-            );
-          })}
-        </nav>
+            ))}
+          </nav>
 
-        {/* Mobile Hamburger */}
-        <button
-          className="md:hidden"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          style={{
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            color: "var(--text-primary)",
-            padding: 6,
-            display: "flex",
-            alignItems: "center",
-          }}
-          aria-label="メニュー"
-        >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+          {/* Right actions */}
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <button
+              className="hidden md:flex"
+              style={{
+                alignItems: "center",
+                gap: 6,
+                padding: "7px 14px",
+                fontSize: 13,
+                fontWeight: 600,
+                color: "var(--text-secondary)",
+                background: "var(--bg-section)",
+                border: "1px solid var(--border)",
+                borderRadius: 8,
+                cursor: "pointer",
+                transition: "all 0.15s",
+              }}
+              onMouseEnter={(e) => {
+                const btn = e.currentTarget as HTMLButtonElement;
+                btn.style.borderColor = "var(--accent)";
+                btn.style.color = "var(--accent)";
+              }}
+              onMouseLeave={(e) => {
+                const btn = e.currentTarget as HTMLButtonElement;
+                btn.style.borderColor = "var(--border)";
+                btn.style.color = "var(--text-secondary)";
+              }}
+            >
+              <Search size={14} />
+              検索
+            </button>
+
+            {/* Mobile hamburger */}
+            <button
+              className="md:hidden"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              style={{
+                background: "none", border: "none", cursor: "pointer",
+                color: "var(--text-primary)", padding: 6,
+                display: "flex", alignItems: "center",
+              }}
+              aria-label="メニュー"
+            >
+              {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Mobile Menu */}
       {mobileOpen && (
         <div
           className="md:hidden"
-          style={{
-            background: "#fff",
-            borderTop: "1px solid var(--border)",
-            padding: "4px 0",
-          }}
+          style={{ background: "#fff", borderTop: "1px solid var(--border)", padding: "8px 0 12px" }}
         >
           {categories.map((cat) => {
             const Icon = cat.icon;
@@ -161,19 +130,19 @@ export function Header() {
                 href={cat.href}
                 onClick={() => setMobileOpen(false)}
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                  padding: "12px 20px",
-                  fontSize: 14,
-                  fontWeight: 600,
+                  display: "flex", alignItems: "center", gap: 10,
+                  padding: "11px 24px",
+                  fontSize: 14, fontWeight: 600,
                   color: "var(--text-secondary)",
                   textDecoration: "none",
                   borderBottom: "1px solid var(--bg-section)",
+                  transition: "background 0.15s",
                 }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "var(--accent-light)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
               >
-                <Icon size={17} strokeWidth={2} />
-                {cat.name}
+                <Icon size={16} strokeWidth={2} style={{ color: "var(--accent)" }} />
+                {cat.name}ランキング
               </Link>
             );
           })}

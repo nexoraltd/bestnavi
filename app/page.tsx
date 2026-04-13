@@ -48,12 +48,12 @@ export default async function Home() {
       <Header />
       <HeroBanner />
 
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 16px" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 280px",
-            gap: 28,
+            gridTemplateColumns: "1fr 300px",
+            gap: 32,
             alignItems: "start",
           }}
           className="main-grid"
@@ -161,13 +161,11 @@ export default async function Home() {
                       style={{ textDecoration: "none", color: "inherit", display: "block", marginBottom: 10 }}
                     >
                       <div
-                        className="top-pick-card"
+                        className="rank-card top-pick-card"
                         style={{
-                          background: "#fff",
                           borderRadius: "var(--radius-lg)",
                           border: "2px solid var(--gold-border)",
                           padding: "20px",
-                          transition: "box-shadow 0.15s, transform 0.15s",
                           position: "relative",
                         }}
                       >
@@ -309,7 +307,7 @@ export default async function Home() {
             </div>
           </main>
 
-          <div className="sidebar-area" style={{ paddingTop: 28 }}>
+          <div className="sidebar-area" style={{ paddingTop: 24 }}>
             <Sidebar />
           </div>
         </div>
@@ -323,7 +321,6 @@ export default async function Home() {
           .sidebar-area { order: 2; }
         }
         .article-row:hover { box-shadow: var(--shadow-md); }
-        .top-pick-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
       `}</style>
     </div>
   );
