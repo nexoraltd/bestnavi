@@ -5,8 +5,8 @@ export function Footer() {
     <footer style={{ background: "#f9fafb", borderTop: "1px solid var(--border)", marginTop: 48 }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "48px 24px 0" }}>
 
-        {/* 4-column grid */}
-        <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 40, marginBottom: 40 }}>
+        {/* 3-column grid */}
+        <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 40, marginBottom: 40 }}>
 
           {/* Brand */}
           <div>
@@ -41,22 +41,6 @@ export function Footer() {
                   <Link href={`/ranking/${cat.slug}`} className="footer-link">
                     {cat.name}
                   </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Resources */}
-          <div>
-            <h4 style={{ color: "var(--text-primary)", fontWeight: 700, fontSize: 13, marginBottom: 14 }}>リソース</h4>
-            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
-              {[
-                { name: "FAQ", href: "/faq" },
-                { name: "お問い合わせ", href: "/contact" },
-                { name: "運営者情報", href: "/about" },
-              ].map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href} className="footer-link">{item.name}</Link>
                 </li>
               ))}
             </ul>
@@ -105,9 +89,8 @@ export function Footer() {
             &copy; 2026 ベストナビ All Rights Reserved.
           </p>
           <div style={{ display: "flex", gap: 20 }}>
-            <Link href="/privacy" className="footer-link-sm">プライバシー</Link>
+            <Link href="/privacy" className="footer-link-sm">プライバシーポリシー</Link>
             <Link href="/terms" className="footer-link-sm">利用規約</Link>
-            <Link href="/contact" className="footer-link-sm">お問い合わせ</Link>
           </div>
         </div>
       </div>
