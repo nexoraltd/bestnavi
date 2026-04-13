@@ -48,18 +48,27 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h4 style={{ color: "var(--text-primary)", fontWeight: 700, fontSize: 13, marginBottom: 14 }}>法務</h4>
+            <h4 style={{ color: "var(--text-primary)", fontWeight: 700, fontSize: 13, marginBottom: 14 }}>法務・広告</h4>
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
               {[
                 { name: "プライバシーポリシー", href: "/privacy" },
                 { name: "利用規約", href: "/terms" },
-                { name: "広告掲載について", href: "/disclosure" },
               ].map((item) => (
                 <li key={item.name}>
                   <Link href={item.href} className="footer-link">{item.name}</Link>
                 </li>
               ))}
             </ul>
+            <div style={{ marginTop: 16, paddingTop: 14, borderTop: "1px solid var(--border)" }}>
+              <p style={{ fontSize: 12, fontWeight: 700, color: "var(--text-primary)", marginBottom: 4 }}>広告掲載のお問い合わせ</p>
+              <a
+                href="mailto:info@next-aura.com"
+                className="footer-link"
+                style={{ fontSize: 12 }}
+              >
+                info@next-aura.com
+              </a>
+            </div>
           </div>
         </div>
 
