@@ -99,28 +99,33 @@ export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
 // ─── 記事固有バナー（レビュー記事はその製品を優先表示）──────
 export const POST_BANNERS: Record<number, BannerConfig[]> = {
   // VPN
+  // VPN まとめ記事 → 全バナー
   189: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS, MILLENVPN_BANNER],
-  205: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS, MILLENVPN_BANNER],
-  206: [...SURFSHARK_BANNERS, ...NORDVPN_BANNERS, MILLENVPN_BANNER],
-  261: [MILLENVPN_BANNER, ...SURFSHARK_BANNERS, ...NORDVPN_BANNERS],
   335: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS, MILLENVPN_BANNER],
-  // Server
+  // VPN 個別記事 → その製品のみ
+  205: NORDVPN_BANNERS,
+  206: SURFSHARK_BANNERS,
+  261: [MILLENVPN_BANNER],
+  // Server まとめ記事 → 全バナー
   210: [XSERVER_BANNER, CONOHA_BANNER, ...KINSTA_BANNERS.filter(b => b.width <= 300)],
-  209: [XSERVER_BANNER, CONOHA_BANNER, ...KINSTA_BANNERS.filter(b => b.width <= 300)],
-  259: [CONOHA_BANNER, XSERVER_BANNER, ...KINSTA_BANNERS.filter(b => b.width <= 300)],
-  295: [...KINSTA_BANNERS.filter(b => b.width <= 300), XSERVER_BANNER, CONOHA_BANNER],
-  // English
+  // Server 個別記事 → その製品のみ
+  209: [XSERVER_BANNER],
+  259: [CONOHA_BANNER],
+  295: KINSTA_BANNERS.filter(b => b.width <= 300),
+  // English まとめ記事 → 全バナー
   285: [BESTTEACHER_BANNER, GSA_BANNER],
-  367: [BESTTEACHER_BANNER, GSA_BANNER],
-  369: [BESTTEACHER_BANNER, GSA_BANNER],
-  385: [GSA_BANNER, BESTTEACHER_BANNER],
-  // School
+  // English 個別記事 → その製品のみ
+  367: [BESTTEACHER_BANNER],
+  369: [],  // ティントル: バナー画像なし
+  385: [GSA_BANNER],
+  // School まとめ記事 → 全バナー
   287: [WINSCHOOL_BANNER, LIFETECH_BANNER],
-  371: [LIFETECH_BANNER, WINSCHOOL_BANNER],
-  373: [WINSCHOOL_BANNER, LIFETECH_BANNER],
-  // Career
+  // School 個別記事 → その製品のみ
+  371: [LIFETECH_BANNER],
+  373: [WINSCHOOL_BANNER],
+  // Career 個別記事
   289: [GIFTS_BANNER],
-  // Fukugyo
+  // Fukugyo 個別記事
   600: [],
 };
 
