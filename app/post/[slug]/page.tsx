@@ -28,18 +28,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title: `${title} | ベストナビ`,
       description: excerpt,
-      url: `https://bestnavi.vercel.app/post/${slug}`,
+      url: `https://navi.next-aura.com/post/${slug}`,
       siteName: "ベストナビ",
       type: "article",
       locale: "ja_JP",
+      images: [{ url: "/og-image.png", width: 1200, height: 630 }],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: `${title} | ベストナビ`,
       description: excerpt,
+      images: ["/og-image.png"],
     },
     alternates: {
-      canonical: `https://bestnavi.vercel.app/post/${slug}`,
+      canonical: `https://navi.next-aura.com/post/${slug}`,
     },
   };
 }
@@ -49,7 +51,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const post = await getPostBySlug(slug);
   if (!post) notFound();
 
-  const title = post.title.rendered;
+  const title = post.title.rendered.replace(/<[^>]+>/g, "");
   const date = new Date(post.date).toLocaleDateString("ja-JP");
   const modified = new Date(post.modified).toLocaleDateString("ja-JP");
   const categoryIds = post.categories || [];
@@ -63,9 +65,40 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
   const content = post.content.rendered;
   const banners = getBannersForArticle(post.id, categoryIds);
+  const excerpt = post.excerpt.rendered.replace(/<[^>]+>/g, "").trim().slice(0, 160);
+
+  // JSON-LD 構造化データ
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": title,
+    "description": excerpt,
+    "url": `https://navi.next-aura.com/post/${slug}`,
+    "datePublished": post.date,
+    "dateModified": post.modified,
+    "publisher": {
+      "@type": "Organization",
+      "name": "ベストナビ",
+      "url": "https://navi.next-aura.com",
+      "logo": { "@type": "ImageObject", "url": "https://navi.next-aura.com/favicon-32.png" }
+    },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://navi.next-aura.com/post/${slug}` },
+    "image": { "@type": "ImageObject", "url": "https://navi.next-aura.com/og-image.png", "width": 1200, "height": 630 }
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://navi.next-aura.com" },
+      { "@type": "ListItem", "position": 2, "name": title, "item": `https://navi.next-aura.com/post/${slug}` }
+    ]
+  };
 
   return (
     <div style={{ background: "var(--bg-warm)", minHeight: "100vh" }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <Header />
 
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "32px 16px" }}>

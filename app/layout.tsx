@@ -3,8 +3,8 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ベストナビ｜VPN・サーバー・AI・FX・仮想通貨 おすすめ比較ランキング【2026年最新】",
-  description: "VPN、レンタルサーバー、AIツール、FX口座、仮想通貨取引所を徹底比較。おすすめランキングを毎月更新。",
+  title: "ベストナビ｜VPN・レンタルサーバー・英会話・プログラミングスクール比較ランキング【2026年最新】",
+  description: "VPN・レンタルサーバー・オンライン英会話・プログラミングスクール・ITキャリア・副業サービスを徹底比較。提携済みサービスのみを掲載した信頼性の高い比較サイトです。",
   metadataBase: new URL("https://navi.next-aura.com"),
   icons: {
     icon: [
@@ -14,8 +14,8 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "ベストナビ｜おすすめ比較ランキング【2026年最新】",
-    description: "VPN、レンタルサーバー、AIツール、FX口座、仮想通貨取引所を徹底比較。",
+    title: "ベストナビ｜VPN・サーバー・英会話・スクール 比較ランキング【2026年最新】",
+    description: "VPN・レンタルサーバー・オンライン英会話・プログラミングスクール・ITキャリア・副業サービスを比較。提携済みサービスのみ掲載。",
     url: "https://navi.next-aura.com",
     siteName: "ベストナビ",
     type: "website",
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ベストナビ｜おすすめ比較ランキング",
-    description: "VPN・サーバー・AI・FX・仮想通貨を徹底比較",
+    title: "ベストナビ｜VPN・サーバー・英会話・スクール比較ランキング",
+    description: "VPN・レンタルサーバー・英会話・スクール・キャリア・副業を徹底比較",
     images: ["/og-image.png"],
   },
   robots: {

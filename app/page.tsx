@@ -32,6 +32,29 @@ const faqItems = [
 
 const CATEGORY_ORDER = ["vpn", "server", "english", "school", "career", "fukugyo"];
 
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ベストナビ",
+  "url": "https://navi.next-aura.com",
+  "description": "VPN・レンタルサーバー・オンライン英会話・プログラミングスクール・ITキャリア・副業サービスを比較するランキングサイト",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": { "@type": "EntryPoint", "urlTemplate": "https://navi.next-aura.com/?q={search_term_string}" },
+    "query-input": "required name=search_term_string"
+  }
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": { "@type": "Answer", "text": item.answer }
+  }))
+};
+
 export default async function Home() {
   const categoryGroups = (await Promise.all(
     CATEGORY_ORDER
@@ -45,6 +68,8 @@ export default async function Home() {
 
   return (
     <div style={{ background: "var(--bg-warm)", minHeight: "100vh" }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Header />
       <HeroBanner />
 

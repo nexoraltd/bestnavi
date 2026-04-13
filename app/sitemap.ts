@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts, CATEGORY_MAP } from "@/lib/wordpress";
 
-const SITE_URL = "https://bestnavi.vercel.app";
+const SITE_URL = "https://navi.next-aura.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPosts();

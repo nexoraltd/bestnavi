@@ -27,12 +27,12 @@ export interface CategoryMeta {
 // 提携プログラムのあるカテゴリのみ掲載
 // 削除: ai(52) / fx(59) / crypto(53) / esim(50) / security(44)
 export const CATEGORY_MAP: Record<string, CategoryMeta> = {
-  vpn:     { wpId: 48, title: "VPN比較ランキング",           iconKey: "shield",          description: "NordVPN・Surfshark・MillenVPNを速度・安全性・料金で徹底比較",       productCount: 3,  tags: ["初心者向け", "海外利用"],        trustBadge: "3サービスを実測比較",  topPickReason: "NordVPN・Surfshark・MillenVPNを速度・安全性・料金で徹底比較" },
-  server:  { wpId: 51, title: "レンタルサーバー比較",        iconKey: "server",          description: "エックスサーバー・ConoHa WING・Kinstaを性能・コスパで比較",            productCount: 3,  tags: ["WordPress向け", "ブログ初心者"], trustBadge: "3サービスを速度計測",  topPickReason: "エックスサーバー・ConoHa WING・Kinstaを徹底比較" },
-  english: { wpId: 54, title: "オンライン英会話比較",        iconKey: "globe",           description: "BestTeacher・ティントル・Global Step Academyを料金・講師の質で比較", productCount: 3,  tags: ["初心者向け", "ビジネス英語"],    trustBadge: "3サービスを体験レッスン", topPickReason: "BestTeacher・ティントル・GSAを体験して比較" },
-  school:  { wpId: 55, title: "プログラミングスクール比較",  iconKey: "graduation-cap",  description: "Life is Tech!・Winスクール・エストレを料金・カリキュラムで比較",      productCount: 3,  tags: ["未経験OK", "社会人向け"],        trustBadge: "3校を受講者取材",      topPickReason: "Life is Tech!・Winスクール・エストレを比較" },
-  career:  { wpId: 56, title: "ITキャリアサービス比較",      iconKey: "briefcase",       description: "IT転職・キャリアチェンジを支援するエストレ（gifts）を徹底解説",         productCount: 1,  tags: ["20-30代", "未経験OK"],          trustBadge: "転職支援実績多数",     topPickReason: "IT転職特化のエストレ（gifts）を詳しく解説" },
-  fukugyo: { wpId: 57, title: "副業・スキルアップ比較",      iconKey: "trending-up",     description: "SideLineで副業ITスキルを習得し、収入の柱を増やす方法を解説",          productCount: 1,  tags: ["副業初心者", "社会人"],          trustBadge: "副業支援実績あり",     topPickReason: "SideLineで副業ITスキルを習得する方法を解説" },
+  vpn:     { wpId: 48, title: "VPN比較ランキング",           iconKey: "shield",          description: "NordVPN・Surfshark・MillenVPNを速度・安全性・料金で徹底比較",       productCount: 3,  tags: ["初心者向け", "海外利用"],        trustBadge: "提携3サービス掲載",    topPickReason: "NordVPN・Surfshark・MillenVPNを速度・安全性・料金で比較" },
+  server:  { wpId: 51, title: "レンタルサーバー比較",        iconKey: "server",          description: "エックスサーバー・ConoHa WING・Kinstaを性能・コスパで比較",            productCount: 3,  tags: ["WordPress向け", "ブログ初心者"], trustBadge: "提携3サービス掲載",    topPickReason: "エックスサーバー・ConoHa WING・Kinstaを料金・性能で比較" },
+  english: { wpId: 54, title: "オンライン英会話比較",        iconKey: "globe",           description: "BestTeacher・ティントル・Global Step Academyを料金・講師の質で比較", productCount: 3,  tags: ["初心者向け", "ビジネス英語"],    trustBadge: "提携3サービス掲載",    topPickReason: "BestTeacher・ティントル・GSAを料金・カリキュラムで比較" },
+  school:  { wpId: 55, title: "プログラミングスクール比較",  iconKey: "graduation-cap",  description: "Life is Tech!・Winスクールを料金・カリキュラムで比較",               productCount: 2,  tags: ["未経験OK", "社会人向け"],        trustBadge: "提携2サービス掲載",    topPickReason: "Life is Tech!・Winスクールを料金・カリキュラムで比較" },
+  career:  { wpId: 56, title: "ITキャリアサービス比較",      iconKey: "briefcase",       description: "IT転職・キャリアチェンジを支援するエストレ（gifts）を徹底解説",         productCount: 1,  tags: ["20-30代", "未経験OK"],          trustBadge: "提携サービス掲載",     topPickReason: "IT転職特化のエストレ（gifts）を詳しく解説" },
+  fukugyo: { wpId: 57, title: "副業・スキルアップ比較",      iconKey: "trending-up",     description: "SideLineで副業ITスキルを習得し、収入の柱を増やす方法を解説",          productCount: 1,  tags: ["副業初心者", "社会人"],          trustBadge: "提携サービス掲載",     topPickReason: "SideLineで副業ITスキルを習得する方法を解説" },
 };
 
 // ランキング記事を各カテゴリ先頭に固定

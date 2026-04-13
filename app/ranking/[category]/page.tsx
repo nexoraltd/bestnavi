@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronRight, Calendar, ShieldCheck, Tag, Award, ArrowRight, ExternalLink } from "lucide-react";
 
-const SITE_URL = "https://bestnavi.vercel.app";
+const SITE_URL = "https://navi.next-aura.com";
 
 export async function generateStaticParams() {
   return Object.keys(CATEGORY_MAP).map((category) => ({ category }));
@@ -53,8 +53,34 @@ export default async function RankingPage({
   const posts = meta.wpId ? await getPostsByCategory(meta.wpId) : [];
   const [firstPost, ...restPosts] = posts;
 
+  // JSON-LD 構造化データ
+  const itemListJsonLd = posts.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": `${meta.title}【2026年最新】`,
+    "description": meta.description,
+    "url": `${SITE_URL}/ranking/${category}`,
+    "itemListElement": posts.slice(0, 10).map((post, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": post.title.rendered.replace(/<[^>]+>/g, ""),
+      "url": `${SITE_URL}/post/${post.slug}`
+    }))
+  } : null;
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "ホーム", "item": SITE_URL },
+      { "@type": "ListItem", "position": 2, "name": meta.title, "item": `${SITE_URL}/ranking/${category}` }
+    ]
+  };
+
   return (
     <div style={{ background: "var(--bg-warm)", minHeight: "100vh" }}>
+      {itemListJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <Header />
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "28px 16px" }}>
         <div

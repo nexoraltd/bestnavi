@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/_next/"],
       },
     ],
-    sitemap: "https://bestnavi.vercel.app/sitemap.xml",
+    sitemap: "https://navi.next-aura.com/sitemap.xml",
   };
 }
