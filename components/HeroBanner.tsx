@@ -1,18 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { Shield, TrendingUp, Server, Bot, Bitcoin, Smartphone, GraduationCap, Globe } from "lucide-react";
+import { Shield, Server, Globe, GraduationCap, Briefcase, TrendingUp } from "lucide-react";
 
 
 const categories = [
-  { name: "VPN", icon: Shield, href: "/ranking/vpn" },
-  { name: "FX口座", icon: TrendingUp, href: "/ranking/fx" },
-  { name: "サーバー", icon: Server, href: "/ranking/server" },
-  { name: "AIツール", icon: Bot, href: "/ranking/ai" },
-  { name: "仮想通貨", icon: Bitcoin, href: "/ranking/crypto" },
-  { name: "eSIM", icon: Smartphone, href: "/ranking/esim" },
-  { name: "スクール", icon: GraduationCap, href: "/ranking/school" },
-  { name: "英会話", icon: Globe, href: "/ranking/english" },
+  { name: "VPN",      icon: Shield,         href: "/ranking/vpn" },
+  { name: "サーバー", icon: Server,         href: "/ranking/server" },
+  { name: "英会話",   icon: Globe,          href: "/ranking/english" },
+  { name: "スクール", icon: GraduationCap,  href: "/ranking/school" },
+  { name: "キャリア", icon: Briefcase,      href: "/ranking/career" },
+  { name: "副業",     icon: TrendingUp,     href: "/ranking/fukugyo" },
 ];
 
 export function HeroBanner() {
@@ -33,7 +31,7 @@ export function HeroBanner() {
               <span style={{ color: "var(--accent)" }}>ランキング比較</span>
             </h1>
             <p style={{ fontSize: 15, color: "var(--text-secondary)", lineHeight: 1.8, marginBottom: 28, maxWidth: 560 }}>
-              VPN・FX・ホスティング・AIツール・仮想通貨など。専門家による厳選レビューで、あなたに最適な製品が見つかります。
+              VPN・レンタルサーバー・オンライン英会話・プログラミングスクール・ITキャリア・副業など、各サービスを比較してあなたに合った製品が見つかります。
             </p>
 
           </div>

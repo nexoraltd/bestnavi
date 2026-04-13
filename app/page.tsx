@@ -211,7 +211,7 @@ export default async function Home() {
                             }}
                           >
                             <div style={{ fontSize: 11, fontWeight: 700, color: "var(--gold)", marginBottom: 4 }}>
-                              編集部のおすすめポイント
+                              おすすめポイント
                             </div>
                             <div style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.5 }}>
                               {group.topPickReason}

@@ -107,12 +107,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             })()}
 
             <article style={{ background: "#fff", borderRadius: 12, border: "1px solid var(--border)", boxShadow: "var(--shadow-card)", padding: 32 }}>
-              {/* 編集部バッジ + 日付 */}
+              {/* 日付 */}
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14, flexWrap: "wrap" }}>
-                <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11, fontWeight: 600, color: "var(--green)", background: "var(--green-light)", padding: "3px 8px", borderRadius: 4 }}>
-                  <ShieldCheck size={12} />
-                  編集部が検証済み
-                </span>
                 <span style={{ fontSize: 12, color: "var(--text-muted)", display: "flex", alignItems: "center", gap: 4 }}>
                   <Calendar size={11} />
                   {modified !== date ? `更新: ${modified}` : `公開: ${date}`}
@@ -137,10 +133,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                     <UserCircle size={28} strokeWidth={1.5} style={{ color: "var(--accent)" }} />
                   </div>
                   <div>
-                    <div style={{ fontSize: 11, color: "var(--text-muted)", marginBottom: 2 }}>この記事を書いた人</div>
-                    <div style={{ fontSize: 14, fontWeight: 700, color: "var(--text-primary)", marginBottom: 4 }}>ベストナビ編集部</div>
+                    <div style={{ fontSize: 11, color: "var(--text-muted)", marginBottom: 2 }}>この記事について</div>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: "var(--text-primary)", marginBottom: 4 }}>ベストナビ</div>
                     <p style={{ fontSize: 12, color: "var(--text-secondary)", lineHeight: 1.7, margin: 0 }}>
-                      各分野の専門知識を持つライターが、実際にサービスを使って検証。公平な視点で比較・レビューをお届けしています。
+                      各サービスの公式情報・料金・機能をもとに比較・まとめた情報サイトです。掲載サービスはすべて提携済みのものに限定しています。
                     </p>
                   </div>
                 </div>

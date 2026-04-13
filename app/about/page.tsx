@@ -26,9 +26,9 @@ export default function AboutPage() {
             </tbody>
           </table>
           <h2 style={{ fontSize: 17, fontWeight: 700, marginBottom: 12 }}>サイトについて</h2>
-          <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.8, marginBottom: 16 }}>ベストナビは、VPN・レンタルサーバー・AIツール・FX口座・仮想通貨取引所などのサービスを実際に利用して比較し、カテゴリ別のランキングとレビューを提供する情報サイトです。</p>
+          <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.8, marginBottom: 16 }}>ベストナビは、VPN・レンタルサーバー・オンライン英会話・プログラミングスクール・ITキャリア・副業サービスなど、提携済みのサービスを公式情報・料金・機能をもとに比較し、カテゴリ別のランキングとまとめを提供する情報サイトです。</p>
           <h2 style={{ fontSize: 17, fontWeight: 700, marginBottom: 12 }}>アフィリエイト広告について</h2>
-          <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.8 }}>当サイトはアフィリエイトプログラムを利用しており、掲載リンク経由でサービスに申し込まれた場合、当サイトに報酬が発生することがあります。ランキングの順位や評価は広告主からの影響を受けず、編集部独自の基準で作成しています。</p>
+          <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.8 }}>当サイトはアフィリエイトプログラムを利用しており、掲載リンク経由でサービスに申し込まれた場合、当サイトに報酬が発生することがあります。掲載サービスはすべて提携済みのものに限定しています。</p>
         </article>
       </div>
       <Footer />
