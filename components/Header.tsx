@@ -2,15 +2,15 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Shield, Server, Bot, TrendingUp, Bitcoin, Smartphone, Search, Menu, X } from "lucide-react";
+import { Shield, Server, Globe, GraduationCap, Briefcase, TrendingUp, Search, Menu, X } from "lucide-react";
 
 const categories = [
-  { name: "VPN", href: "/ranking/vpn", icon: Shield },
-  { name: "FX口座", href: "/ranking/fx", icon: TrendingUp },
-  { name: "サーバー", href: "/ranking/server", icon: Server },
-  { name: "AIツール", href: "/ranking/ai", icon: Bot },
-  { name: "仮想通貨", href: "/ranking/crypto", icon: Bitcoin },
-  { name: "eSIM", href: "/ranking/esim", icon: Smartphone },
+  { name: "VPN",      href: "/ranking/vpn",     icon: Shield },
+  { name: "サーバー", href: "/ranking/server",   icon: Server },
+  { name: "英会話",   href: "/ranking/english",  icon: Globe },
+  { name: "スクール", href: "/ranking/school",   icon: GraduationCap },
+  { name: "キャリア", href: "/ranking/career",   icon: Briefcase },
+  { name: "副業",     href: "/ranking/fukugyo",  icon: TrendingUp },
 ];
 
 export function Header() {

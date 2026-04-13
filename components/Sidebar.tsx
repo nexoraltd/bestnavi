@@ -2,27 +2,26 @@
 
 import Link from "next/link";
 import {
-  Shield, Server, Bot, TrendingUp, Bitcoin, Smartphone,
-  ShieldCheck, ChevronRight, Flame, FolderOpen,
+  Shield, Server, Globe, GraduationCap, Briefcase, TrendingUp,
+  ChevronRight, Flame, FolderOpen,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 const categories: { name: string; icon: LucideIcon; href: string }[] = [
-  { name: "VPN", icon: Shield, href: "/ranking/vpn" },
-  { name: "レンタルサーバー", icon: Server, href: "/ranking/server" },
-  { name: "AIツール", icon: Bot, href: "/ranking/ai" },
-  { name: "FX口座", icon: TrendingUp, href: "/ranking/fx" },
-  { name: "仮想通貨取引所", icon: Bitcoin, href: "/ranking/crypto" },
-  { name: "eSIM", icon: Smartphone, href: "/ranking/esim" },
-  { name: "セキュリティソフト", icon: ShieldCheck, href: "/ranking/security" },
+  { name: "VPN",           icon: Shield,          href: "/ranking/vpn" },
+  { name: "レンタルサーバー", icon: Server,        href: "/ranking/server" },
+  { name: "英会話",        icon: Globe,            href: "/ranking/english" },
+  { name: "スクール",      icon: GraduationCap,    href: "/ranking/school" },
+  { name: "キャリア",      icon: Briefcase,        href: "/ranking/career" },
+  { name: "副業",          icon: TrendingUp,       href: "/ranking/fukugyo" },
 ];
 
 const popularRankings = [
-  { title: "VPNおすすめランキング", href: "/ranking/vpn" },
-  { title: "仮想通貨取引所比較", href: "/ranking/crypto" },
-  { title: "FX口座おすすめランキング", href: "/ranking/fx" },
-  { title: "AIツール比較ガイド", href: "/ranking/ai" },
-  { title: "レンタルサーバー比較", href: "/ranking/server" },
+  { title: "VPNおすすめランキング",          href: "/ranking/vpn" },
+  { title: "レンタルサーバー比較",           href: "/ranking/server" },
+  { title: "オンライン英会話比較",           href: "/ranking/english" },
+  { title: "プログラミングスクール比較",     href: "/ranking/school" },
+  { title: "IT転職・キャリアサービス比較",   href: "/ranking/career" },
 ];
 
 export function Sidebar() {

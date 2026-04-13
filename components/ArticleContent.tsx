@@ -35,7 +35,7 @@ export function ArticleContent({ html, banners = [], bannerInterval = 3 }: Artic
           bannerIdx++;
 
           const link = document.createElement("a");
-          link.href = banner.clickTrackingUrl || banner.url;
+          link.href = banner.url;
           link.target = "_blank";
           link.rel = "noopener noreferrer sponsored";
           link.style.cssText = `display:block;margin:32px auto;padding:0;text-decoration:none;text-align:center;max-width:${banner.width}px;`;
