@@ -19,7 +19,8 @@ export function middleware(request: NextRequest) {
     pathname === "/about" ||
     pathname === "/privacy" ||
     pathname === "/terms" ||
-    pathname === "/contact"
+    pathname === "/contact" ||
+    pathname === "/search"
   ) {
     return NextResponse.next();
   }

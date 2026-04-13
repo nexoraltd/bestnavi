@@ -9,6 +9,52 @@ import { ChevronRight, Calendar, ShieldCheck, Tag, Award, ArrowRight, ExternalLi
 
 const SITE_URL = "https://navi.next-aura.com";
 
+const CATEGORY_FAQ: Record<string, { q: string; a: string }[]> = {
+  vpn: [
+    { q: "VPNとは何ですか？", a: "VPN（Virtual Private Network）はインターネット通信を暗号化してプライバシーを守る仕組みです。公共Wi-Fi利用時の盗聴防止や、海外から日本コンテンツにアクセスする際に使われます。" },
+    { q: "無料VPNは安全ですか？", a: "無料VPNは速度制限・通信ログの記録・広告表示などのリスクがあります。セキュリティを重視するなら、第三者監査済みのNordVPNやSurfsharkなど有料VPNを強く推奨します。" },
+    { q: "VPNで速度は落ちますか？", a: "VPNを使うと若干の速度低下は避けられませんが、NordVPN（NordLynxプロトコル）やExpressVPN（Lightwayプロトコル）は速度低下が最小限でZoom・動画視聴にも支障ありません。" },
+    { q: "スマホでも使えますか？", a: "はい。NordVPN・Surfshark・ExpressVPNはiOS・Android両対応のアプリがあり、スマートフォンからでも簡単に接続できます。" },
+    { q: "返金保証はありますか？", a: "NordVPN・Surfshark・ExpressVPNはいずれも30日間の返金保証があります。合わなければ全額返金されるため、リスクなく試せます。" },
+  ],
+  server: [
+    { q: "レンタルサーバーとVPSの違いは何ですか？", a: "レンタルサーバーは複数ユーザーでサーバーを共有する形式で初心者向け。VPSは仮想的に専用サーバーを持つ形式でカスタマイズ性が高い反面、技術知識が必要です。WordPressブログ初心者にはレンタルサーバーが最適です。" },
+    { q: "WordPressに最適なサーバーはどれですか？", a: "国内サイトはエックスサーバーまたはConoHa WINGがコスパ・速度ともに最高クラスです。海外向けや高トラフィックサイトにはKinstaが向いています。" },
+    { q: "初心者でもサーバーは設定できますか？", a: "エックスサーバー・ConoHa WINGはWordPressの自動インストール機能があり、初心者でも10分以内にブログを開設できます。サポートも充実しているので安心して使えます。" },
+    { q: "無料お試し期間はありますか？", a: "エックスサーバーは10日間無料トライアル、ConoHa WINGは最大2ヶ月無料キャンペーンを実施しています（時期によって変わる場合あり）。" },
+  ],
+  english: [
+    { q: "オンライン英会話はどれくらいで効果が出ますか？", a: "毎日15〜30分学習した場合、3〜6ヶ月で日常会話レベルの向上を実感する方が多いです。ビジネス英語・TOEICスコアアップには6〜12ヶ月の継続学習が目安です。" },
+    { q: "英語が全く話せなくても受講できますか？", a: "はい。BestTeacherは英作文から始めるため初心者でも安心です。Global Step AcademyはゼロからのカリキュラムでECC・NOVAも入門コースがあります。" },
+    { q: "子供に英会話を習わせるならどれがいいですか？", a: "Global Step Academyが子供向けとして特に人気です。ECC外語学院・駅前留学NOVAも子供向けコースを全国展開しており、送迎なしで自宅受講できるオンラインコースも選べます。" },
+    { q: "通学型とオンライン英会話、どちらがいいですか？", a: "継続のしやすさでいえばオンライン、規律・環境づくりには通学型が向いています。ECC・NOVAは通学・オンラインどちらにも対応しているので、生活スタイルで選べます。" },
+  ],
+  school: [
+    { q: "プログラミングスクールは完全未経験でも入れますか？", a: "はい。Life is Tech!・Winスクール・インターノウスはすべて未経験・初心者歓迎です。無料カウンセリングで自分のレベルと目標を確認した上で最適なコースを選べます。" },
+    { q: "プログラミング習得にどれくらいかかりますか？", a: "Webサイト制作の基礎なら1〜3ヶ月、就転職可能なエンジニアレベルには3〜6ヶ月が目安です。毎日1〜2時間の学習習慣が最短ルートです。" },
+    { q: "社会人が働きながら学べますか？", a: "Winスクールはオンライン動画で自分のペースで学習できます。インターノウスもオンライン完結コースがあり、平日夜・週末に学習できます。" },
+    { q: "プログラミングスクールの費用はどれくらいですか？", a: "目的・期間によって数万円〜数十万円が相場です。インターノウスは転職支援込みのためトータルコスパが高く、無料カウンセリングで費用の詳細を確認できます。" },
+  ],
+  career: [
+    { q: "IT転職に資格は必要ですか？", a: "必須ではありません。実務経験・ポートフォリオが重視されます。ただし基本情報技術者試験・AWSなどのクラウド資格があると書類選考で有利になることが多いです。" },
+    { q: "未経験からIT業界に転職できますか？", a: "可能です。ウズウズカレッジやエストレのようなスキル習得+転職支援のサービスを使えば、未経験からエンジニア・Webデザイナー・Webマーケターへの転職実績が多数あります。" },
+    { q: "IT転職エージェントは完全無料ですか？", a: "はい。テックゴー・社内SE転職ナビは求職者側は完全無料です（費用は採用企業が負担）。スキル習得系サービス（ウズウズ・エストレ）は学習費用がかかる場合があります。" },
+    { q: "IT転職後の年収はどれくらい上がりますか？", a: "個人差はありますが、異業種からIT転職した場合、年収50〜200万円アップの事例が多く報告されています。テックゴーでは年収交渉サポートも行っています。" },
+  ],
+  fukugyo: [
+    { q: "副業はどのくらいで収入が発生しますか？", a: "スキル習得に1〜3ヶ月、初案件獲得に1〜2ヶ月かかるのが一般的です。スタートから4〜6ヶ月後に最初の収入を得る方が多く、その後継続案件で安定します。" },
+    { q: "副業は会社にバレますか？", a: "住民税の納付方法を「普通徴収」にすることでバレにくくなります。ただし就業規則で副業禁止の場合は事前確認・申告が必要です。" },
+    { q: "副業で月5万円稼ぐのは現実的ですか？", a: "Webデザイン・動画編集・SNS運用代行などのITスキルを習得すれば、6ヶ月〜1年で月5万円は現実的な目標です。SideLineのような副業特化スクールで効率よくスキルを身につけるのがおすすめです。" },
+    { q: "確定申告は必要ですか？", a: "副業収入が年間20万円を超える場合は確定申告が必要です。20万円以下でも住民税の申告が必要な場合があるため、税務署や税理士に確認することをおすすめします。" },
+  ],
+  fx: [
+    { q: "FXとは何ですか？", a: "FX（外国為替証拠金取引）は、円・ドル・ユーロなど異なる通貨を交換する取引で、為替レートの変動を利用して利益を狙います。少ない資金でもレバレッジをかけて大きな取引が可能です。" },
+    { q: "FXは初心者でも始められますか？", a: "はい。口座開設は無料で、1000円程度の少額から取引できます。ただしレバレッジによる損失リスクもあるため、まずデモトレードで練習することをおすすめします。" },
+    { q: "スプレッドとは何ですか？", a: "スプレッドとは買値と売値の差額で、FX取引のコストです。スプレッドが狭いほど取引コストが安くなります。DMM FXは主要通貨ペアのスプレッドが業界最狭水準です。" },
+    { q: "FXで損失が出た場合、追加の損失はありますか？", a: "国内FX会社はほぼすべてゼロカットシステムを採用しており、口座残高以上の損失は発生しません。ロスカット機能で一定以上の損失が出ると自動的に決済されます。" },
+  ],
+};
+
 export async function generateStaticParams() {
   return Object.keys(CATEGORY_MAP).map((category) => ({ category }));
 }
@@ -28,8 +74,16 @@ export async function generateMetadata({
   return {
     title,
     description,
-    openGraph: { title, description, url: `${SITE_URL}/ranking/${category}`, siteName: "ベストナビ", type: "website", locale: "ja_JP" },
-    twitter: { card: "summary_large_image", title, description },
+    openGraph: {
+      title,
+      description,
+      url: `${SITE_URL}/ranking/${category}`,
+      siteName: "ベストナビ",
+      type: "website",
+      locale: "ja_JP",
+      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: title }],
+    },
+    twitter: { card: "summary_large_image", title, description, images: ["/og-image.png"] },
     alternates: { canonical: `${SITE_URL}/ranking/${category}` },
   };
 }
@@ -77,10 +131,22 @@ export default async function RankingPage({
     ]
   };
 
+  const faqs = CATEGORY_FAQ[category] || [];
+  const faqJsonLd = faqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(({ q, a }) => ({
+      "@type": "Question",
+      "name": q,
+      "acceptedAnswer": { "@type": "Answer", "text": a }
+    }))
+  } : null;
+
   return (
     <div style={{ background: "var(--bg-warm)", minHeight: "100vh" }}>
       {itemListJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      {faqJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />}
       <Header />
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "28px 16px" }}>
         <div
@@ -218,6 +284,27 @@ export default async function RankingPage({
                     </Link>
                   );
                 })}
+              </div>
+            )}
+
+            {/* FAQ セクション */}
+            {faqs.length > 0 && (
+              <div style={{ marginTop: 32, background: "#fff", borderRadius: "var(--radius-lg)", border: "1px solid var(--border)", padding: "24px" }}>
+                <h2 style={{ fontSize: 16, fontWeight: 800, marginBottom: 16, color: "var(--text-primary)" }}>
+                  よくある質問（FAQ）
+                </h2>
+                <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+                  {faqs.map(({ q, a }, i) => (
+                    <div key={i} style={{ borderBottom: i < faqs.length - 1 ? "1px solid var(--border)" : "none", padding: "14px 0" }}>
+                      <div style={{ fontSize: 14, fontWeight: 700, color: "var(--text-primary)", marginBottom: 6 }}>
+                        Q. {q}
+                      </div>
+                      <div style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.75 }}>
+                        {a}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
 

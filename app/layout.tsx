@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
 
+const SITE_URL = "https://navi.next-aura.com";
+
 export const metadata: Metadata = {
   title: "ベストナビ｜VPN・レンタルサーバー・英会話・プログラミングスクール比較ランキング【2026年最新】",
   description: "VPN・レンタルサーバー・オンライン英会話・プログラミングスクール・ITキャリア・副業サービスを徹底比較。提携済みサービスのみを掲載した信頼性の高い比較サイトです。",
-  metadataBase: new URL("https://navi.next-aura.com"),
+  metadataBase: new URL(SITE_URL),
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -16,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ベストナビ｜VPN・サーバー・英会話・スクール 比較ランキング【2026年最新】",
     description: "VPN・レンタルサーバー・オンライン英会話・プログラミングスクール・ITキャリア・副業サービスを比較。提携済みサービスのみ掲載。",
-    url: "https://navi.next-aura.com",
+    url: SITE_URL,
     siteName: "ベストナビ",
     type: "website",
     locale: "ja_JP",
@@ -31,7 +33,44 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
+};
+
+// サイト全体のOrganization + WebSite構造化データ
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "ベストナビ",
+  url: SITE_URL,
+  logo: {
+    "@type": "ImageObject",
+    url: `${SITE_URL}/favicon-32.png`,
+    width: 32,
+    height: 32,
+  },
+  description: "VPN・レンタルサーバー・オンライン英会話・プログラミングスクール・ITキャリア・副業サービスを徹底比較する情報サイト。",
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "info@next-aura.com",
+    contactType: "customer service",
+    availableLanguage: "Japanese",
+  },
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "ベストナビ",
+  url: SITE_URL,
+  description: "VPN・レンタルサーバー・英会話・プログラミングスクール比較ランキング",
+  inLanguage: "ja",
 };
 
 export default function RootLayout({
@@ -42,9 +81,26 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
+        {/* DNS Prefetch & Preconnect */}
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.clarity.ms" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+        {/* Noto Sans JP: 400/700/900のみ（500は使用なし → バンドル削減） */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap"
+          rel="stylesheet"
+        />
+        {/* 構造化データ: Organization + WebSite */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
         {/* Google Tag (GT-MJKTVK4Z) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=GT-MJKTVK4Z"
@@ -58,7 +114,7 @@ export default function RootLayout({
             gtag('config', 'GT-MJKTVK4Z');
           `}
         </Script>
-        {/* Microsoft Clarity - Free Heatmap & Session Recording */}
+        {/* Microsoft Clarity */}
         <Script id="ms-clarity" strategy="afterInteractive">
           {`
             (function(c,l,a,r,i,t,y){

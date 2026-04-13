@@ -20,6 +20,13 @@ const SURFSHARK_BANNERS: BannerConfig[] = [
   { programName: "Surfshark", affiliateId: "45127", url: "https://get.surfshark.net/aff_c?offer_id=926&aff_id=45127", width: 300, height: 250, imageUrl: "/images/banners/surfshark-300x250.png" },
 ];
 
+const EXPRESSVPN_BANNER: BannerConfig = {
+  programName: "ExpressVPN", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1K5O+5Q0036+5JSS+5YZ75",
+  width: 300, height: 250,
+  imageUrl: "https://www28.a8.net/svt/bgt?aid=260413260346&wid=001&eno=01&mid=s00000025894001003000&mc=1",
+};
+
 const MILLENVPN_BANNER: BannerConfig = {
   programName: "MillenVPN", affiliateId: "a26021579611",
   url: "https://px.a8.net/svt/ejp?a8mat=4AZSSR+66O50Y+3JTE+HXKQP",
@@ -30,16 +37,16 @@ const MILLENVPN_BANNER: BannerConfig = {
 // ─── Server ───────────────────────────────────────────────────
 const XSERVER_BANNER: BannerConfig = {
   programName: "Xserver", affiliateId: "a26021579611",
-  url: "https://px.a8.net/svt/ejp?a8mat=4AZS0X+FYJBJM+CO4+61JSI",
-  width: 300, height: 250,
-  imageUrl: "https://www24.a8.net/svt/bgt?aid=260330145965&wid=001&eno=01&mid=s00000001642001038000&mc=1",
+  url: "https://px.a8.net/svt/ejp?a8mat=4AZS0X+FYJBJM+CO4+6L9O1",
+  width: 728, height: 90,
+  imageUrl: "https://www27.a8.net/svt/bgt?aid=260330145965&wid=001&eno=01&mid=s00000001642001107000&mc=1",
 };
 
 const CONOHA_BANNER: BannerConfig = {
   programName: "ConoHa WING", affiliateId: "a26021579611",
-  url: "https://px.a8.net/svt/ejp?a8mat=4AZSSR+5H2I0I+50+5SKSCY",
-  width: 300, height: 250,
-  imageUrl: "https://www24.a8.net/svt/bgt?aid=260331147331&wid=001&eno=01&mid=s00000000018035008000&mc=1",
+  url: "https://px.a8.net/svt/ejp?a8mat=4AZSSR+5H2I0I+50+5SNCY9",
+  width: 728, height: 90,
+  imageUrl: "https://www25.a8.net/svt/bgt?aid=260331147331&wid=001&eno=01&mid=s00000000018035045000&mc=1",
 };
 
 const KINSTA_BANNERS: BannerConfig[] = [
@@ -50,9 +57,9 @@ const KINSTA_BANNERS: BannerConfig[] = [
 // ─── English ──────────────────────────────────────────────────
 const BESTTEACHER_BANNER: BannerConfig = {
   programName: "ベストティーチャー", affiliateId: "a26021579611",
-  url: "https://px.a8.net/svt/ejp?a8mat=4AXCKE+68GFUA+2ZIK+69HA9",
-  width: 300, height: 250,
-  imageUrl: "https://www25.a8.net/svt/bgt?aid=260216798377&wid=001&eno=01&mid=s00000013934001008000&mc=1",
+  url: "https://px.a8.net/svt/ejp?a8mat=4AXCKE+68GFUA+2ZIK+60WN5",
+  width: 728, height: 90,
+  imageUrl: "https://www22.a8.net/svt/bgt?aid=260216798377&wid=001&eno=01&mid=s00000013934001012000&mc=1",
 };
 
 const GSA_BANNER: BannerConfig = {
@@ -85,48 +92,130 @@ const GIFTS_BANNER: BannerConfig = {
   imageUrl: "https://www29.a8.net/svt/bgt?aid=260216798374&wid=001&eno=01&mid=s00000026481001003000&mc=1",
 };
 
+// ─── FX (TCS) ─────────────────────────────────────────────────
+const DMMFX_BANNER: BannerConfig = {
+  programName: "DMM FX", affiliateId: "C140972",
+  url: "https://www.tcs-asp.net/alink?AC=C140972&LC=DMM2&SQ=0&isq=1",
+  width: 300, height: 250,
+  imageUrl: "https://img.tcs-asp.net/imagesender?ac=C140972&lc=DMM2&isq=55&psq=0",
+};
+
+const GAIATE_BANNER: BannerConfig = {
+  programName: "外為オンライン", affiliateId: "C140972",
+  url: "https://www.tcs-asp.net/alink?AC=C140972&LC=NJT2&SQ=0&isq=1",
+  width: 300, height: 250,
+  imageUrl: "https://img.tcs-asp.net/imagesender?ac=C140972&lc=NJT2&isq=5&psq=0",
+};
+
+const FXBROAD_BANNER: BannerConfig = {
+  programName: "FXブロードネット", affiliateId: "C140972",
+  url: "https://www.tcs-asp.net/alink?AC=C140972&LC=FXTS1&SQ=0&isq=1",
+  width: 300, height: 250,
+  imageUrl: "https://img.tcs-asp.net/imagesender?ac=C140972&lc=FXTS1&isq=3&psq=0",
+};
+
+// ─── Fukugyo ──────────────────────────────────────────────────
+const INFRAAI_BANNER: BannerConfig = {
+  programName: "infraAI", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4AZ8K6+84BUSY+5UGY+5Z6WX",
+  width: 300, height: 250,
+  imageUrl: "https://www26.a8.net/svt/bgt?aid=260304918491&wid=001&eno=01&mid=s00000027277001004000&mc=1",
+};
+
 // ─── カテゴリ別バナー ──────────────────────────────────────────
 // カテゴリID → そのカテゴリの提携プログラムバナー
 export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
-  48: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS, MILLENVPN_BANNER],
+  48: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS, MILLENVPN_BANNER, EXPRESSVPN_BANNER],
   51: [XSERVER_BANNER, CONOHA_BANNER, ...KINSTA_BANNERS.filter(b => b.width <= 300)],
   54: [BESTTEACHER_BANNER, GSA_BANNER],
   55: [WINSCHOOL_BANNER, LIFETECH_BANNER],
   56: [GIFTS_BANNER],
-  57: [],  // SideLine: バナー画像なし
+  57: [INFRAAI_BANNER],  // Fukugyo: infraAI
+  59: [DMMFX_BANNER, GAIATE_BANNER, FXBROAD_BANNER],  // FX
 };
 
 // ─── 記事固有バナー（レビュー記事はその製品を優先表示）──────
 export const POST_BANNERS: Record<number, BannerConfig[]> = {
-  // VPN
-  // VPN まとめ記事 → 全バナー
-  189: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS, MILLENVPN_BANNER],
-  335: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS, MILLENVPN_BANNER],
-  // VPN 個別記事 → その製品のみ
+  // ── VPN ──────────────────────────────────────────────────────
+  // ランキング・まとめ → 全バナー
+  189: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS, MILLENVPN_BANNER, EXPRESSVPN_BANNER],
+  335: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS, MILLENVPN_BANNER, EXPRESSVPN_BANNER],
+  337: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS, MILLENVPN_BANNER],  // テレワーク記事
+  // 用途別ガイド（比較記事）→ 比較対象製品のバナー
+  340: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS],  // iPhone向けVPN
+  341: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS],  // Android向けVPN
+  342: [...NORDVPN_BANNERS, EXPRESSVPN_BANNER],     // 海外旅行向けVPN
+  343: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS],  // NordVPN vs Surfshark
+  // 個別記事 → その製品のバナーのみ
   205: NORDVPN_BANNERS,
   206: SURFSHARK_BANNERS,
   261: [MILLENVPN_BANNER],
-  // Server まとめ記事 → 全バナー
+  339: [EXPRESSVPN_BANNER],
+  338: [],  // Rakulink: バナー画像なし
+
+  // ── Server ───────────────────────────────────────────────────
+  // ランキング・まとめ → 全バナー
   210: [XSERVER_BANNER, CONOHA_BANNER, ...KINSTA_BANNERS.filter(b => b.width <= 300)],
-  // Server 個別記事 → その製品のみ
+  211: [XSERVER_BANNER, CONOHA_BANNER],  // WordPress開設ガイド
+  296: [XSERVER_BANNER, CONOHA_BANNER],  // Xserver vs ConoHa 比較
+  297: [XSERVER_BANNER, CONOHA_BANNER],  // ブログ開設ガイド
+  // 個別記事 → その製品のバナーのみ
   209: [XSERVER_BANNER],
   259: [CONOHA_BANNER],
   295: KINSTA_BANNERS.filter(b => b.width <= 300),
-  // English まとめ記事 → 全バナー
+
+  // ── English ──────────────────────────────────────────────────
+  // ランキング・まとめ → 全バナー
   285: [BESTTEACHER_BANNER, GSA_BANNER],
-  // English 個別記事 → その製品のみ
+  390: [BESTTEACHER_BANNER, GSA_BANNER],  // ビジネス英会話ガイド
+  391: [BESTTEACHER_BANNER, GSA_BANNER],  // 子供英会話ガイド
+  // 個別記事 → その製品のバナーのみ
   367: [BESTTEACHER_BANNER],
   369: [],  // ティントル: バナー画像なし
   385: [GSA_BANNER],
-  // School まとめ記事 → 全バナー
+  388: [],  // ECC: バナー画像なし（承認後差し替え）
+  389: [],  // NOVA: バナー画像なし（承認後差し替え）
+
+  // ── School ───────────────────────────────────────────────────
+  // ランキング・まとめ → 全バナー
   287: [WINSCHOOL_BANNER, LIFETECH_BANNER],
-  // School 個別記事 → その製品のみ
+  375: [WINSCHOOL_BANNER, LIFETECH_BANNER],  // Webデザインスクール比較
+  376: [LIFETECH_BANNER, WINSCHOOL_BANNER],  // プログラミング入門ガイド
+  // 個別記事 → その製品のバナーのみ
   371: [LIFETECH_BANNER],
   373: [WINSCHOOL_BANNER],
-  // Career 個別記事
+  374: [],  // インターノウス: バナー画像なし（承認後差し替え）
+
+  // ── Career ───────────────────────────────────────────────────
+  // ランキング・まとめ → 全バナー
+  290: [GIFTS_BANNER],
+  291: [],  // テックゴー個別記事: バナー画像なし（承認後差し替え）
+  292: [],  // ウズウズカレッジ個別記事: バナー画像なし（承認後差し替え）
+  293: [],  // 社内SE転職ナビ個別記事: バナー画像なし（承認後差し替え）
+  294: [GIFTS_BANNER],  // IT転職初心者ロードマップ（まとめ系）
+  // 個別記事 → その製品のバナーのみ
   289: [GIFTS_BANNER],
-  // Fukugyo 個別記事
-  600: [],
+
+  // ── Fukugyo ──────────────────────────────────────────────────
+  // ランキング・まとめ → 全バナー
+  601: [INFRAAI_BANNER],
+  603: [INFRAAI_BANNER],  // Web副業ガイド
+  604: [INFRAAI_BANNER],  // 動画編集副業ガイド
+  // 個別記事 → その製品のバナーのみ
+  600: [],        // SideLine: バナー画像なし
+  602: [INFRAAI_BANNER],
+
+  // ── FX ───────────────────────────────────────────────────────
+  // ランキング・まとめ → 全バナー
+  700: [DMMFX_BANNER, GAIATE_BANNER, FXBROAD_BANNER],
+  705: [DMMFX_BANNER, GAIATE_BANNER],   // FX初心者ガイド
+  706: [DMMFX_BANNER, GAIATE_BANNER, FXBROAD_BANNER],  // FXスプレッド比較
+  // 個別記事 → その製品のバナーのみ
+  701: [DMMFX_BANNER],
+  702: [GAIATE_BANNER],
+  703: [FXBROAD_BANNER],
+  704: [],  // ひまわり証券: バナー画像なし（承認後差し替え）
+  707: [FXBROAD_BANNER],  // FX自動売買ガイド（FXブロードネット）
 };
 
 export function getBannersForArticle(postId: number, categoryIds: number[]): BannerConfig[] {

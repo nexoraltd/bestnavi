@@ -19,7 +19,7 @@ WP = os.environ["WP_URL"]
 SISTER = """<!-- bestnavi-sister-sites-block -->
 <div class="blank-box bb-blue" style="margin-top:40px;">
 <p><strong>Related Sites</strong></p>
-<p><a href="https://market.next-aura.com/" target="_blank" rel="noopener">不動産相場ナビ</a> | <a href="https://ai-fortune-app-drab.vercel.app/" target="_blank" rel="noopener">星詠みの館</a> | <a href="https://note.com/mi_autolab" target="_blank" rel="noopener">Claude Code副業自動化 note</a></p>
+<p><a href="https://market.next-aura.com/" target="_blank" rel="noopener">不動産相場ナビ</a> | <a href="https://note.com/mi_autolab" target="_blank" rel="noopener">Claude Code副業自動化 note</a></p>
 </div>
 <!-- /bestnavi-sister-sites-block -->"""
 

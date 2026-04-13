@@ -5,8 +5,9 @@ import { ArticleCTA } from "@/components/ArticleCTA";
 import { ArticleContent } from "@/components/ArticleContent";
 import { BannerSection } from "@/components/BannerSection";
 import { MobileFixedCTA } from "@/components/MobileFixedCTA";
+import { TableOfContents, extractHeadings } from "@/components/TableOfContents";
+import { RelatedArticles } from "@/components/RelatedArticles";
 import { getPostBySlug, isHighCvr, CATEGORY_MAP } from "@/lib/wordpress";
-import { getBannersForArticle } from "@/lib/banners";
 import { getCategoryIcon } from "@/lib/category-icons";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -32,7 +33,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       siteName: "ベストナビ",
       type: "article",
       locale: "ja_JP",
-      images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: title }],
+      publishedTime: post.date,
+      modifiedTime: post.modified,
     },
     twitter: {
       card: "summary_large_image",
@@ -64,8 +67,20 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     : null;
 
   const content = post.content.rendered;
-  const banners = getBannersForArticle(post.id, categoryIds);
   const excerpt = post.excerpt.rendered.replace(/<[^>]+>/g, "").trim().slice(0, 160);
+  const headings = extractHeadings(content);
+
+  // カテゴリ情報（パンくず3階層用）
+  const catEntry = Object.entries(CATEGORY_MAP).find(([, m]) => categoryIds.includes(m.wpId));
+  const catKey = catEntry ? catEntry[0] : null;
+  const catName = catEntry ? catEntry[1].title : null;
+
+  const SITE_URL = "https://navi.next-aura.com";
+
+  // 本文のワード数を概算（日本語は文字数÷2で近似）
+  const plainText = content.replace(/<[^>]+>/g, "");
+  const wordCount = Math.round(plainText.length / 2);
+  const catTags = catEntry ? catEntry[1].tags : [];
 
   // JSON-LD 構造化データ
   const articleJsonLd = {
@@ -73,26 +88,39 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     "@type": "Article",
     "headline": title,
     "description": excerpt,
-    "url": `https://navi.next-aura.com/post/${slug}`,
+    "url": `${SITE_URL}/post/${slug}`,
     "datePublished": post.date,
     "dateModified": post.modified,
+    "inLanguage": "ja",
+    "wordCount": wordCount,
+    ...(catTags.length > 0 && { "keywords": catTags.join(", ") }),
+    "author": {
+      "@type": "Organization",
+      "name": "ベストナビ編集部",
+      "url": SITE_URL,
+    },
     "publisher": {
       "@type": "Organization",
       "name": "ベストナビ",
-      "url": "https://navi.next-aura.com",
-      "logo": { "@type": "ImageObject", "url": "https://navi.next-aura.com/favicon-32.png" }
+      "url": SITE_URL,
+      "logo": { "@type": "ImageObject", "url": `${SITE_URL}/favicon-32.png`, "width": 32, "height": 32 }
     },
-    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://navi.next-aura.com/post/${slug}` },
-    "image": { "@type": "ImageObject", "url": "https://navi.next-aura.com/og-image.png", "width": 1200, "height": 630 }
+    "mainEntityOfPage": { "@type": "WebPage", "@id": `${SITE_URL}/post/${slug}` },
+    "image": { "@type": "ImageObject", "url": `${SITE_URL}/og-image.png`, "width": 1200, "height": 630 }
   };
 
+  // 3階層パンくず: ホーム > カテゴリ > 記事
+  const breadcrumbItems = [
+    { "@type": "ListItem", "position": 1, "name": "ホーム", "item": SITE_URL },
+    ...(catKey && catName
+      ? [{ "@type": "ListItem", "position": 2, "name": catName, "item": `${SITE_URL}/ranking/${catKey}` }]
+      : []),
+    { "@type": "ListItem", "position": catKey ? 3 : 2, "name": title, "item": `${SITE_URL}/post/${slug}` },
+  ];
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://navi.next-aura.com" },
-      { "@type": "ListItem", "position": 2, "name": title, "item": `https://navi.next-aura.com/post/${slug}` }
-    ]
+    "itemListElement": breadcrumbItems,
   };
 
   return (
@@ -104,6 +132,12 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "32px 16px" }}>
         <nav style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 16 }}>
           <a href="/" style={{ color: "var(--accent)", textDecoration: "none" }}>ホーム</a>
+          {catKey && catName && (
+            <>
+              <span style={{ margin: "0 8px" }}>&rsaquo;</span>
+              <a href={`/ranking/${catKey}`} style={{ color: "var(--accent)", textDecoration: "none" }}>{catName}</a>
+            </>
+          )}
           <span style={{ margin: "0 8px" }}>&rsaquo;</span>
           <span dangerouslySetInnerHTML={{ __html: title }} />
         </nav>
@@ -150,14 +184,20 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
               <h1 style={{ fontSize: 26, fontWeight: 800, lineHeight: 1.5, color: "var(--text-primary)", borderBottom: "2px solid var(--border)", paddingBottom: 12, marginBottom: 24 }} dangerouslySetInnerHTML={{ __html: title }} />
 
+              {/* 目次 */}
+              <TableOfContents headings={headings} />
+
               {/* 記事本文 */}
-              <ArticleContent html={content} banners={banners} />
+              <ArticleContent html={content} />
 
               {/* Banner section */}
               <BannerSection postId={post.id} categoryIds={categoryIds} position="middle" />
 
               {/* CTA: bottom position */}
               <ArticleCTA categoryIds={categoryIds} position="bottom" />
+
+              {/* 関連記事 */}
+              <RelatedArticles currentPostId={post.id} categoryIds={categoryIds} />
 
               {/* 著者プロフィール */}
               <div style={{ marginTop: 32, padding: "20px", background: "var(--bg-section)", borderRadius: "var(--radius-md)" }}>

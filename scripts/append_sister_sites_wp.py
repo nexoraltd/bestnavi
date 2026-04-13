@@ -34,7 +34,6 @@ SISTER_SITES_HTML = f"""
 <div class="blank-box bb-blue" style="margin-top:40px;">
 <p><strong>✦ 関連サイト ✦</strong></p>
 <p>📊 <a href="https://market.next-aura.com/" target="_blank" rel="noopener">不動産相場ナビ</a> — 500万件超の実取引データからエリア相場をAIが即表示。住宅ローン・固定資産税シミュレーターも無料。</p>
-<p>🔮 <a href="https://ai-fortune-app-drab.vercel.app/" target="_blank" rel="noopener">星詠みの館</a> — 四柱推命×ホロスコープの本格AI占い。恋愛・仕事・引っ越し・風水まで、登録不要・無料で体験できます。</p>
 <p>📖 <a href="https://note.com/mi_autolab" target="_blank" rel="noopener">Claude Code副業自動化 note</a> — Claude Codeで作った自動化システムの実装手順を公開中。ノーコード対応。</p>
 </div>
 <!-- /{MARKER} -->

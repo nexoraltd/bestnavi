@@ -30,12 +30,13 @@ export function Footer() {
             <h4 style={{ color: "var(--text-primary)", fontWeight: 700, fontSize: 13, marginBottom: 14 }}>カテゴリ</h4>
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
               {[
-                { name: "VPN", slug: "vpn" },
+                { name: "VPN比較", slug: "vpn" },
                 { name: "レンタルサーバー", slug: "server" },
-                { name: "AIツール", slug: "ai" },
-                { name: "FX口座", slug: "fx" },
-                { name: "仮想通貨取引所", slug: "crypto" },
-                { name: "eSIM", slug: "esim" },
+                { name: "英会話スクール", slug: "english" },
+                { name: "プログラミングスクール", slug: "school" },
+                { name: "IT転職", slug: "career" },
+                { name: "副業・スキルアップ", slug: "fukugyo" },
+                { name: "FX比較", slug: "fx" },
               ].map((cat) => (
                 <li key={cat.slug}>
                   <Link href={`/ranking/${cat.slug}`} className="footer-link">
