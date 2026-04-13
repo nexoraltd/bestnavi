@@ -1,13 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { CheckCircle2, CalendarDays, BookOpen, ArrowRight, Shield, TrendingUp, Server, Bot, Bitcoin, Smartphone, GraduationCap, Globe } from "lucide-react";
+import { ArrowRight, Shield, TrendingUp, Server, Bot, Bitcoin, Smartphone, GraduationCap, Globe } from "lucide-react";
 
-const trustBadges = [
-  { icon: CheckCircle2, color: "#16a34a", bg: "#f0fdf4", text: "専門家によるレビュー済み" },
-  { icon: CalendarDays, color: "#2563eb", bg: "#eff6ff", text: "毎月更新" },
-  { icon: BookOpen, color: "#d97706", bg: "#fffbeb", text: "500+ 記事掲載" },
-];
 
 const categories = [
   { name: "VPN", icon: Shield, href: "/ranking/vpn" },
@@ -40,24 +35,6 @@ export function HeroBanner() {
             <p style={{ fontSize: 15, color: "var(--text-secondary)", lineHeight: 1.8, marginBottom: 28, maxWidth: 560 }}>
               VPN・FX・ホスティング・AIツール・仮想通貨など。専門家による厳選レビューで、あなたに最適な製品が見つかります。
             </p>
-
-            {/* Trust badges — horizontal row */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: 32 }}>
-              {trustBadges.map(({ icon: Icon, color, bg, text }) => (
-                <div key={text} style={{
-                  display: "inline-flex", alignItems: "center", gap: 7,
-                  padding: "8px 14px",
-                  background: bg,
-                  borderRadius: 8,
-                  fontSize: 13,
-                  fontWeight: 500,
-                  color: "var(--text-secondary)",
-                }}>
-                  <Icon size={14} strokeWidth={2} style={{ color }} />
-                  {text}
-                </div>
-              ))}
-            </div>
 
             {/* CTA buttons */}
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
