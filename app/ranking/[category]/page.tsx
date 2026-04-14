@@ -163,21 +163,6 @@ export default async function RankingPage({
                 <h1 style={{ fontSize: 22, fontWeight: 800 }}>{meta.title}</h1>
               </div>
 
-              {/* Trust + Tags */}
-              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12, flexWrap: "wrap" }}>
-                {meta.trustBadge && (
-                  <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 12, fontWeight: 600, color: "var(--green)", background: "var(--green-light)", padding: "3px 10px", borderRadius: 4 }}>
-                    <ShieldCheck size={13} />
-                    {meta.trustBadge}
-                  </span>
-                )}
-                {meta.tags.map((tag) => (
-                  <span key={tag} style={{ display: "inline-flex", alignItems: "center", gap: 3, fontSize: 12, color: "var(--text-secondary)", background: "var(--bg-section)", padding: "3px 10px", borderRadius: 4 }}>
-                    <Tag size={11} />
-                    {tag}
-                  </span>
-                ))}
-              </div>
 
               {meta.description && (
                 <p style={{ color: "var(--text-secondary)", fontSize: 14, lineHeight: 1.8, marginBottom: 20 }}>
@@ -218,11 +203,6 @@ export default async function RankingPage({
                         <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.7, margin: "0 0 12px" }}>
                           {stripHtml(firstPost.excerpt.rendered).slice(0, 150)}...
                         </p>
-
-                        <div style={{ background: "var(--gold-bg)", borderRadius: 6, padding: "10px 14px", marginBottom: 14 }}>
-                          <div style={{ fontSize: 11, fontWeight: 700, color: "var(--gold)", marginBottom: 3 }}>おすすめポイント</div>
-                          <div style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.5 }}>{meta.topPickReason}</div>
-                        </div>
 
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
                           <div style={{ fontSize: 12, color: "var(--text-muted)", display: "flex", alignItems: "center", gap: 4 }}>

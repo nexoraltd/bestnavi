@@ -123,42 +123,8 @@ export default async function Home() {
                     </Link>
                   </div>
 
-                  {/* Trust badge + tags row */}
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16, flexWrap: "wrap" }}>
-                    <span
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 4,
-                        fontSize: 11,
-                        fontWeight: 600,
-                        color: "var(--green)",
-                        background: "var(--green-light)",
-                        padding: "3px 8px",
-                        borderRadius: 4,
-                      }}
-                    >
-                      <ShieldCheck size={12} />
-                      {group.trustBadge}
-                    </span>
-                    {group.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: 3,
-                          fontSize: 11,
-                          color: "var(--text-secondary)",
-                          background: isAlt ? "#fff" : "var(--bg-section)",
-                          padding: "3px 8px",
-                          borderRadius: 4,
-                        }}
-                      >
-                        <Tag size={10} />
-                        {tag}
-                      </span>
-                    ))}
+                  {/* 更新日 */}
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
                     <span style={{ fontSize: 11, color: "var(--text-muted)", display: "flex", alignItems: "center", gap: 3 }}>
                       <Clock size={10} />
                       2026年4月更新
@@ -221,12 +187,6 @@ export default async function Home() {
                               marginBottom: 12,
                             }}
                           >
-                            <div style={{ fontSize: 11, fontWeight: 700, color: "var(--gold)", marginBottom: 4 }}>
-                              おすすめポイント
-                            </div>
-                            <div style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.5 }}>
-                              {group.topPickReason}
-                            </div>
                           </div>
 
                           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
