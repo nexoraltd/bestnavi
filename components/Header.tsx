@@ -6,6 +6,7 @@ import { Shield, Server, Globe, GraduationCap, Briefcase, TrendingUp, Search, Me
 
 const categories = [
   { name: "VPN",      href: "/ranking/vpn",     icon: Shield },
+  { name: "FX",       href: "/ranking/fx",       icon: TrendingUp },
   { name: "サーバー", href: "/ranking/server",   icon: Server },
   { name: "英会話",   href: "/ranking/english",  icon: Globe },
   { name: "スクール", href: "/ranking/school",   icon: GraduationCap },
