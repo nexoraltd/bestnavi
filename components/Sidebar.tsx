@@ -9,6 +9,7 @@ import type { LucideIcon } from "lucide-react";
 
 const categories: { name: string; icon: LucideIcon; href: string }[] = [
   { name: "VPN",           icon: Shield,          href: "/ranking/vpn" },
+  { name: "FX口座",        icon: TrendingUp,       href: "/ranking/fx" },
   { name: "レンタルサーバー", icon: Server,        href: "/ranking/server" },
   { name: "英会話",        icon: Globe,            href: "/ranking/english" },
   { name: "スクール",      icon: GraduationCap,    href: "/ranking/school" },
@@ -18,6 +19,7 @@ const categories: { name: string; icon: LucideIcon; href: string }[] = [
 
 const popularRankings = [
   { title: "VPNおすすめランキング",          href: "/ranking/vpn" },
+  { title: "FX口座おすすめランキング",       href: "/ranking/fx" },
   { title: "レンタルサーバー比較",           href: "/ranking/server" },
   { title: "オンライン英会話比較",           href: "/ranking/english" },
   { title: "プログラミングスクール比較",     href: "/ranking/school" },
