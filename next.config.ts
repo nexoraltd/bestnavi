@@ -9,6 +9,16 @@ const nextConfig: NextConfig = {
         destination: "/ranking/:slug",
         permanent: true,
       },
+      {
+        source: "/article/:slug",
+        destination: "/post/:slug",
+        permanent: true,
+      },
+      {
+        source: "/article/:slug/",
+        destination: "/post/:slug",
+        permanent: true,
+      },
       // GSCで404になっているURL → 最近似ページへ301リダイレクト
       {
         source: "/expressvpn-review-2026-2",
