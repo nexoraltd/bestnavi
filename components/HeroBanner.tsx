@@ -6,6 +6,7 @@ import { Shield, Server, Globe, GraduationCap, Briefcase, TrendingUp } from "luc
 
 const categories = [
   { name: "VPN",      icon: Shield,         href: "/ranking/vpn" },
+  { name: "FX",       icon: TrendingUp,     href: "/ranking/fx" },
   { name: "サーバー", icon: Server,         href: "/ranking/server" },
   { name: "英会話",   icon: Globe,          href: "/ranking/english" },
   { name: "スクール", icon: GraduationCap,  href: "/ranking/school" },
