@@ -33,7 +33,7 @@ export const CATEGORY_MAP: Record<string, CategoryMeta> = {
   school:  { wpId: 55, title: "プログラミングスクール比較",  iconKey: "graduation-cap",  description: "Life is Tech!・Winスクール・インターノウスを料金・カリキュラムで比較", productCount: 3,  tags: ["未経験OK", "社会人向け"],        trustBadge: "提携3サービス掲載",    topPickReason: "Life is Tech!・Winスクール・インターノウスを料金・カリキュラムで比較" },
   career:  { wpId: 56, title: "IT転職サービス比較",          iconKey: "briefcase",       description: "テックゴー・ウズウズ・エストレ・社内SE転職ナビを徹底比較",              productCount: 4,  tags: ["20-30代", "未経験OK"],          trustBadge: "提携4サービス掲載",    topPickReason: "IT転職を成功させるエージェント・スクールを比較" },
   fukugyo: { wpId: 57, title: "副業・スキルアップ比較",      iconKey: "trending-up",     description: "SideLine・infraAIなど在宅でできる副業・AIスキル習得サービスを比較",    productCount: 2,  tags: ["副業初心者", "社会人"],          trustBadge: "提携2サービス掲載",     topPickReason: "副業で稼ぐAI・ITスキル習得サービスを解説" },
-  fx:      { wpId: 59, title: "FX比較ランキング",             iconKey: "trending-up",     description: "DMM FX・外為オンライン・FXブロードネットをスプレッド・ツールで徹底比較", productCount: 3,  tags: ["FX初心者", "自動売買"],          trustBadge: "提携3社掲載",           topPickReason: "スプレッド・口座開設キャンペーンでFX会社を比較" },
+  fx:      { wpId: 59, title: "FX比較ランキング",             iconKey: "trending-up",     description: "DMM FX・外為オンライン・ひまわり証券・FXブロードネットをスプレッド・ツールで徹底比較", productCount: 4,  tags: ["FX初心者", "自動売買"],          trustBadge: "提携4社掲載",           topPickReason: "スプレッド・ツール・キャンペーンでFX会社を徹底比較" },
 };
 
 // ランキング記事を各カテゴリ先頭に固定
