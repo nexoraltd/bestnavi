@@ -9,11 +9,12 @@ const CATEGORY_CTA_MAP: Record<number, { serviceName: string; description: strin
   52: { serviceName: "AIツール比較ランキング", description: "ChatGPT・Gemini・Claude等を機能・料金で比較。目的別おすすめを紹介。", url: "/ranking/ai", badge: "AI比較" },
   59: { serviceName: "FX口座おすすめランキング", description: "スプレッド・手数料・使いやすさで人気FX口座を比較。口座開設キャンペーン情報も。", url: "/ranking/fx", badge: "FX比較" },
   53: { serviceName: "仮想通貨取引所比較", description: "手数料・取扱通貨・セキュリティで国内主要取引所を徹底比較。", url: "/ranking/crypto", badge: "仮想通貨比較" },
-  50: { serviceName: "eSIMおすすめランキング", description: "海外旅行・国内利用のeSIMを料金・対応エリアで比較。", url: "/ranking/esim", badge: "eSIM比較" },
+  50: { serviceName: "海外eSIM比較2026", description: "海外旅行で使えるeSIMを料金・対応エリア・速度で比較。Airalo等の人気サービスを紹介。", url: "/post/esim-overseas-comparison-2025", badge: "eSIM比較" },
   56: { serviceName: "転職サービス比較", description: "転職エージェント・サイトを求人数・サポート質で比較。あなたに合ったサービスへ。", url: "/ranking/career", badge: "転職比較" },
   55: { serviceName: "プログラミングスクール比較", description: "未経験からエンジニアへ。受講費・カリキュラム・就職率で主要スクールを比較。", url: "/ranking/school", badge: "スクール比較" },
   54: { serviceName: "オンライン英会話比較", description: "料金・講師の質・システムで主要英会話サービスを比較。無料体験情報も。", url: "/ranking/english", badge: "英会話比較" },
   44: { serviceName: "セキュリティソフト比較", description: "ウイルス対策・個人情報保護の定番ソフトを機能・価格で比較。", url: "/ranking/security", badge: "セキュリティ比較" },
+  57: { serviceName: "副業・スキルアップ比較", description: "在宅副業・ITスキル習得サービスを費用・実績で比較。月5万円を目指すなら。", url: "/ranking/fukugyo", badge: "副業比較" },
 };
 
 const DEFAULT_CTA = {
