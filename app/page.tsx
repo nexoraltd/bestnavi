@@ -30,7 +30,7 @@ const faqItems = [
   },
 ];
 
-const CATEGORY_ORDER = ["vpn", "server", "english", "school", "career", "fukugyo"];
+const CATEGORY_ORDER = ["vpn", "fx", "server", "english", "school", "career", "fukugyo"];
 
 const faqJsonLd = {
   "@context": "https://schema.org",
