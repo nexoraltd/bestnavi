@@ -82,11 +82,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const wordCount = Math.round(plainText.length / 2);
   const catTags = catEntry ? catEntry[1].tags : [];
 
-  // JSON-LD 構造化データ（Article + Review）
-  const isReview = slug.includes("review") || slug.includes("ranking") || slug.includes("comparison") || slug.includes("hikaku");
+  // JSON-LD 構造化データ
   const articleJsonLd = {
     "@context": "https://schema.org",
-    "@type": isReview ? "Review" : "Article",
+    "@type": "Article",
     "headline": title,
     "description": excerpt,
     "url": `${SITE_URL}/post/${slug}`,
@@ -107,11 +106,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       "logo": { "@type": "ImageObject", "url": `${SITE_URL}/favicon-32.png`, "width": 32, "height": 32 }
     },
     "mainEntityOfPage": { "@type": "WebPage", "@id": `${SITE_URL}/post/${slug}` },
-    "image": { "@type": "ImageObject", "url": `${SITE_URL}/og-image.png`, "width": 1200, "height": 630 },
-    ...(isReview && {
-      "reviewRating": { "@type": "Rating", "ratingValue": "4.5", "bestRating": "5", "worstRating": "1" },
-      "itemReviewed": { "@type": "SoftwareApplication", "name": title.split(/[｜|]/)[0].trim(), "applicationCategory": "WebApplication" }
-    }),
+    "image": { "@type": "ImageObject", "url": `${SITE_URL}/og-image.png`, "width": 1200, "height": 630 }
   };
 
   // 3階層パンくず: ホーム > カテゴリ > 記事
