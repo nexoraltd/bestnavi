@@ -140,7 +140,9 @@
 
 ## バリューコマース
 
-メンテナンス中（2026-04-09確認）。提携案件なし。
+| プログラム | カテゴリ | 報酬 | アフィリエイトリンク | 提携日 |
+|---|---|---|---|---|
+| **エイジレスエージェント** | 転職（40-50代IT） | ¥19,690/件（承認率95.45%） | http://ck.jp.ap.valuecommerce.com/servlet/referral?sid=2999025&pid=881512136 | 新規提携済み |
 
 ---
 
@@ -160,8 +162,8 @@
 | FX (59) | 59 | DMM FX, FXブロードネット, 外為オンライン(2本), ひまわり証券, ヒロセ通商（審査中）, XServer VPS for FX |
 | Crypto (53) | 53 | なし（TCS否認・未提携） |
 | eSIM (50) | 50 | Rakulink, NordVPN, Surfshark（クロスセル） |
-| Career (56) | 56 | エストレ |
-| School (55) | 55 | Winスクール, Python Winner, Life is Tech |
+| Career (56) | 56 | エストレ, 明光キャリアパートナーズ, テックゴー, エイジレスエージェント |
+| School (55) | 55 | Winスクール, Python Winner, Life is Tech, テックジム, スタアカ |
 | English (54) | 54 | ベストティーチャー, Global Step Academy |
 | Security (44) | 44 | NordVPN, Surfshark（クロスセル） |
 
