@@ -19,6 +19,9 @@ const nextConfig: NextConfig = {
         destination: "/post/:slug",
         permanent: true,
       },
+      // RSS フィード
+      { source: "/feed", destination: "/feed.xml", permanent: true },
+      { source: "/feed/", destination: "/feed.xml", permanent: true },
       // GSCで404になっているURL → 最近似ページへ301リダイレクト
       {
         source: "/expressvpn-review-2026-2",

@@ -34,17 +34,19 @@ export const CATEGORY_MAP: Record<string, CategoryMeta> = {
   career:  { wpId: 56, title: "IT転職サービス比較",          iconKey: "briefcase",       description: "テックゴー・ウズウズ・エストレ・社内SE転職ナビを徹底比較",              productCount: 4,  tags: ["20-30代", "未経験OK"],          trustBadge: "提携4サービス掲載",    topPickReason: "IT転職を成功させるエージェント・スクールを比較" },
   fukugyo: { wpId: 57, title: "副業・スキルアップ比較",      iconKey: "trending-up",     description: "SideLine・infraAIなど在宅でできる副業・AIスキル習得サービスを比較",    productCount: 2,  tags: ["副業初心者", "社会人"],          trustBadge: "提携2サービス掲載",     topPickReason: "副業で稼ぐAI・ITスキル習得サービスを解説" },
   fx:      { wpId: 59, title: "FX比較ランキング",             iconKey: "trending-up",     description: "DMM FX・外為オンライン・ひまわり証券・FXブロードネットをスプレッド・ツールで徹底比較", productCount: 4,  tags: ["FX初心者", "自動売買"],          trustBadge: "提携4社掲載",           topPickReason: "スプレッド・ツール・キャンペーンでFX会社を徹底比較" },
+  esim:    { wpId: 50, title: "eSIM比較ランキング",            iconKey: "smartphone",      description: "Airalo・Rakulinkなど海外旅行・海外出張向けeSIMサービスを料金・対応国・使いやすさで徹底比較", productCount: 2, tags: ["海外旅行", "海外出張"],          trustBadge: "提携2サービス掲載",     topPickReason: "世界200カ国対応Airaloを中心にeSIMの選び方を解説" },
 };
 
 // ランキング記事を各カテゴリ先頭に固定
 const PINNED_TOP_BY_CATEGORY: Record<number, number[]> = {
-  48: [189, 337, 335, 340, 205, 206, 261, 339, 338],  // VPN: ランキング→テレワーク→Netflix→iPhone→NordVPN→Surfshark→Millen→ExpressVPN→Rakulink
-  51: [210, 296, 211, 209, 259, 295, 560, 551, 553, 559, 550, 556],       // Server: ランキング→比較→WordPress→Xserver→ConoHa→Kinsta→全サービス→VPSランキング→ゲームサーバー→WindowsVPS→Business→WP専用
+  48: [189, 337, 335, 340, 566, 205, 206, 261, 339, 338],  // VPN: ランキング→テレワーク→Netflix→iPhone→無料体験→NordVPN→Surfshark→Millen→ExpressVPN→Rakulink
+  50: [712],                                // eSIM: 海外旅行比較
+  51: [210, 296, 211, 209, 259, 295, 560, 564, 551, 553, 559, 550, 556],  // Server: ランキング→比較→WordPress→Xserver→ConoHa→Kinsta→全サービス→WP専用→VPSランキング→ゲームサーバー→WindowsVPS→Business→XServerビジネス
   54: [285, 367, 385, 388, 389],             // English: ランキング→BestTeacher→GSA→ECC→NOVA
-  55: [287, 371, 373, 374, 369],            // School: ランキング→LifeIstech→Winスクール→インターノウス→ティントル
-  56: [290, 291, 289, 292, 293],            // Career: ランキング→テックゴー→エストレ→ウズウズ→社内SE
-  57: [601, 600, 602],                      // Fukugyo: 副業ランキング→SideLine→infraAI
-  59: [700, 705, 701, 750, 702, 751, 703, 714, 706, 707],       // FX: ランキング→始め方→DMM FX→外為オンライン(新)→旧外為→ひまわり(新)→FXブロードネット→口座選び→スプレッド→自動売買
+  55: [287, 371, 563, 567, 373, 374, 369],   // School: ランキング→LifeIstech→スクール比較→データサイエンス→Winスクール→インターノウス→ティントル
+  56: [290, 291, 562, 565, 289, 292, 293],   // Career: ランキング→テックゴー→エンジニア比較→40代→エストレ→ウズウズ→社内SE
+  57: [601, 600, 602, 603, 604],             // Fukugyo: 副業ランキング→SideLine→infraAI→Webデザイン→動画編集
+  59: [700, 705, 701, 750, 702, 751, 703, 561, 714, 706, 707],  // FX: ランキング→始め方→DMM FX→外為オンライン(新)→旧外為→ひまわり(新)→FXブロードネット→FX用VPS→口座選び→スプレッド→自動売買
 };
 
 export function isHighCvr(_postId: number): boolean {

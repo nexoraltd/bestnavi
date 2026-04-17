@@ -92,6 +92,8 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap"
           rel="stylesheet"
         />
+        {/* RSS フィード自動検出 */}
+        <link rel="alternate" type="application/rss+xml" title="ベストナビ RSS" href="/feed.xml" />
         {/* 構造化データ: Organization + WebSite */}
         <script
           type="application/ld+json"
