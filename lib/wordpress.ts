@@ -39,14 +39,14 @@ export const CATEGORY_MAP: Record<string, CategoryMeta> = {
 
 // ランキング記事を各カテゴリ先頭に固定
 const PINNED_TOP_BY_CATEGORY: Record<number, number[]> = {
-  48: [189, 337, 335, 340, 566, 205, 206, 261, 339, 338, 578, 579],  // VPN: ランキング→テレワーク→Netflix→iPhone→無料体験→NordVPN→Surfshark→Millen→ExpressVPN→Rakulink→Mac→Netflix海外
+  48: [189, 337, 335, 340, 756, 757, 566, 205, 206, 261, 339, 338, 578, 579],  // VPN: ランキング→テレワーク→Netflix→iPhone→NordVPN vs ExpressVPN→iOS設定ガイド→無料体験→NordVPN→Surfshark→Millen→ExpressVPN→Rakulink→Mac→Netflix海外
   50: [712, 715, 716, 717],                  // eSIM: ランキング→Airalo口コミ→海外旅行比較→設定ガイド
   51: [210, 296, 211, 209, 259, 295, 560, 564, 551, 553, 559, 550, 556, 576, 577],  // Server: ランキング→比較→WordPress→Xserver→ConoHa→Kinsta→全サービス→WP専用→VPSランキング→ゲームサーバー→WindowsVPS→Business→XServerビジネス→XServerBiz評判→格安比較
   54: [285, 367, 385, 388, 389],             // English: ランキング→BestTeacher→GSA→ECC→NOVA
   55: [287, 371, 563, 567, 373, 374, 369],   // School: ランキング→LifeIstech→スクール比較→データサイエンス→Winスクール→インターノウス→ティントル
   56: [290, 291, 562, 565, 289, 292, 293],   // Career: ランキング→テックゴー→エンジニア比較→40代→エストレ→ウズウズ→社内SE
   57: [601, 600, 602, 603, 604, 605],        // Fukugyo: 副業ランキング→SideLine→infraAI→Webデザイン→動画編集→AI副業
-  59: [700, 705, 701, 750, 702, 751, 703, 561, 714, 706, 707, 752, 753],  // FX: ランキング→始め方→DMM FX→外為オンライン(新)→旧外為→ひまわり(新)→FXブロードネット→FX用VPS→口座選び→スプレッド→自動売買→税金→スマホアプリ
+  59: [700, 705, 701, 750, 702, 751, 703, 754, 755, 561, 714, 706, 707, 752, 753],  // FX: ランキング→始め方→DMM FX→外為オンライン(新)→旧外為→ひまわり(新)→FXブロードネット→SBI FX→GMOクリック→FX用VPS→口座選び→スプレッド→自動売買→税金→スマホアプリ
 };
 
 export function isHighCvr(_postId: number): boolean {

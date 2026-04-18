@@ -216,6 +216,17 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
   703: [FXBROAD_BANNER],
   704: [],  // ひまわり証券: バナー画像なし（承認後差し替え）
   707: [FXBROAD_BANNER],  // FX自動売買ガイド（FXブロードネット）
+  // 新規FX個別記事
+  754: [DMMFX_BANNER],   // SBI FXトレード評判: TCS/DMM FXのCTAを表示
+  755: [DMMFX_BANNER],   // GMOクリック証券FX評判: TCS/DMM FXのCTAを表示
+
+  // ── VPN ───────────────────────────────────────────────────────
+  // 新規VPN記事
+  756: [...NORDVPN_BANNERS, EXPRESSVPN_BANNER],   // NordVPN vs ExpressVPN
+  757: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS], // iPhone iOS VPN設定ガイド
+
+  // ── 仮想通貨 ─────────────────────────────────────────────────
+  758: [],  // bitFlyer評判: バナーなし（Coincheckリンクは現状維持）
 };
 
 export function getBannersForArticle(postId: number, categoryIds: number[]): BannerConfig[] {
