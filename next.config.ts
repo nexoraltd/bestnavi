@@ -22,6 +22,16 @@ const nextConfig: NextConfig = {
       // RSS フィード
       { source: "/feed", destination: "/feed.xml", permanent: true },
       { source: "/feed/", destination: "/feed.xml", permanent: true },
+      // WordPress ページネーション → トップへ
+      { source: "/page/:num", destination: "/", permanent: true },
+      { source: "/page/:num/", destination: "/", permanent: true },
+      // WordPress タグ・著者アーカイブ → トップへ
+      { source: "/tag/:slug", destination: "/", permanent: true },
+      { source: "/tag/:slug/", destination: "/", permanent: true },
+      { source: "/author/:slug", destination: "/", permanent: true },
+      { source: "/author/:slug/", destination: "/", permanent: true },
+      { source: "/author/:slug/page/:num", destination: "/", permanent: true },
+      { source: "/author/:slug/page/:num/", destination: "/", permanent: true },
       // GSCで404になっているURL → 最近似ページへ301リダイレクト
       {
         source: "/expressvpn-review-2026-2",
@@ -41,6 +51,16 @@ const nextConfig: NextConfig = {
       {
         source: "/ai-image-generator/",
         destination: "/post/server-hosting-ranking-2026",
+        permanent: true,
+      },
+      {
+        source: "/nordvpn2026",
+        destination: "/post/nordvpn-review-2026",
+        permanent: true,
+      },
+      {
+        source: "/nordvpn2026/",
+        destination: "/post/nordvpn-review-2026",
         permanent: true,
       },
     ];
