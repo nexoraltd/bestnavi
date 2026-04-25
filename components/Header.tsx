@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Shield, Server, Globe, GraduationCap, Briefcase, TrendingUp, Search, Menu, X, CreditCard } from "lucide-react";
+import { Shield, Server, Globe, GraduationCap, Briefcase, TrendingUp, Search, Menu, X, CreditCard, Users, UserCheck, BookOpen, Car } from "lucide-react";
 
 const categories = [
   { name: "クレカ",   href: "/ranking/credit-card", icon: CreditCard },
@@ -13,6 +13,10 @@ const categories = [
   { name: "スクール", href: "/ranking/school",   icon: GraduationCap },
   { name: "キャリア", href: "/ranking/career",   icon: Briefcase },
   { name: "副業",     href: "/ranking/fukugyo",  icon: TrendingUp },
+  { name: "転職",     href: "/ranking/tenshoku", icon: Users },
+  { name: "派遣",     href: "/ranking/haken",    icon: UserCheck },
+  { name: "就活",     href: "/ranking/shukatsu", icon: BookOpen },
+  { name: "車買取",   href: "/ranking/kuruma",   icon: Car },
 ];
 
 export function Header() {
