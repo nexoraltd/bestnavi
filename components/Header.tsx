@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Shield, Server, Globe, GraduationCap, Briefcase, TrendingUp, Search, Menu, X, CreditCard, Users, UserCheck, BookOpen, Car } from "lucide-react";
+import { Shield, Server, Globe, GraduationCap, Briefcase, TrendingUp, Search, Menu, X, CreditCard, Users, UserCheck, BookOpen, Car, Building2, Calculator, Wifi, Gift } from "lucide-react";
 
 const categories = [
   { name: "クレカ",   href: "/ranking/credit-card", icon: CreditCard },
+  { name: "法人カード", href: "/ranking/houjin-card", icon: Building2 },
   { name: "VPN",      href: "/ranking/vpn",     icon: Shield },
   { name: "FX",       href: "/ranking/fx",       icon: TrendingUp },
   { name: "サーバー", href: "/ranking/server",   icon: Server },
@@ -17,6 +18,9 @@ const categories = [
   { name: "派遣",     href: "/ranking/haken",    icon: UserCheck },
   { name: "就活",     href: "/ranking/shukatsu", icon: BookOpen },
   { name: "車買取",   href: "/ranking/kuruma",   icon: Car },
+  { name: "会計",     href: "/ranking/kaikei",   icon: Calculator },
+  { name: "WiFi",     href: "/ranking/wifi-sim", icon: Wifi },
+  { name: "ギフト",   href: "/ranking/gift-card", icon: Gift },
 ];
 
 export function Header() {

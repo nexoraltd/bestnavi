@@ -40,6 +40,10 @@ export const CATEGORY_MAP: Record<string, CategoryMeta> = {
   haken:    { wpId: 62, title: "派遣会社比較ランキング",      iconKey: "users",           description: "テンプスタッフ・スタッフサービス・パソナなど大手派遣会社を求人数・福利厚生・サポートで徹底比較。派遣会社の選び方と登録の流れも解説。", productCount: 4, tags: ["派遣初心者", "事務・軽作業"],    trustBadge: "提携4サービス掲載",     topPickReason: "求人数・時給・福利厚生で派遣会社を徹底比較" },
   shukatsu: { wpId: 63, title: "就活エージェント比較",        iconKey: "graduation-cap",  description: "キャリアチケット・ハタラクティブ・就職エージェントneoなど新卒・既卒向け就活エージェントを内定率・サポートで徹底比較。就活を成功させる選び方ガイド付き。", productCount: 4, tags: ["新卒・既卒", "未経験OK"],        trustBadge: "提携4サービス掲載",     topPickReason: "内定率・求人数・サポート充実度で就活エージェントを比較" },
   kuruma:   { wpId: 64, title: "車買取サービス比較",          iconKey: "trending-up",     description: "カーセブン・ガリバー・ネクステージなど車買取・一括査定サービスを査定額・手続きのしやすさで徹底比較。愛車を高く売るためのコツも解説。", productCount: 4, tags: ["一括査定", "高額買取"],           trustBadge: "提携4サービス掲載",     topPickReason: "査定額・手数料・手続きのしやすさで車買取サービスを比較" },
+  "houjin-card": { wpId: 65, title: "法人カード・ETC比較",     iconKey: "credit-card",     description: "FASIOビジネス・法人ETCカード・法人ガソリンカードを年会費・発行スピード・キャッシュバック率で徹底比較。新会社でも作れるおすすめの法人カードを厳選。", productCount: 4, tags: ["新会社OK", "年会費無料"],        trustBadge: "提携4サービス掲載",     topPickReason: "年会費・発行スピード・経費精算しやすさで法人カードを比較" },
+  kaikei:   { wpId: 66, title: "会計・確定申告ソフト比較",     iconKey: "book-open",       description: "マネーフォワード クラウド確定申告・freee・弥生など個人事業主・副業向け会計ソフトを料金・使いやすさ・サポートで徹底比較。", productCount: 3, tags: ["副業", "個人事業主"],          trustBadge: "提携3サービス掲載",     topPickReason: "料金・連携サービス・使いやすさで会計ソフトを比較" },
+  "wifi-sim": { wpId: 67, title: "WiFi・格安SIM比較",          iconKey: "smartphone",      description: "誰でもWi-Fi・Lyprimo・スマホプリペイドなど審査なし・即日使えるWiFi・SIMサービスを月額料金・通信容量で徹底比較。", productCount: 3, tags: ["審査なし", "即日利用"],         trustBadge: "提携3サービス掲載",     topPickReason: "月額・通信容量・縛り条件でWiFi・SIMを比較" },
+  "gift-card": { wpId: 68, title: "ギフトカード比較",           iconKey: "credit-card",     description: "Visaのデジタルギフト・金券ねっと・スマホプリペイドなどクレカで購入できるギフトカードを購入のしやすさ・ポイント還元で比較。", productCount: 3, tags: ["クレカ購入", "高還元"],         trustBadge: "提携3サービス掲載",     topPickReason: "クレカポイント還元・即時発行で選ぶギフトカード" },
 };
 
 // ランキング記事を各カテゴリ先頭に固定
@@ -57,6 +61,10 @@ const PINNED_TOP_BY_CATEGORY: Record<number, number[]> = {
   62: [910],  // 派遣: ランキングLP
   63: [920],  // 就活: ランキングLP
   64: [930],  // 車買取: ランキングLP
+  65: [940],  // 法人カード・ETC: ランキングLP
+  66: [950],  // 会計・確定申告: ランキングLP
+  67: [960],  // WiFi・SIM: ランキングLP
+  68: [970],  // ギフトカード: ランキングLP
 };
 
 export function isHighCvr(_postId: number): boolean {
