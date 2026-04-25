@@ -143,6 +143,73 @@ const YUNYUSHA_KAITORI_BANNER: BannerConfig = {
   imageUrl: "https://www13.a8.net/svt/bgt?aid=260425363504&wid=001&eno=01&mid=s00000024293001003000&mc=1",
 };
 
+// ─── 法人カード/ETC ───────────────────────────────────────────
+const ETC_KUMIAI_MANGA_BANNER: BannerConfig = {
+  programName: "法人ETCカード（ETC協同組合）", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+FTRUPE+3EV2+TTTEP",
+  width: 300, height: 250,
+  imageUrl: "https://www24.a8.net/svt/bgt?aid=260425363957&wid=001&eno=01&mid=s00000015923005010000&mc=1",
+};
+
+const FASIO_BANNER: BannerConfig = {
+  programName: "FASIOビジネスカード", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+G8NOTU+49Z2+609HT",
+  width: 300, height: 250,
+  imageUrl: "https://www23.a8.net/svt/bgt?aid=260425363982&wid=001&eno=01&mid=s00000019955001009000&mc=1",
+};
+
+const GASOLINE_CARD_BANNER: BannerConfig = {
+  programName: "法人ガソリンカード（高速情報協同組合）", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+FRZJW2+1WW0+TUO9T",
+  width: 300, height: 250,
+  imageUrl: "https://www26.a8.net/svt/bgt?aid=260425363954&wid=001&eno=01&mid=s00000008928005014000&mc=1",
+};
+
+// ─── 会計・確定申告 ────────────────────────────────────────────
+const MONEYFORWARD_BANNER: BannerConfig = {
+  programName: "マネーフォワード クラウド確定申告", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+FUYPWY+4JGQ+C2GFL",
+  width: 300, height: 250,
+  imageUrl: "https://www28.a8.net/svt/bgt?aid=260425363959&wid=001&eno=01&mid=s00000021185002027000&mc=1",
+};
+
+// ─── WiFi・SIM ────────────────────────────────────────────────
+const DAREDEMO_WIFI_BANNER: BannerConfig = {
+  programName: "誰でもWi-Fi", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+FBBEYA+4G6O+1ZHAW1",
+  width: 300, height: 250,
+  imageUrl: "https://www24.a8.net/svt/bgt?aid=260425363926&wid=001&eno=01&mid=s00000020760012006000&mc=1",
+};
+
+const LYPRIMO_BANNER: BannerConfig = {
+  programName: "Lyprimo（リプリモ）", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+FPLTGY+529Y+5ZMCH",
+  width: 300, height: 250,
+  imageUrl: "https://www20.a8.net/svt/bgt?aid=260425363950&wid=001&eno=01&mid=s00000023623001006000&mc=1",
+};
+
+const SMARTPHONE_PREPAID_BANNER: BannerConfig = {
+  programName: "スマホプリペイド", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+FP0DV6+5IYS+614CX",
+  width: 300, height: 250,
+  imageUrl: "https://www24.a8.net/svt/bgt?aid=260425363949&wid=001&eno=01&mid=s00000025786001013000&mc=1",
+};
+
+// ─── ギフトカード ─────────────────────────────────────────────
+const VISA_GIFT_BANNER: BannerConfig = {
+  programName: "Visaのデジタルギフト", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+G6VE0I+54A6+5ZMCH",
+  width: 300, height: 250,
+  imageUrl: "https://www22.a8.net/svt/bgt?aid=260425363979&wid=001&eno=01&mid=s00000023883001006000&mc=1",
+};
+
+const KINKEN_NET_BANNER: BannerConfig = {
+  programName: "金券ねっと", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+FAPZCI+3J2Q+601S1",
+  width: 300, height: 250,
+  imageUrl: "https://www21.a8.net/svt/bgt?aid=260425363925&wid=001&eno=01&mid=s00000016469001008000&mc=1",
+};
+
 // ─── クレジットカード ──────────────────────────────────────────
 // TODO: A8.net/バリューコマース/もしも で各カード申請後にURLを設定
 const RAKUTEN_CARD_BANNER: BannerConfig = {
@@ -211,11 +278,11 @@ export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
   61: [],  // 転職: doda/マイナビ転職/テンプスタッフ等（バリューコマース/A8/もしも申請待ち）
   62: [],  // 派遣: テンプスタッフ等（A8申請待ち）
   63: [],  // 就活: キャリアチケット/ハタラクティブ等（A8申請待ち）
-  64: [UCARPAC_BANNER, CTN_KAITORI_BANNER, YUNYUSHA_KAITORI_BANNER],  // 車買取: ユーカーパック/CTN/輸入車買取センター（A8即時提携完了）
-  65: [],  // 法人カード/ETC: FASIO/法人ETC/法人ガソリン（A8提携完了→リンク取得待ち）
-  66: [],  // 会計・確定申告: マネーフォワード/freee/弥生（A8提携完了→リンク取得待ち）
-  67: [],  // WiFi・SIM: 誰でもWi-Fi/Lyprimo/スマホプリペイド（A8提携完了→リンク取得待ち）
-  68: [],  // ギフトカード: Visaギフト/金券ねっと/スマホプリペイド（A8提携完了→リンク取得待ち）
+  64: [UCARPAC_BANNER, CTN_KAITORI_BANNER, YUNYUSHA_KAITORI_BANNER],  // 車買取
+  65: [ETC_KUMIAI_MANGA_BANNER, GASOLINE_CARD_BANNER, FASIO_BANNER],  // 法人カード/ETC
+  66: [MONEYFORWARD_BANNER],  // 会計・確定申告（freee/弥生は承認後追加）
+  67: [DAREDEMO_WIFI_BANNER, LYPRIMO_BANNER, SMARTPHONE_PREPAID_BANNER],  // WiFi・SIM
+  68: [VISA_GIFT_BANNER, KINKEN_NET_BANNER, SMARTPHONE_PREPAID_BANNER],  // ギフトカード
 };
 
 // ─── 記事固有バナー（レビュー記事はその製品を優先表示）──────
@@ -328,7 +395,19 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
   900: [],  // 転職エージェントランキング
   910: [],  // 派遣会社ランキング
   920: [],  // 就活エージェントランキング
-  930: [],  // 車買取ランキング
+  930: [UCARPAC_BANNER, CTN_KAITORI_BANNER, YUNYUSHA_KAITORI_BANNER],  // 車買取ランキング
+
+  // ── 法人カード/ETC ───────────────────────────────────────────
+  940: [ETC_KUMIAI_MANGA_BANNER, GASOLINE_CARD_BANNER, FASIO_BANNER],  // 法人カード・ETCランキング
+
+  // ── 会計・確定申告 ────────────────────────────────────────────
+  950: [MONEYFORWARD_BANNER],  // 会計・確定申告ランキング
+
+  // ── WiFi・SIM ────────────────────────────────────────────────
+  960: [DAREDEMO_WIFI_BANNER, LYPRIMO_BANNER, SMARTPHONE_PREPAID_BANNER],  // WiFi・SIMランキング
+
+  // ── ギフトカード ──────────────────────────────────────────────
+  970: [VISA_GIFT_BANNER, KINKEN_NET_BANNER, SMARTPHONE_PREPAID_BANNER],  // ギフトカードランキング
 };
 
 export function getBannersForArticle(postId: number, categoryIds: number[]): BannerConfig[] {
