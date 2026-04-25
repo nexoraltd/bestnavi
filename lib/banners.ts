@@ -146,9 +146,9 @@ const DCARD_GOLD_BANNER: BannerConfig = {
 
 const EPOS_CARD_BANNER: BannerConfig = {
   programName: "エポスカード", affiliateId: "a26021579611",
-  url: "https://px.a8.net/svt/ejp?a8mat=4B1K5O+TODO_EPOS",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THU+2OG8S2+38L8+BXQOH",
   width: 300, height: 250,
-  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_EPOS&wid=001&eno=01&mc=1",
+  imageUrl: "https://www17.a8.net/svt/bgt?aid=260425362162&wid=001&eno=01&mid=s00000015110002003000&mc=1",
 };
 
 const LIFECARD_BANNER: BannerConfig = {
