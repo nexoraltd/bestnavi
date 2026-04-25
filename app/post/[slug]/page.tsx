@@ -82,19 +82,25 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const wordCount = Math.round(plainText.length / 2);
   const catTags = catEntry ? catEntry[1].tags : [];
 
-  // FAQ抽出: <h3>Q数字. または Q. パターン → FAQPage schema
+  // FAQ抽出: h3/Q形式 と details/summary形式の両方に対応
   const extractFaqs = (html: string) => {
     const pairs: { q: string; a: string }[] = [];
-    const regex = /<h3[^>]*>\s*Q\d*[.．\s][^<]*<\/h3>\s*<p[^>]*>([\s\S]*?)<\/p>/gi;
-    const h3regex = /<h3[^>]*>([\s\S]*?)<\/h3>/gi;
-    const pAfterH3 = /<h3[^>]*>([^<]*Q\d*[.．][^<]*)<\/h3>\s*<p[^>]*>([\s\S]*?)<\/p>/gi;
+    // Pattern 1: <h3>Q1. ...</h3><p>...</p>
+    const h3Pattern = /<h3[^>]*>([^<]*Q\d*[.．][^<]*)<\/h3>\s*<p[^>]*>([\s\S]*?)<\/p>/gi;
     let m;
-    while ((m = pAfterH3.exec(html)) !== null) {
+    while ((m = h3Pattern.exec(html)) !== null) {
       const q = m[1].replace(/<[^>]+>/g, '').trim();
       const a = m[2].replace(/<[^>]+>/g, '').trim();
       if (q && a) pairs.push({ q, a });
     }
-    return pairs;
+    // Pattern 2: <details><summary>question</summary><p>answer</p></details>
+    const detailsPattern = /<details[^>]*>\s*<summary[^>]*>([\s\S]*?)<\/summary>\s*<p[^>]*>([\s\S]*?)<\/p>/gi;
+    while ((m = detailsPattern.exec(html)) !== null) {
+      const q = m[1].replace(/<[^>]+>/g, '').trim();
+      const a = m[2].replace(/<[^>]+>/g, '').trim();
+      if (q && a) pairs.push({ q, a });
+    }
+    return pairs.slice(0, 10);
   };
   const faqs = extractFaqs(content);
   const faqJsonLd = faqs.length > 0 ? {
