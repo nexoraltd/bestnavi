@@ -2,8 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 // WordPress の旧URLパターンを /post/[slug] にリダイレクト
-// Cocoonのデフォルトパーマリンク: /%postname%/
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // 既存のNext.jsルートはスキップ
@@ -28,20 +27,15 @@ export function middleware(request: NextRequest) {
   // /?p=123 形式のWordPress URLを処理
   const pParam = request.nextUrl.searchParams.get("p");
   if (pParam) {
-    // WP REST APIでslugを取得する代わりに、/post/ にリダイレクト
-    // 実際にはWordPressが /?p=123 を /%postname%/ にリダイレクトしているので
-    // このケースは稀
     return NextResponse.next();
   }
 
   // /%postname%/ 形式のURLを /post/%postname% にリダイレクト
-  // 例: /nordvpn-review/ → /post/nordvpn-review
   const slug = pathname.replace(/^\//, "").replace(/\/$/, "");
 
-  // 静的ファイルやNext.js内部パスはスキップ
   if (
-    slug.includes(".") || // ファイル拡張子あり
-    slug.includes("wp-") || // WordPress管理パス
+    slug.includes(".") ||
+    slug.includes("wp-") ||
     slug === "sitemap.xml" ||
     slug === "robots.txt" ||
     slug === "feed" ||
@@ -50,7 +44,6 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // slugがあればリダイレクト
   if (slug && !slug.includes("/")) {
     const url = request.nextUrl.clone();
     url.pathname = `/post/${slug}`;
@@ -62,7 +55,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // _next/static, _next/image, favicon.ico を除外
     "/((?!_next/static|_next/image|favicon.ico).*)",
   ],
 };
