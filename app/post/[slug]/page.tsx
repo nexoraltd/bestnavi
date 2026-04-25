@@ -82,6 +82,31 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const wordCount = Math.round(plainText.length / 2);
   const catTags = catEntry ? catEntry[1].tags : [];
 
+  // FAQ抽出: <h3>Q数字. または Q. パターン → FAQPage schema
+  const extractFaqs = (html: string) => {
+    const pairs: { q: string; a: string }[] = [];
+    const regex = /<h3[^>]*>\s*Q\d*[.．\s][^<]*<\/h3>\s*<p[^>]*>([\s\S]*?)<\/p>/gi;
+    const h3regex = /<h3[^>]*>([\s\S]*?)<\/h3>/gi;
+    const pAfterH3 = /<h3[^>]*>([^<]*Q\d*[.．][^<]*)<\/h3>\s*<p[^>]*>([\s\S]*?)<\/p>/gi;
+    let m;
+    while ((m = pAfterH3.exec(html)) !== null) {
+      const q = m[1].replace(/<[^>]+>/g, '').trim();
+      const a = m[2].replace(/<[^>]+>/g, '').trim();
+      if (q && a) pairs.push({ q, a });
+    }
+    return pairs;
+  };
+  const faqs = extractFaqs(content);
+  const faqJsonLd = faqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(({ q, a }) => ({
+      "@type": "Question",
+      "name": q,
+      "acceptedAnswer": { "@type": "Answer", "text": a }
+    }))
+  } : null;
+
   // JSON-LD 構造化データ
   const articleJsonLd = {
     "@context": "https://schema.org",
@@ -127,6 +152,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     <div style={{ background: "var(--bg-warm)", minHeight: "100vh" }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      {faqJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />}
       <Header />
 
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "32px 16px" }}>
