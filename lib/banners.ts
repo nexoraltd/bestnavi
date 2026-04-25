@@ -114,6 +114,50 @@ const FXBROAD_BANNER: BannerConfig = {
   imageUrl: "https://img.tcs-asp.net/imagesender?ac=C140972&lc=FXTS1&isq=3&psq=0",
 };
 
+// ─── クレジットカード ──────────────────────────────────────────
+// TODO: A8.net/バリューコマース/もしも で各カード申請後にURLを設定
+const RAKUTEN_CARD_BANNER: BannerConfig = {
+  programName: "楽天カード", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1K5O+TODO_RAKUTEN",
+  width: 300, height: 250,
+  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_RAKUTEN&wid=001&eno=01&mc=1",
+};
+
+const SMBC_CARD_BANNER: BannerConfig = {
+  programName: "三井住友カード(NL)", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1K5O+TODO_SMBC",
+  width: 300, height: 250,
+  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_SMBC&wid=001&eno=01&mc=1",
+};
+
+const JCB_CARD_BANNER: BannerConfig = {
+  programName: "JCBカード W", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1K5O+TODO_JCB",
+  width: 300, height: 250,
+  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_JCB&wid=001&eno=01&mc=1",
+};
+
+const DCARD_GOLD_BANNER: BannerConfig = {
+  programName: "dカード GOLD", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1K5O+TODO_DCARD",
+  width: 300, height: 250,
+  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_DCARD&wid=001&eno=01&mc=1",
+};
+
+const EPOS_CARD_BANNER: BannerConfig = {
+  programName: "エポスカード", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1K5O+TODO_EPOS",
+  width: 300, height: 250,
+  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_EPOS&wid=001&eno=01&mc=1",
+};
+
+const LIFECARD_BANNER: BannerConfig = {
+  programName: "ライフカード", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1K5O+TODO_LIFECARD",
+  width: 300, height: 250,
+  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_LIFECARD&wid=001&eno=01&mc=1",
+};
+
 // ─── Fukugyo ──────────────────────────────────────────────────
 const INFRAAI_BANNER: BannerConfig = {
   programName: "infraAI", affiliateId: "a26021579611",
@@ -132,6 +176,8 @@ export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
   56: [GIFTS_BANNER],
   57: [INFRAAI_BANNER],  // Fukugyo: infraAI
   59: [DMMFX_BANNER, GAIATE_BANNER, FXBROAD_BANNER],  // FX
+  // クレカ: 申請承認後に TODO_xxx を実URLに差し替え
+  60: [RAKUTEN_CARD_BANNER, SMBC_CARD_BANNER, JCB_CARD_BANNER, DCARD_GOLD_BANNER, EPOS_CARD_BANNER, LIFECARD_BANNER],
 };
 
 // ─── 記事固有バナー（レビュー記事はその製品を優先表示）──────
@@ -227,6 +273,18 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
 
   // ── 仮想通貨 ─────────────────────────────────────────────────
   758: [],  // bitFlyer評判: バナーなし（Coincheckリンクは現状維持）
+
+  // ── クレジットカード（ASP申請後にTODO_xxx → 実URLに差し替え） ────
+  800: [RAKUTEN_CARD_BANNER, SMBC_CARD_BANNER, JCB_CARD_BANNER, DCARD_GOLD_BANNER, EPOS_CARD_BANNER],  // ランキング
+  801: [RAKUTEN_CARD_BANNER],       // 楽天カードレビュー
+  802: [SMBC_CARD_BANNER],          // 三井住友(NL)レビュー
+  803: [JCB_CARD_BANNER],           // JCBカード Wレビュー
+  804: [DCARD_GOLD_BANNER],         // dカード GOLDレビュー
+  805: [RAKUTEN_CARD_BANNER, SMBC_CARD_BANNER, JCB_CARD_BANNER, EPOS_CARD_BANNER, LIFECARD_BANNER],  // 年会費無料比較
+  806: [RAKUTEN_CARD_BANNER, EPOS_CARD_BANNER, LIFECARD_BANNER],  // 初めてのカード
+  807: [RAKUTEN_CARD_BANNER, SMBC_CARD_BANNER, JCB_CARD_BANNER, DCARD_GOLD_BANNER],  // 還元率比較
+  808: [EPOS_CARD_BANNER],          // エポスカードレビュー
+  809: [SMBC_CARD_BANNER, DCARD_GOLD_BANNER],  // ゴールドカード比較
 };
 
 export function getBannersForArticle(postId: number, categoryIds: number[]): BannerConfig[] {

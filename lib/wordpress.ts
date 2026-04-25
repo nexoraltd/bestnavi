@@ -35,11 +35,13 @@ export const CATEGORY_MAP: Record<string, CategoryMeta> = {
   fukugyo: { wpId: 57, title: "副業・スキルアップ比較",      iconKey: "trending-up",     description: "SideLine・infraAIなど在宅でできる副業・AIスキル習得サービスを比較",    productCount: 2,  tags: ["副業初心者", "社会人"],          trustBadge: "提携2サービス掲載",     topPickReason: "副業で稼ぐAI・ITスキル習得サービスを解説" },
   fx:      { wpId: 59, title: "FX比較ランキング",             iconKey: "trending-up",     description: "DMM FX・外為オンライン・ひまわり証券・FXブロードネットをスプレッド・ツールで徹底比較", productCount: 4,  tags: ["FX初心者", "自動売買"],          trustBadge: "提携4社掲載",           topPickReason: "スプレッド・ツール・キャンペーンでFX会社を徹底比較" },
   esim:    { wpId: 50, title: "eSIM比較ランキング",            iconKey: "smartphone",      description: "Airalo・Rakulinkなど海外旅行・海外出張向けeSIMサービスを料金・対応国・使いやすさで徹底比較", productCount: 2, tags: ["海外旅行", "海外出張"],          trustBadge: "提携2サービス掲載",     topPickReason: "世界200カ国対応Airaloを中心にeSIMの選び方を解説" },
+  "credit-card": { wpId: 60, title: "クレジットカード比較",   iconKey: "credit-card",     description: "楽天カード・三井住友カード(NL)・JCBカード Wなど年会費無料の高還元クレジットカードを徹底比較。初めてのカード選びから高単価ゴールドカードまで解説。", productCount: 6, tags: ["年会費無料", "ポイント高還元"],   trustBadge: "提携6サービス掲載",     topPickReason: "楽天カード・三井住友(NL)・JCBカード Wをポイント還元・特典で比較" },
 };
 
 // ランキング記事を各カテゴリ先頭に固定
 const PINNED_TOP_BY_CATEGORY: Record<number, number[]> = {
   48: [189, 337, 335, 340, 756, 757, 566, 205, 206, 261, 339, 338, 578, 579],  // VPN: ランキング→テレワーク→Netflix→iPhone→NordVPN vs ExpressVPN→iOS設定ガイド→無料体験→NordVPN→Surfshark→Millen→ExpressVPN→Rakulink→Mac→Netflix海外
+  60: [800, 805, 806, 807, 801, 802, 803, 804, 808, 809],                    // クレカ: ランキング→年会費無料比較→初めてのカード→ポイント還元率比較→楽天→三井住友(NL)→JCB W→dカードGOLD→エポス→ゴールド比較
   50: [712, 715, 716, 717],                  // eSIM: ランキング→Airalo口コミ→海外旅行比較→設定ガイド
   51: [210, 296, 211, 209, 259, 295, 560, 564, 551, 553, 559, 550, 556, 576, 577],  // Server: ランキング→比較→WordPress→Xserver→ConoHa→Kinsta→全サービス→WP専用→VPSランキング→ゲームサーバー→WindowsVPS→Business→XServerビジネス→XServerBiz評判→格安比較
   54: [285, 367, 385, 388, 389],             // English: ランキング→BestTeacher→GSA→ECC→NOVA

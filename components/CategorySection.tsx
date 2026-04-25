@@ -4,19 +4,19 @@ import Link from "next/link";
 import {
   Shield,
   Server,
-  Bot,
   TrendingUp,
-  Bitcoin,
+  Smartphone,
   ChevronRight,
+  CreditCard,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 const categories: { id: string; name: string; icon: LucideIcon; count: number }[] = [
+  { id: "credit-card", name: "クレジットカード", icon: CreditCard, count: 10 },
   { id: "vpn", name: "VPN", icon: Shield, count: 12 },
   { id: "server", name: "レンタルサーバー", icon: Server, count: 15 },
-  { id: "ai", name: "AIツール", icon: Bot, count: 20 },
   { id: "fx", name: "FX口座", icon: TrendingUp, count: 8 },
-  { id: "crypto", name: "仮想通貨取引所", icon: Bitcoin, count: 10 },
+  { id: "esim", name: "eSIM", icon: Smartphone, count: 4 },
 ];
 
 export function CategorySection() {

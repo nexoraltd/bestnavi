@@ -10,6 +10,7 @@ import {
   Globe,
   ShieldCheck,
   Award,
+  CreditCard,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -24,6 +25,7 @@ const iconMap: Record<string, LucideIcon> = {
   "graduation-cap": GraduationCap,
   globe: Globe,
   "shield-check": ShieldCheck,
+  "credit-card": CreditCard,
 };
 
 export function getCategoryIcon(iconKey: string): LucideIcon {
