@@ -3,11 +3,12 @@
 import Link from "next/link";
 import {
   Shield, Server, Globe, GraduationCap, Briefcase, TrendingUp,
-  ChevronRight, Flame, FolderOpen,
+  ChevronRight, Flame, FolderOpen, CreditCard,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 const categories: { name: string; icon: LucideIcon; href: string }[] = [
+  { name: "クレカ",        icon: CreditCard,       href: "/ranking/credit-card" },
   { name: "VPN",           icon: Shield,          href: "/ranking/vpn" },
   { name: "FX口座",        icon: TrendingUp,       href: "/ranking/fx" },
   { name: "レンタルサーバー", icon: Server,        href: "/ranking/server" },
@@ -18,6 +19,7 @@ const categories: { name: string; icon: LucideIcon; href: string }[] = [
 ];
 
 const popularRankings = [
+  { title: "クレジットカードおすすめ比較",   href: "/ranking/credit-card" },
   { title: "VPNおすすめランキング",          href: "/ranking/vpn" },
   { title: "FX口座おすすめランキング",       href: "/ranking/fx" },
   { title: "レンタルサーバー比較",           href: "/ranking/server" },

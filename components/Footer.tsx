@@ -30,6 +30,7 @@ export function Footer() {
             <h4 style={{ color: "var(--text-primary)", fontWeight: 700, fontSize: 13, marginBottom: 14 }}>カテゴリ</h4>
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
               {[
+                { name: "クレジットカード", slug: "credit-card" },
                 { name: "VPN比較", slug: "vpn" },
                 { name: "レンタルサーバー", slug: "server" },
                 { name: "英会話スクール", slug: "english" },

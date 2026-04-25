@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { Shield, Server, Globe, GraduationCap, Briefcase, TrendingUp } from "lucide-react";
+import { Shield, Server, Globe, GraduationCap, Briefcase, TrendingUp, CreditCard } from "lucide-react";
 
 
 const categories = [
+  { name: "クレカ",   icon: CreditCard,     href: "/ranking/credit-card" },
   { name: "VPN",      icon: Shield,         href: "/ranking/vpn" },
   { name: "FX",       icon: TrendingUp,     href: "/ranking/fx" },
   { name: "サーバー", icon: Server,         href: "/ranking/server" },
