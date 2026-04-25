@@ -114,6 +114,13 @@ const FXBROAD_BANNER: BannerConfig = {
   imageUrl: "https://img.tcs-asp.net/imagesender?ac=C140972&lc=FXTS1&isq=3&psq=0",
 };
 
+const FXTF_BANNER: BannerConfig = {
+  programName: "FXTF", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THU+7DJCKY+48D0+626XT",
+  width: 300, height: 250,
+  imageUrl: "https://www20.a8.net/svt/bgt?aid=260425362446&wid=001&eno=01&mid=s00000019746001018000&mc=1",
+};
+
 // ─── クレジットカード ──────────────────────────────────────────
 // TODO: A8.net/バリューコマース/もしも で各カード申請後にURLを設定
 const RAKUTEN_CARD_BANNER: BannerConfig = {
@@ -175,7 +182,7 @@ export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
   55: [WINSCHOOL_BANNER, LIFETECH_BANNER],
   56: [GIFTS_BANNER],
   57: [INFRAAI_BANNER],  // Fukugyo: infraAI
-  59: [DMMFX_BANNER, GAIATE_BANNER, FXBROAD_BANNER],  // FX
+  59: [FXTF_BANNER, DMMFX_BANNER, GAIATE_BANNER, FXBROAD_BANNER],  // FX
   // クレカ: 申請承認後に TODO_xxx を実URLに差し替え
   60: [RAKUTEN_CARD_BANNER, SMBC_CARD_BANNER, JCB_CARD_BANNER, DCARD_GOLD_BANNER, EPOS_CARD_BANNER, LIFECARD_BANNER],
 };
@@ -253,9 +260,9 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
 
   // ── FX ───────────────────────────────────────────────────────
   // ランキング・まとめ → 全バナー
-  700: [DMMFX_BANNER, GAIATE_BANNER, FXBROAD_BANNER],
-  705: [DMMFX_BANNER, GAIATE_BANNER],   // FX初心者ガイド
-  706: [DMMFX_BANNER, GAIATE_BANNER, FXBROAD_BANNER],  // FXスプレッド比較
+  700: [FXTF_BANNER, DMMFX_BANNER, GAIATE_BANNER, FXBROAD_BANNER],
+  705: [FXTF_BANNER, DMMFX_BANNER, GAIATE_BANNER],   // FX初心者ガイド
+  706: [FXTF_BANNER, DMMFX_BANNER, GAIATE_BANNER, FXBROAD_BANNER],  // FXスプレッド比較
   // 個別記事 → その製品のバナーのみ
   701: [DMMFX_BANNER],
   702: [GAIATE_BANNER],
