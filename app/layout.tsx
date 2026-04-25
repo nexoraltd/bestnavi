@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Script from "next/script";
+import AnalyticsScripts from "@/components/AnalyticsScripts";
 import "./globals.css";
 
 const SITE_URL = "https://navi.next-aura.com";
@@ -81,70 +81,32 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
-        {/* DNS Prefetch & Preconnect */}
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://www.clarity.ms" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Noto Sans JP: 400/700/900のみ（500は使用なし → バンドル削減） */}
+        <link key="dns-fonts" rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link key="dns-gtm" rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link key="dns-clarity" rel="dns-prefetch" href="https://www.clarity.ms" />
+        <link key="pre-fonts" rel="preconnect" href="https://fonts.googleapis.com" />
+        <link key="pre-gstatic" rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
+          key="font-noto"
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap"
           rel="stylesheet"
         />
-        {/* RSS フィード自動検出 */}
-        <link rel="alternate" type="application/rss+xml" title="ベストナビ RSS" href="/feed.xml" />
-        {/* 構造化データ: Organization + WebSite */}
+        <link key="rss" rel="alternate" type="application/rss+xml" title="ベストナビ RSS" href="/feed.xml" />
         <script
+          key="ld-org"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         <script
+          key="ld-website"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
-        {/* Google Tag (GT-MJKTVK4Z) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=GT-MJKTVK4Z"
-          strategy="afterInteractive"
-        />
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'GT-MJKTVK4Z');
-          `}
-        </Script>
-        {/* Microsoft Clarity */}
-        <Script id="ms-clarity" strategy="afterInteractive">
-          {`
-            (function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window,document,"clarity","script","w7z622ubxw");
-          `}
-        </Script>
-        {/* Affiliate Click Tracking */}
-        <Script id="aff-click-track" strategy="afterInteractive">
-          {`
-            document.addEventListener('click', function(e) {
-              var link = e.target.closest('a[href*="tcs-asp.net"], a[href*="a8.net"], a[href*="moshimo.com"], a[href*="nordvpn"], a[href*="surfshark"], a[href*="kinsta"]');
-              if (link) {
-                gtag('event', 'affiliate_click', {
-                  event_category: 'affiliate',
-                  event_label: link.href,
-                  link_url: link.href,
-                  link_text: link.textContent.trim().substring(0, 50),
-                  page_path: window.location.pathname
-                });
-              }
-            });
-          `}
-        </Script>
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <AnalyticsScripts />
+      </body>
     </html>
   );
 }
