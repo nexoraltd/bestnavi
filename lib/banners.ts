@@ -121,6 +121,28 @@ const FXTF_BANNER: BannerConfig = {
   imageUrl: "https://www20.a8.net/svt/bgt?aid=260425362446&wid=001&eno=01&mid=s00000019746001018000&mc=1",
 };
 
+// ─── 車買取（即時提携完了） ──────────────────────────────────────
+const UCARPAC_BANNER: BannerConfig = {
+  programName: "ユーカーパック", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+8CNX9U+3O80+626XT",
+  width: 300, height: 250,
+  imageUrl: "https://www29.a8.net/svt/bgt?aid=260425363505&wid=001&eno=01&mid=s00000017136001018000&mc=1",
+};
+
+const CTN_KAITORI_BANNER: BannerConfig = {
+  programName: "CTN車一括査定", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+8D9CVM+5I4S+5YRHE",
+  width: 300, height: 250,
+  imageUrl: "https://www17.a8.net/svt/bgt?aid=260425363506&wid=001&eno=01&mid=s00000025678001050000&mc=1",
+};
+
+const YUNYUSHA_KAITORI_BANNER: BannerConfig = {
+  programName: "輸入車買取センター", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+8C2HO2+57G2+62MDE",
+  width: 300, height: 250,
+  imageUrl: "https://www13.a8.net/svt/bgt?aid=260425363504&wid=001&eno=01&mid=s00000024293001003000&mc=1",
+};
+
 // ─── クレジットカード ──────────────────────────────────────────
 // TODO: A8.net/バリューコマース/もしも で各カード申請後にURLを設定
 const RAKUTEN_CARD_BANNER: BannerConfig = {
@@ -189,7 +211,7 @@ export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
   61: [],  // 転職: doda/マイナビ転職/テンプスタッフ等（バリューコマース/A8/もしも申請待ち）
   62: [],  // 派遣: テンプスタッフ等（A8申請待ち）
   63: [],  // 就活: キャリアチケット/ハタラクティブ等（A8申請待ち）
-  64: [],  // 車買取: カーセブン等（A8申請待ち）
+  64: [UCARPAC_BANNER, CTN_KAITORI_BANNER, YUNYUSHA_KAITORI_BANNER],  // 車買取: ユーカーパック/CTN/輸入車買取センター（A8即時提携完了）
   65: [],  // 法人カード/ETC: FASIO/法人ETC/法人ガソリン（A8提携完了→リンク取得待ち）
   66: [],  // 会計・確定申告: マネーフォワード/freee/弥生（A8提携完了→リンク取得待ち）
   67: [],  // WiFi・SIM: 誰でもWi-Fi/Lyprimo/スマホプリペイド（A8提携完了→リンク取得待ち）
