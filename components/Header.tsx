@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Shield, Server, Globe, GraduationCap, Briefcase, TrendingUp, Search, Menu, X } from "lucide-react";
+import { Shield, Server, Globe, GraduationCap, Briefcase, TrendingUp, Search, Menu, X, CreditCard } from "lucide-react";
 
 const categories = [
+  { name: "クレカ",   href: "/ranking/credit-card", icon: CreditCard },
   { name: "VPN",      href: "/ranking/vpn",     icon: Shield },
   { name: "FX",       href: "/ranking/fx",       icon: TrendingUp },
   { name: "サーバー", href: "/ranking/server",   icon: Server },
