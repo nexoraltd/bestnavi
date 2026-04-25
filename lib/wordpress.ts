@@ -36,6 +36,10 @@ export const CATEGORY_MAP: Record<string, CategoryMeta> = {
   fx:      { wpId: 59, title: "FX比較ランキング",             iconKey: "trending-up",     description: "DMM FX・外為オンライン・ひまわり証券・FXブロードネットをスプレッド・ツールで徹底比較", productCount: 4,  tags: ["FX初心者", "自動売買"],          trustBadge: "提携4社掲載",           topPickReason: "スプレッド・ツール・キャンペーンでFX会社を徹底比較" },
   esim:    { wpId: 50, title: "eSIM比較ランキング",            iconKey: "smartphone",      description: "Airalo・Rakulinkなど海外旅行・海外出張向けeSIMサービスを料金・対応国・使いやすさで徹底比較", productCount: 2, tags: ["海外旅行", "海外出張"],          trustBadge: "提携2サービス掲載",     topPickReason: "世界200カ国対応Airaloを中心にeSIMの選び方を解説" },
   "credit-card": { wpId: 60, title: "クレジットカード比較",   iconKey: "credit-card",     description: "楽天カード・三井住友カード(NL)・JCBカード Wなど年会費無料の高還元クレジットカードを徹底比較。初めてのカード選びから高単価ゴールドカードまで解説。", productCount: 6, tags: ["年会費無料", "ポイント高還元"],   trustBadge: "提携6サービス掲載",     topPickReason: "楽天カード・三井住友(NL)・JCBカード Wをポイント還元・特典で比較" },
+  tenshoku: { wpId: 61, title: "転職エージェント比較",        iconKey: "briefcase",       description: "doda・マイナビ転職・リクルートエージェントなど人気転職エージェントを求人数・サポート・年齢別におすすめを徹底比較。転職成功率を上げる選び方ガイド付き。", productCount: 5, tags: ["20-40代", "初めての転職"],      trustBadge: "提携5サービス掲載",     topPickReason: "求人数・サポート・得意領域で転職エージェントを徹底比較" },
+  haken:    { wpId: 62, title: "派遣会社比較ランキング",      iconKey: "users",           description: "テンプスタッフ・スタッフサービス・パソナなど大手派遣会社を求人数・福利厚生・サポートで徹底比較。派遣会社の選び方と登録の流れも解説。", productCount: 4, tags: ["派遣初心者", "事務・軽作業"],    trustBadge: "提携4サービス掲載",     topPickReason: "求人数・時給・福利厚生で派遣会社を徹底比較" },
+  shukatsu: { wpId: 63, title: "就活エージェント比較",        iconKey: "graduation-cap",  description: "キャリアチケット・ハタラクティブ・就職エージェントneoなど新卒・既卒向け就活エージェントを内定率・サポートで徹底比較。就活を成功させる選び方ガイド付き。", productCount: 4, tags: ["新卒・既卒", "未経験OK"],        trustBadge: "提携4サービス掲載",     topPickReason: "内定率・求人数・サポート充実度で就活エージェントを比較" },
+  kuruma:   { wpId: 64, title: "車買取サービス比較",          iconKey: "trending-up",     description: "カーセブン・ガリバー・ネクステージなど車買取・一括査定サービスを査定額・手続きのしやすさで徹底比較。愛車を高く売るためのコツも解説。", productCount: 4, tags: ["一括査定", "高額買取"],           trustBadge: "提携4サービス掲載",     topPickReason: "査定額・手数料・手続きのしやすさで車買取サービスを比較" },
 };
 
 // ランキング記事を各カテゴリ先頭に固定
@@ -49,6 +53,10 @@ const PINNED_TOP_BY_CATEGORY: Record<number, number[]> = {
   56: [290, 291, 562, 565, 289, 292, 293],   // Career: ランキング→テックゴー→エンジニア比較→40代→エストレ→ウズウズ→社内SE
   57: [601, 600, 602, 603, 604, 605],        // Fukugyo: 副業ランキング→SideLine→infraAI→Webデザイン→動画編集→AI副業
   59: [700, 705, 701, 750, 702, 751, 703, 754, 755, 561, 714, 706, 707, 752, 753],  // FX: ランキング→始め方→DMM FX→外為オンライン(新)→旧外為→ひまわり(新)→FXブロードネット→SBI FX→GMOクリック→FX用VPS→口座選び→スプレッド→自動売買→税金→スマホアプリ
+  61: [900],  // 転職: ランキングLP
+  62: [910],  // 派遣: ランキングLP
+  63: [920],  // 就活: ランキングLP
+  64: [930],  // 車買取: ランキングLP
 };
 
 export function isHighCvr(_postId: number): boolean {
