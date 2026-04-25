@@ -185,6 +185,11 @@ export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
   59: [FXTF_BANNER, DMMFX_BANNER, GAIATE_BANNER, FXBROAD_BANNER],  // FX
   // クレカ: 申請承認後に TODO_xxx を実URLに差し替え
   60: [RAKUTEN_CARD_BANNER, SMBC_CARD_BANNER, JCB_CARD_BANNER, DCARD_GOLD_BANNER, EPOS_CARD_BANNER, LIFECARD_BANNER],
+  // 新カテゴリ: ASP申請承認後にバナー追加
+  61: [],  // 転職: doda/マイナビ転職/テンプスタッフ等（バリューコマース/A8/もしも申請待ち）
+  62: [],  // 派遣: テンプスタッフ等（A8申請待ち）
+  63: [],  // 就活: キャリアチケット/ハタラクティブ等（A8申請待ち）
+  64: [],  // 車買取: カーセブン等（A8申請待ち）
 };
 
 // ─── 記事固有バナー（レビュー記事はその製品を優先表示）──────
@@ -292,6 +297,12 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
   807: [RAKUTEN_CARD_BANNER, SMBC_CARD_BANNER, JCB_CARD_BANNER, DCARD_GOLD_BANNER],  // 還元率比較
   808: [EPOS_CARD_BANNER],          // エポスカードレビュー
   809: [SMBC_CARD_BANNER, DCARD_GOLD_BANNER],  // ゴールドカード比較
+
+  // ── 転職/派遣/就活/車買取（ASP申請承認後にバナー追加）────
+  900: [],  // 転職エージェントランキング
+  910: [],  // 派遣会社ランキング
+  920: [],  // 就活エージェントランキング
+  930: [],  // 車買取ランキング
 };
 
 export function getBannersForArticle(postId: number, categoryIds: number[]): BannerConfig[] {
