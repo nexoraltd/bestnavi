@@ -74,6 +74,18 @@ URLS = [
     "/it-tenshoku-agent/",
     "/fukugyou-zaitaku/",
     "/2026ai5/",
+    "/post/saily-esim-review-2026/",
+    "/post/surfshark-antivirus-review-2026/",
+    "/post/yayoi-series-review-2026/",
+    "/post/kojo-kyujin-folder-review-2026/",
+    "/post/dinomo-wifi-review-2026/",
+    "/post/kimini-eikaiwa-review-2026/",
+    "/post/rakulink-esim-review-2026/",
+    "/post/worldtalk-eikaiwa-review-2026/",
+    "/post/daytora-programming-review-2026/",
+    "/post/nomad-sim-review-2026/",
+    "/post/dmm-webcamp-review-2026/",
+    "/post/moneyforward-cloud-review-2026/",
 ]
 
 
