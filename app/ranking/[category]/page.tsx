@@ -1,63 +1,13 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Sidebar } from "@/components/Sidebar";
 import { CATEGORY_MAP, getPostsByCategory } from "@/lib/wordpress";
 import { getCategoryIcon } from "@/lib/category-icons";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ChevronRight, Calendar, ExternalLink } from "lucide-react";
+import { ChevronRight, Calendar, ShieldCheck, Tag, Award, ArrowRight, ExternalLink } from "lucide-react";
 
 const SITE_URL = "https://navi.next-aura.com";
-
-// カテゴリ別絞り込みフィルター定義
-const FILTER_GROUPS: Record<
-  string,
-  { label: string; type: "radio" | "checkbox"; options: string[] }[]
-> = {
-  vpn: [
-    { label: "月額料金", type: "radio", options: ["指定なし", "¥500以下", "¥500〜¥1,000", "¥1,000以上"] },
-    { label: "接続台数", type: "radio", options: ["指定なし", "1〜5台", "6台以上", "無制限"] },
-    { label: "対応OS", type: "checkbox", options: ["Windows", "Mac", "iOS", "Android"] },
-    { label: "特徴", type: "checkbox", options: ["ログなし", "返金保証", "P2P対応", "帯域無制限"] },
-  ],
-  server: [
-    { label: "月額料金", type: "radio", options: ["指定なし", "¥1,000以下", "¥1,000〜¥2,000", "¥2,000以上"] },
-    { label: "特徴", type: "checkbox", options: ["WordPress対応", "無料お試し", "独自ドメイン無料", "高速SSD"] },
-  ],
-  english: [
-    { label: "受講形式", type: "radio", options: ["指定なし", "オンライン", "通学"] },
-    { label: "対象", type: "checkbox", options: ["初心者向け", "子供向け", "TOEIC対策", "ビジネス英語"] },
-  ],
-  school: [
-    { label: "学習スタイル", type: "radio", options: ["指定なし", "動画+メンター", "通学", "オンライン完結"] },
-    { label: "目的", type: "checkbox", options: ["就転職サポート", "未経験歓迎", "副業向け", "転職保証"] },
-  ],
-  career: [
-    { label: "対象年齢", type: "radio", options: ["指定なし", "20代", "30代", "40代以上"] },
-    { label: "特徴", type: "checkbox", options: ["未経験OK", "完全無料", "転職保証", "スキル習得付き"] },
-  ],
-  fukugyo: [
-    { label: "副業の種類", type: "radio", options: ["指定なし", "Webデザイン", "動画編集", "AI活用"] },
-    { label: "特徴", type: "checkbox", options: ["在宅OK", "副業初心者向け", "スキル習得から"] },
-  ],
-  fx: [
-    { label: "スプレッド", type: "radio", options: ["指定なし", "最狭水準", "業界平均以下"] },
-    { label: "特徴", type: "checkbox", options: ["FX初心者向け", "自動売買対応", "キャッシュバック"] },
-  ],
-  esim: [
-    { label: "用途", type: "radio", options: ["指定なし", "海外旅行", "海外出張", "長期滞在"] },
-    { label: "特徴", type: "checkbox", options: ["200カ国対応", "アプリで即購入", "データ追加可"] },
-  ],
-};
-const DEFAULT_FILTERS = [
-  { label: "料金", type: "radio" as const, options: ["指定なし", "安い順", "高い順"] },
-  { label: "特徴", type: "checkbox" as const, options: ["初心者向け", "無料お試し", "サポート充実"] },
-];
-
-const RANK_STYLE: Record<number, { bg: string; color: string; label: string }> = {
-  1: { bg: "linear-gradient(135deg,#f59e0b,#d97706)", color: "#fff", label: "1位" },
-  2: { bg: "linear-gradient(135deg,#9ca3af,#6b7280)", color: "#fff", label: "2位" },
-  3: { bg: "linear-gradient(135deg,#cd7f32,#a0522d)", color: "#fff", label: "3位" },
-};
 
 const CATEGORY_FAQ: Record<string, { q: string; a: string }[]> = {
   vpn: [
@@ -71,26 +21,37 @@ const CATEGORY_FAQ: Record<string, { q: string; a: string }[]> = {
     { q: "レンタルサーバーとVPSの違いは何ですか？", a: "レンタルサーバーは複数ユーザーでサーバーを共有する形式で初心者向け。VPSは仮想的に専用サーバーを持つ形式でカスタマイズ性が高い反面、技術知識が必要です。WordPressブログ初心者にはレンタルサーバーが最適です。" },
     { q: "WordPressに最適なサーバーはどれですか？", a: "国内サイトはエックスサーバーまたはConoHa WINGがコスパ・速度ともに最高クラスです。海外向けや高トラフィックサイトにはKinstaが向いています。" },
     { q: "初心者でもサーバーは設定できますか？", a: "エックスサーバー・ConoHa WINGはWordPressの自動インストール機能があり、初心者でも10分以内にブログを開設できます。サポートも充実しているので安心して使えます。" },
+    { q: "無料お試し期間はありますか？", a: "エックスサーバーは10日間無料トライアル、ConoHa WINGは最大2ヶ月無料キャンペーンを実施しています（時期によって変わる場合あり）。" },
   ],
   english: [
     { q: "オンライン英会話はどれくらいで効果が出ますか？", a: "毎日15〜30分学習した場合、3〜6ヶ月で日常会話レベルの向上を実感する方が多いです。ビジネス英語・TOEICスコアアップには6〜12ヶ月の継続学習が目安です。" },
     { q: "英語が全く話せなくても受講できますか？", a: "はい。BestTeacherは英作文から始めるため初心者でも安心です。Global Step AcademyはゼロからのカリキュラムでECC・NOVAも入門コースがあります。" },
+    { q: "子供に英会話を習わせるならどれがいいですか？", a: "Global Step Academyが子供向けとして特に人気です。ECC外語学院・駅前留学NOVAも子供向けコースを全国展開しており、送迎なしで自宅受講できるオンラインコースも選べます。" },
+    { q: "通学型とオンライン英会話、どちらがいいですか？", a: "継続のしやすさでいえばオンライン、規律・環境づくりには通学型が向いています。ECC・NOVAは通学・オンラインどちらにも対応しているので、生活スタイルで選べます。" },
   ],
   school: [
     { q: "プログラミングスクールは完全未経験でも入れますか？", a: "はい。Life is Tech!・Winスクール・インターノウスはすべて未経験・初心者歓迎です。無料カウンセリングで自分のレベルと目標を確認した上で最適なコースを選べます。" },
+    { q: "プログラミング習得にどれくらいかかりますか？", a: "Webサイト制作の基礎なら1〜3ヶ月、就転職可能なエンジニアレベルには3〜6ヶ月が目安です。毎日1〜2時間の学習習慣が最短ルートです。" },
     { q: "社会人が働きながら学べますか？", a: "Winスクールはオンライン動画で自分のペースで学習できます。インターノウスもオンライン完結コースがあり、平日夜・週末に学習できます。" },
+    { q: "プログラミングスクールの費用はどれくらいですか？", a: "目的・期間によって数万円〜数十万円が相場です。インターノウスは転職支援込みのためトータルコスパが高く、無料カウンセリングで費用の詳細を確認できます。" },
   ],
   career: [
-    { q: "未経験からIT業界に転職できますか？", a: "可能です。ウズウズカレッジやエストレのようなスキル習得+転職支援のサービスを使えば、未経験からエンジニア・Webデザイナーへの転職実績が多数あります。" },
-    { q: "IT転職エージェントは完全無料ですか？", a: "はい。テックゴー・社内SE転職ナビは求職者側は完全無料です（費用は採用企業が負担）。" },
+    { q: "IT転職に資格は必要ですか？", a: "必須ではありません。実務経験・ポートフォリオが重視されます。ただし基本情報技術者試験・AWSなどのクラウド資格があると書類選考で有利になることが多いです。" },
+    { q: "未経験からIT業界に転職できますか？", a: "可能です。ウズウズカレッジやエストレのようなスキル習得+転職支援のサービスを使えば、未経験からエンジニア・Webデザイナー・Webマーケターへの転職実績が多数あります。" },
+    { q: "IT転職エージェントは完全無料ですか？", a: "はい。テックゴー・社内SE転職ナビは求職者側は完全無料です（費用は採用企業が負担）。スキル習得系サービス（ウズウズ・エストレ）は学習費用がかかる場合があります。" },
+    { q: "IT転職後の年収はどれくらい上がりますか？", a: "個人差はありますが、異業種からIT転職した場合、年収50〜200万円アップの事例が多く報告されています。テックゴーでは年収交渉サポートも行っています。" },
   ],
   fukugyo: [
     { q: "副業はどのくらいで収入が発生しますか？", a: "スキル習得に1〜3ヶ月、初案件獲得に1〜2ヶ月かかるのが一般的です。スタートから4〜6ヶ月後に最初の収入を得る方が多く、その後継続案件で安定します。" },
     { q: "副業は会社にバレますか？", a: "住民税の納付方法を「普通徴収」にすることでバレにくくなります。ただし就業規則で副業禁止の場合は事前確認・申告が必要です。" },
+    { q: "副業で月5万円稼ぐのは現実的ですか？", a: "Webデザイン・動画編集・SNS運用代行などのITスキルを習得すれば、6ヶ月〜1年で月5万円は現実的な目標です。SideLineのような副業特化スクールで効率よくスキルを身につけるのがおすすめです。" },
+    { q: "確定申告は必要ですか？", a: "副業収入が年間20万円を超える場合は確定申告が必要です。20万円以下でも住民税の申告が必要な場合があるため、税務署や税理士に確認することをおすすめします。" },
   ],
   fx: [
     { q: "FXとは何ですか？", a: "FX（外国為替証拠金取引）は、円・ドル・ユーロなど異なる通貨を交換する取引で、為替レートの変動を利用して利益を狙います。少ない資金でもレバレッジをかけて大きな取引が可能です。" },
     { q: "FXは初心者でも始められますか？", a: "はい。口座開設は無料で、1000円程度の少額から取引できます。ただしレバレッジによる損失リスクもあるため、まずデモトレードで練習することをおすすめします。" },
+    { q: "スプレッドとは何ですか？", a: "スプレッドとは買値と売値の差額で、FX取引のコストです。スプレッドが狭いほど取引コストが安くなります。DMM FXは主要通貨ペアのスプレッドが業界最狭水準です。" },
+    { q: "FXで損失が出た場合、追加の損失はありますか？", a: "国内FX会社はほぼすべてゼロカットシステムを採用しており、口座残高以上の損失は発生しません。ロスカット機能で一定以上の損失が出ると自動的に決済されます。" },
   ],
 };
 
@@ -144,253 +105,183 @@ export default async function RankingPage({
 
   const Icon = getCategoryIcon(meta.iconKey);
   const posts = meta.wpId ? await getPostsByCategory(meta.wpId) : [];
-  const filters = FILTER_GROUPS[category] || DEFAULT_FILTERS;
-  const faqs = CATEGORY_FAQ[category] || [];
+  const [firstPost, ...restPosts] = posts;
 
-  // 構造化データ
+  // JSON-LD 構造化データ
   const itemListJsonLd = posts.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: `${meta.title}【2026年最新】`,
-    description: meta.description,
-    url: `${SITE_URL}/ranking/${category}`,
-    itemListElement: posts.slice(0, 10).map((post, i) => ({
+    "name": `${meta.title}【2026年最新】`,
+    "description": meta.description,
+    "url": `${SITE_URL}/ranking/${category}`,
+    "itemListElement": posts.slice(0, 10).map((post, i) => ({
       "@type": "ListItem",
-      position: i + 1,
-      name: post.title.rendered.replace(/<[^>]+>/g, ""),
-      url: `${SITE_URL}/post/${post.slug}`,
-    })),
+      "position": i + 1,
+      "name": post.title.rendered.replace(/<[^>]+>/g, ""),
+      "url": `${SITE_URL}/post/${post.slug}`
+    }))
   } : null;
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: meta.title, item: `${SITE_URL}/ranking/${category}` },
-    ],
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "ホーム", "item": SITE_URL },
+      { "@type": "ListItem", "position": 2, "name": meta.title, "item": `${SITE_URL}/ranking/${category}` }
+    ]
   };
 
+  const faqs = CATEGORY_FAQ[category] || [];
   const faqJsonLd = faqs.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map(({ q, a }) => ({
+    "mainEntity": faqs.map(({ q, a }) => ({
       "@type": "Question",
-      name: q,
-      acceptedAnswer: { "@type": "Answer", text: a },
-    })),
+      "name": q,
+      "acceptedAnswer": { "@type": "Answer", "text": a }
+    }))
   } : null;
 
   return (
     <div style={{ background: "var(--bg-warm)", minHeight: "100vh" }}>
-      {itemListJsonLd && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
-      )}
+      {itemListJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      {faqJsonLd && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      )}
-
+      {faqJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />}
       <Header />
-
-      {/* Breadcrumb */}
-      <div style={{ background: "#fff", borderBottom: "1px solid var(--border)", padding: "8px 16px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "flex", alignItems: "center", gap: 4, fontSize: 12, color: "var(--text-muted)" }}>
-          <Link href="/" style={{ color: "var(--accent)", textDecoration: "none" }}>ホーム</Link>
-          <ChevronRight size={12} />
-          <span>{meta.title}</span>
-        </div>
-      </div>
-
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "20px 16px" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "28px 16px" }}>
         <div
-          className="ranking-layout"
-          style={{ display: "grid", gridTemplateColumns: "240px 1fr", gap: 20, alignItems: "start" }}
+          style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: 28, alignItems: "start" }}
+          className="main-grid"
         >
-          {/* ===== Left: Filter sidebar ===== */}
-          <aside style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "var(--radius-md)", padding: "16px", position: "sticky", top: 16 }}>
-            <h3 style={{ fontSize: 13, fontWeight: 700, marginBottom: 14, color: "var(--text-primary)", borderBottom: "2px solid var(--accent)", paddingBottom: 8 }}>
-              絞り込み条件
-            </h3>
-
-            {filters.map((group) => (
-              <div key={group.label} style={{ marginBottom: 16 }}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: "var(--text-secondary)", marginBottom: 8 }}>
-                  {group.label}
-                </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  {group.options.map((opt) => (
-                    <label key={opt} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, color: "var(--text-primary)", cursor: "pointer" }}>
-                      <input
-                        type={group.type}
-                        name={group.label}
-                        defaultChecked={group.type === "radio" && opt === "指定なし"}
-                        style={{ accentColor: "var(--accent)", cursor: "pointer" }}
-                      />
-                      {opt}
-                    </label>
-                  ))}
-                </div>
-              </div>
-            ))}
-
-            <button
-              style={{
-                width: "100%",
-                background: "var(--accent)",
-                color: "#fff",
-                border: "none",
-                borderRadius: "var(--radius-sm)",
-                padding: "10px",
-                fontSize: 13,
-                fontWeight: 700,
-                cursor: "pointer",
-                marginTop: 4,
-              }}
-            >
-              この条件で表示
-            </button>
-          </aside>
-
-          {/* ===== Right: Main content ===== */}
           <main>
-            {/* Title bar */}
-            <div style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "var(--radius-md)", padding: "14px 18px", marginBottom: 12 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
-                <div style={{ width: 28, height: 28, borderRadius: 7, background: "var(--accent)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <Icon size={15} strokeWidth={2} style={{ color: "#fff" }} />
+            {/* Header */}
+            <div style={{ marginBottom: 6 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+                <div style={{ width: 34, height: 34, borderRadius: 8, background: "var(--accent)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <Icon size={18} strokeWidth={2} style={{ color: "#fff" }} />
                 </div>
-                <h1 style={{ fontSize: 18, fontWeight: 800, color: "var(--text-primary)" }}>{meta.title}</h1>
+                <h1 style={{ fontSize: 22, fontWeight: 800 }}>{meta.title}</h1>
               </div>
+
+
               {meta.description && (
-                <p style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.7, margin: 0 }}>
+                <p style={{ color: "var(--text-secondary)", fontSize: 14, lineHeight: 1.8, marginBottom: 20 }}>
                   {meta.description}
                 </p>
               )}
             </div>
 
-            {/* Sort bar */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10, fontSize: 13 }}>
-              <span style={{ color: "var(--text-muted)" }}>
-                <strong style={{ color: "var(--text-primary)" }}>{posts.length}</strong>件
-              </span>
-              <div style={{ display: "flex", alignItems: "center", gap: 6, color: "var(--text-secondary)" }}>
-                並べ替え:
-                <select style={{ fontSize: 13, border: "1px solid var(--border)", borderRadius: 4, padding: "3px 8px", color: "var(--text-primary)", background: "#fff", cursor: "pointer" }}>
-                  <option>人気ランキング順</option>
-                  <option>新着順</option>
-                </select>
-              </div>
-            </div>
-
-            {/* Article cards */}
             {posts.length === 0 ? (
-              <div style={{ background: "#fff", borderRadius: "var(--radius-md)", padding: "36px", textAlign: "center", color: "var(--text-muted)", border: "1px solid var(--border)" }}>
-                このカテゴリの記事は準備中です。
+              <div style={{ background: "#fff", borderRadius: "var(--radius-lg)", padding: "36px 24px", textAlign: "center", color: "var(--text-muted)", border: "1px solid var(--border)" }}>
+                <p>このカテゴリの記事は準備中です。</p>
               </div>
             ) : (
-              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                {posts.map((post, i) => {
-                  const rank = i + 1;
-                  const rankStyle = RANK_STYLE[rank];
-                  const title = stripHtml(post.title.rendered);
-                  const excerpt = stripHtml(post.excerpt.rendered).slice(0, 120);
-                  const updatedDate = new Date(post.modified).toLocaleDateString("ja-JP");
-
-                  return (
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                {/* 1位カード - 大型 */}
+                {firstPost && (
+                  <Link href={`/post/${firstPost.slug}`} style={{ textDecoration: "none", color: "inherit" }}>
                     <article
-                      key={post.id}
-                      className="service-card"
+                      className="top-pick-card"
                       style={{
                         background: "#fff",
-                        border: "1px solid var(--border)",
-                        borderRadius: "var(--radius-md)",
-                        display: "flex",
-                        overflow: "hidden",
+                        borderRadius: "var(--radius-lg)",
+                        border: "2px solid var(--gold-border)",
+                        padding: "22px",
+                        transition: "box-shadow 0.15s, transform 0.15s",
                         position: "relative",
                       }}
                     >
-                      {/* Rank ribbon */}
-                      <div
-                        style={{
-                          width: 52,
-                          flexShrink: 0,
-                          background: rankStyle
-                            ? rankStyle.bg
-                            : i % 2 === 0 ? "var(--bg-section)" : "#f9fafb",
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          gap: 2,
-                          padding: "12px 4px",
-                        }}
-                      >
-                        <span style={{ fontSize: 18, fontWeight: 900, color: rankStyle ? rankStyle.color : "var(--text-muted)", lineHeight: 1 }}>
-                          {rank}
-                        </span>
-                        <span style={{ fontSize: 10, fontWeight: 700, color: rankStyle ? rankStyle.color : "var(--text-muted)" }}>
-                          位
-                        </span>
+                      <div style={{ position: "absolute", top: 0, left: 20, background: "linear-gradient(135deg, #f59e0b, #d97706)", color: "#fff", fontSize: 11, fontWeight: 700, padding: "3px 12px", borderRadius: "0 0 6px 6px", display: "flex", alignItems: "center", gap: 4 }}>
+                        <Award size={12} />
+                        おすすめ1位
                       </div>
 
-                      {/* Content */}
-                      <div style={{ flex: 1, padding: "14px 16px", minWidth: 0 }}>
-                        <Link href={`/post/${post.slug}`} style={{ textDecoration: "none" }}>
-                          <h2 style={{ fontSize: 15, fontWeight: 700, color: "var(--accent)", lineHeight: 1.5, marginBottom: 6 }}>
-                            {title}
-                          </h2>
-                        </Link>
-                        {excerpt && (
-                          <p style={{ fontSize: 13, color: "var(--text-muted)", lineHeight: 1.65, marginBottom: 8 }}>
-                            {excerpt}...
-                          </p>
-                        )}
-                        <div style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11, color: "var(--text-muted)" }}>
-                          <Calendar size={11} />
-                          更新: {updatedDate}
+                      <div style={{ marginTop: 10 }}>
+                        <h2 style={{ fontSize: 18, fontWeight: 800, lineHeight: 1.5, marginBottom: 8, color: "var(--text-primary)" }}>
+                          {stripHtml(firstPost.title.rendered)}
+                        </h2>
+                        <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.7, margin: "0 0 12px" }}>
+                          {stripHtml(firstPost.excerpt.rendered).slice(0, 150)}...
+                        </p>
+
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
+                          <div style={{ fontSize: 12, color: "var(--text-muted)", display: "flex", alignItems: "center", gap: 4 }}>
+                            <Calendar size={12} />
+                            更新: {new Date(firstPost.modified).toLocaleDateString("ja-JP")}
+                          </div>
+                          <span className="cta-primary" style={{ padding: "10px 24px", fontSize: 14, gap: 5 }}>
+                            記事を読む
+                            <ArrowRight size={13} />
+                          </span>
                         </div>
                       </div>
+                    </article>
+                  </Link>
+                )}
 
-                      {/* CTA */}
-                      <div style={{ flexShrink: 0, display: "flex", alignItems: "center", padding: "14px 16px", borderLeft: "1px solid var(--border)" }}>
-                        <Link
-                          href={`/post/${post.slug}`}
+                {/* 2位以降 */}
+                {restPosts.map((post, i) => {
+                  const excerpt = stripHtml(post.excerpt.rendered).slice(0, 100);
+                  const isTop3 = i < 2;
+                  return (
+                    <Link key={post.id} href={`/post/${post.slug}`} style={{ textDecoration: "none", color: "inherit" }}>
+                      <article
+                        className="article-card"
+                        style={{
+                          background: i % 2 === 0 ? "#fff" : "var(--bg-section)",
+                          borderRadius: "var(--radius-md)",
+                          padding: "16px 18px",
+                          border: isTop3 ? `1px solid ${i === 0 ? "var(--silver-border)" : "var(--bronze-border)"}` : "1px solid var(--border)",
+                          display: "flex",
+                          gap: 14,
+                          alignItems: "flex-start",
+                          transition: "box-shadow 0.15s, transform 0.15s",
+                        }}
+                      >
+                        <div
                           style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            gap: 4,
-                            background: "#f97316",
-                            color: "#fff",
-                            textDecoration: "none",
-                            borderRadius: "var(--radius-sm)",
-                            padding: "10px 14px",
-                            fontSize: 12,
-                            fontWeight: 700,
-                            whiteSpace: "nowrap",
-                            lineHeight: 1.4,
+                            background: i === 0 ? "linear-gradient(135deg, #d1d5db, #9ca3af)" : i === 1 ? "linear-gradient(135deg, #fcd34d, #d97706)" : "var(--bg-section)",
+                            color: isTop3 ? "#fff" : "var(--text-muted)",
+                            width: 32, height: 32, borderRadius: 6,
+                            display: "flex", alignItems: "center", justifyContent: "center",
+                            fontWeight: 800, fontSize: 13, flexShrink: 0,
                           }}
                         >
-                          <ExternalLink size={13} />
-                          詳細を見る
-                        </Link>
-                      </div>
-                    </article>
+                          {i + 2}
+                        </div>
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <h3 style={{ fontSize: 15, fontWeight: 700, lineHeight: 1.5, marginBottom: 4, color: "var(--text-primary)" }}>
+                            {stripHtml(post.title.rendered)}
+                          </h3>
+                          {excerpt && <p style={{ fontSize: 13, color: "var(--text-muted)", lineHeight: 1.6, margin: 0 }}>{excerpt}...</p>}
+                          <div style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 6, display: "flex", alignItems: "center", gap: 4 }}>
+                            <Calendar size={11} />
+                            更新: {new Date(post.modified).toLocaleDateString("ja-JP")}
+                          </div>
+                        </div>
+                        <ChevronRight size={18} style={{ color: "var(--text-muted)", flexShrink: 0, alignSelf: "center" }} />
+                      </article>
+                    </Link>
                   );
                 })}
               </div>
             )}
 
-            {/* FAQ */}
+            {/* FAQ セクション */}
             {faqs.length > 0 && (
-              <div style={{ marginTop: 28, background: "#fff", borderRadius: "var(--radius-md)", border: "1px solid var(--border)", padding: "20px" }}>
-                <h2 style={{ fontSize: 15, fontWeight: 800, marginBottom: 14 }}>よくある質問</h2>
+              <div style={{ marginTop: 32, background: "#fff", borderRadius: "var(--radius-lg)", border: "1px solid var(--border)", padding: "24px" }}>
+                <h2 style={{ fontSize: 16, fontWeight: 800, marginBottom: 16, color: "var(--text-primary)" }}>
+                  よくある質問（FAQ）
+                </h2>
                 <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
                   {faqs.map(({ q, a }, i) => (
-                    <div key={i} style={{ borderBottom: i < faqs.length - 1 ? "1px solid var(--border)" : "none", padding: "13px 0" }}>
-                      <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 5 }}>Q. {q}</div>
-                      <div style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.75 }}>{a}</div>
+                    <div key={i} style={{ borderBottom: i < faqs.length - 1 ? "1px solid var(--border)" : "none", padding: "14px 0" }}>
+                      <div style={{ fontSize: 14, fontWeight: 700, color: "var(--text-primary)", marginBottom: 6 }}>
+                        Q. {q}
+                      </div>
+                      <div style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.75 }}>
+                        {a}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -398,16 +289,16 @@ export default async function RankingPage({
             )}
 
             {/* Other categories */}
-            <div style={{ marginTop: 20, background: "var(--bg-section)", borderRadius: "var(--radius-md)", padding: "16px" }}>
-              <h3 style={{ fontSize: 13, fontWeight: 700, marginBottom: 10 }}>他のカテゴリ</h3>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+            <div style={{ marginTop: 32, background: "var(--bg-section)", borderRadius: "var(--radius-lg)", padding: "20px" }}>
+              <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 14 }}>他のカテゴリ</h3>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                 {Object.entries(CATEGORY_MAP)
                   .filter(([key]) => key !== category)
                   .map(([key, val]) => {
                     const CatIcon = getCategoryIcon(val.iconKey);
                     return (
-                      <Link key={key} href={`/ranking/${key}`} style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "#fff", border: "1px solid var(--border)", borderRadius: 5, padding: "5px 10px", fontSize: 12, color: "var(--text-secondary)", textDecoration: "none", fontWeight: 500 }}>
-                        <CatIcon size={12} strokeWidth={2} />
+                      <Link key={key} href={`/ranking/${key}`} style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "#fff", border: "1px solid var(--border)", borderRadius: 6, padding: "6px 12px", fontSize: 13, color: "var(--text-secondary)", textDecoration: "none", fontWeight: 500 }}>
+                        <CatIcon size={13} strokeWidth={2} />
                         {val.title}
                       </Link>
                     );
@@ -415,18 +306,14 @@ export default async function RankingPage({
               </div>
             </div>
           </main>
+          <div className="sidebar-area"><Sidebar /></div>
         </div>
       </div>
-
       <Footer />
-
       <style>{`
-        @media (max-width: 768px) {
-          .ranking-layout { grid-template-columns: 1fr !important; }
-          aside { position: static !important; }
-        }
-        .service-card { transition: box-shadow 0.15s; }
-        .service-card:hover { box-shadow: var(--shadow-md); }
+        @media(max-width:768px){.main-grid{grid-template-columns:1fr!important}}
+        .article-card:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
+        .top-pick-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
       `}</style>
     </div>
   );
