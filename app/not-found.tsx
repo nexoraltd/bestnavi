@@ -1,4 +1,4 @@
-import Link from "next/link";
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "ページが見つかりません | ベストナビ",
@@ -14,7 +14,7 @@ export default function NotFound() {
       <p style={{ color: "#666", marginBottom: "32px" }}>
         お探しのページは削除されたか、URLが変更された可能性があります。
       </p>
-      <Link
+      <a
         href="/"
         style={{
           display: "inline-block",
@@ -27,7 +27,7 @@ export default function NotFound() {
         }}
       >
         トップページに戻る
-      </Link>
+      </a>
     </main>
   );
 }

@@ -81,24 +81,21 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
-        <link key="dns-fonts" rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link key="dns-gtm" rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link key="dns-clarity" rel="dns-prefetch" href="https://www.clarity.ms" />
-        <link key="pre-fonts" rel="preconnect" href="https://fonts.googleapis.com" />
-        <link key="pre-gstatic" rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.clarity.ms" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          key="font-noto"
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap"
           rel="stylesheet"
         />
-        <link key="rss" rel="alternate" type="application/rss+xml" title="ベストナビ RSS" href="/feed.xml" />
+        <link rel="alternate" type="application/rss+xml" title="ベストナビ RSS" href="/feed.xml" />
         <script
-          key="ld-org"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         <script
-          key="ld-website"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />

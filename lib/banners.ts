@@ -48,6 +48,13 @@ const SEKAIVPN_BANNER: BannerConfig = {
   imageUrl: "https://www23.a8.net/svt/bgt?aid=260425363945&wid=001&eno=01&mid=s00000001004012016000&mc=1",
 };
 
+const SURFSHARK_ANTIVIRUS_BANNER: BannerConfig = {
+  programName: "Surfshark Antivirus", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THW+SKTTE+4LSW+BXIYP",
+  width: 300, height: 250,
+  imageUrl: "https://www26.a8.net/svt/bgt?aid=260425364048&wid=001&eno=01&mid=s00000021488002004000&mc=1",
+};
+
 // ─── eSIM ─────────────────────────────────────────────────────
 const SAILY_BANNER: BannerConfig = {
   programName: "Saily eSIM", affiliateId: "a26021579611",
@@ -119,6 +126,41 @@ const WORLDIKIDS_BANNER: BannerConfig = {
   imageUrl: "https://www22.a8.net/svt/bgt?aid=260425363904&wid=001&eno=01&mid=s00000021640001006000&mc=1",
 };
 
+const BWATASHI_BANNER: BannerConfig = {
+  programName: "b わたしの英会話", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+FFHG6Q+27TW+601S1",
+  width: 300, height: 250,
+  imageUrl: "https://www27.a8.net/svt/bgt?aid=260425363933&wid=001&eno=01&mid=s00000010346001008000&mc=1",
+};
+
+const EIGOX_BANNER: BannerConfig = {
+  programName: "エイゴックス", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+EQH8S2+2TKO+639IP",
+  width: 300, height: 250,
+  imageUrl: "https://www21.a8.net/svt/bgt?aid=260425363891&wid=001&eno=01&mid=s00000013164001023000&mc=1",
+};
+
+const STUDYSAPURI_ENGLISH_BANNER: BannerConfig = {
+  programName: "スタディサプリEnglish", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+EOOXYQ+3AQG+TUVZL",
+  width: 300, height: 250,
+  imageUrl: "https://www20.a8.net/svt/bgt?aid=260425363888&wid=001&eno=01&mid=s00000015388005015000&mc=1",
+};
+
+const WILLIES_BANNER: BannerConfig = {
+  programName: "ウィリーズオンライン英会話", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+EPADKI+4JKM+5ZMCH",
+  width: 300, height: 250,
+  imageUrl: "https://www29.a8.net/svt/bgt?aid=260425363889&wid=001&eno=01&mid=s00000021199001006000&mc=1",
+};
+
+const AQUES_BANNER: BannerConfig = {
+  programName: "AQUES（オンライン英会話）", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+EU1UEQ+4D4Y+609HT",
+  width: 300, height: 250,
+  imageUrl: "https://www21.a8.net/svt/bgt?aid=260425363897&wid=001&eno=01&mid=s00000020365001009000&mc=1",
+};
+
 // ─── School ───────────────────────────────────────────────────
 const WINSCHOOL_BANNER: BannerConfig = {
   programName: "Winスクール", affiliateId: "a26021579611",
@@ -134,12 +176,26 @@ const LIFETECH_BANNER: BannerConfig = {
   imageUrl: "https://www20.a8.net/svt/bgt?aid=260216798381&wid=001&eno=01&mid=s00000025413001003000&mc=1",
 };
 
+const SKILLHACKS_BANNER: BannerConfig = {
+  programName: "SkillHacks（プログラミング）", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+FIGM7M+4K3S+61JSH",
+  width: 300, height: 250,
+  imageUrl: "https://www25.a8.net/svt/bgt?aid=260425363938&wid=001&eno=01&mid=s00000021268001015000&mc=1",
+};
+
 // ─── Career ───────────────────────────────────────────────────
 const GIFTS_BANNER: BannerConfig = {
   programName: "エストレ", affiliateId: "a26021579611",
   url: "https://px.a8.net/svt/ejp?a8mat=4AXCKE+66O50Y+5OBU+5YZ75",
   width: 300, height: 250,
   imageUrl: "https://www29.a8.net/svt/bgt?aid=260216798374&wid=001&eno=01&mid=s00000026481001003000&mc=1",
+};
+
+const KARRICON_BANNER: BannerConfig = {
+  programName: "キャリコン（20代転職）", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+8TC27M+5PN2+5YZ75",
+  width: 300, height: 250,
+  imageUrl: "https://www28.a8.net/svt/bgt?aid=260425363533&wid=001&eno=01&mid=s00000026651001003000&mc=1",
 };
 
 // ─── IT転職 ───────────────────────────────────────────────────
@@ -223,6 +279,36 @@ const HAISHAL_BANNER: BannerConfig = {
   imageUrl: "https://www23.a8.net/svt/bgt?aid=260425363520&wid=001&eno=01&mid=s00000026077001003000&mc=1",
 };
 
+const KENKIKAITORIYA_BANNER: BannerConfig = {
+  programName: "建機買取屋.コム（重機買取）", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+8IM9BM+4HKO+BYLJL",
+  width: 300, height: 250,
+  imageUrl: "https://www29.a8.net/svt/bgt?aid=260425363515&wid=001&eno=01&mid=s00000020940002009000&mc=1",
+};
+
+// ─── 医療・介護転職 ────────────────────────────────────────────
+const MCNURSENET_BANNER: BannerConfig = {
+  programName: "MCナースネット（看護師転職）", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+DE94S2+28MI+62ENL",
+  width: 300, height: 250,
+  imageUrl: "https://www24.a8.net/svt/bgt?aid=260425363810&wid=001&eno=01&mid=s00000010449001019000&mc=1",
+};
+
+const MCCAREGIVING_BANNER: BannerConfig = {
+  programName: "MC介護のお仕事", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+DBVECY+28MI+NVWSH",
+  width: 300, height: 250,
+  imageUrl: "https://www25.a8.net/svt/bgt?aid=260425363806&wid=001&eno=01&mid=s00000010449004012000&mc=1",
+};
+
+// ─── 家事代行 ─────────────────────────────────────────────────
+const CATHAND_BANNER: BannerConfig = {
+  programName: "キャットハンド（家事代行）", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+F3KS36+3G9W+5ZU29",
+  width: 300, height: 250,
+  imageUrl: "https://www20.a8.net/svt/bgt?aid=260425363913&wid=001&eno=01&mid=s00000016106001007000&mc=1",
+};
+
 // ─── 法人カード/ETC ───────────────────────────────────────────
 const ETC_KUMIAI_MANGA_BANNER: BannerConfig = {
   programName: "法人ETCカード（ETC協同組合）", affiliateId: "a26021579611",
@@ -265,6 +351,20 @@ const MONEYFORWARD_BANNER: BannerConfig = {
   url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+FUYPWY+4JGQ+C2GFL",
   width: 300, height: 250,
   imageUrl: "https://www28.a8.net/svt/bgt?aid=260425363959&wid=001&eno=01&mid=s00000021185002027000&mc=1",
+};
+
+const FREEE_BANNER: BannerConfig = {
+  programName: "freee会計", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=TODO_FREEE", // A8.net「広告リンク作成」→a8mat取得要
+  width: 300, height: 250,
+  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_FREEE&wid=001&eno=01&mid=s00000017718057&mc=1",
+};
+
+const YAYOI_BANNER: BannerConfig = {
+  programName: "弥生シリーズ", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=TODO_YAYOI", // A8.net「広告リンク作成」→a8mat取得要（承認後）
+  width: 300, height: 250,
+  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_YAYOI&wid=001&eno=01&mid=s00000014765001&mc=1",
 };
 
 // ─── WiFi・SIM ────────────────────────────────────────────────
@@ -359,22 +459,22 @@ const INFRAAI_BANNER: BannerConfig = {
 // ─── カテゴリ別バナー ──────────────────────────────────────────
 // カテゴリID → そのカテゴリの提携プログラムバナー
 export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
-  48: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS, MILLENVPN_BANNER, EXPRESSVPN_BANNER, SUIKAVPN_BANNER, SEKAIVPN_BANNER],
+  48: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS, MILLENVPN_BANNER, EXPRESSVPN_BANNER, SUIKAVPN_BANNER, SEKAIVPN_BANNER, SURFSHARK_ANTIVIRUS_BANNER],
   50: [SAILY_BANNER],
   51: [XSERVER_BANNER, CONOHA_BANNER, ...KINSTA_BANNERS.filter(b => b.width <= 300)],
-  54: [BESTTEACHER_BANNER, GSA_BANNER, NOVA_BANNER, LANCUL_BANNER, BIZMATES_BANNER, WORLDIKIDS_BANNER],
-  55: [WINSCHOOL_BANNER, LIFETECH_BANNER],
+  54: [BESTTEACHER_BANNER, GSA_BANNER, NOVA_BANNER, LANCUL_BANNER, BIZMATES_BANNER, WORLDIKIDS_BANNER, BWATASHI_BANNER, EIGOX_BANNER, STUDYSAPURI_ENGLISH_BANNER, WILLIES_BANNER, AQUES_BANNER],
+  55: [WINSCHOOL_BANNER, LIFETECH_BANNER, SKILLHACKS_BANNER],
   56: [GIFTS_BANNER],
   57: [INFRAAI_BANNER],
   59: [FXTF_BANNER, DMMFX_BANNER, GAIATE_BANNER, FXBROAD_BANNER],
   // クレカ: 申請承認後に TODO_xxx を実URLに差し替え
   60: [RAKUTEN_CARD_BANNER, SMBC_CARD_BANNER, JCB_CARD_BANNER, DCARD_GOLD_BANNER, EPOS_CARD_BANNER, LIFECARD_BANNER],
-  61: [TECHCLIPS_BANNER, MASSMEDIAAN_BANNER],
-  62: [],  // 派遣: テンプスタッフ等（A8申請待ち）
+  61: [TECHCLIPS_BANNER, MASSMEDIAAN_BANNER, KARRICON_BANNER],
+  62: [MCNURSENET_BANNER, MCCAREGIVING_BANNER],
   63: [ATGP_BANNER],
-  64: [UCARPAC_BANNER, CTN_KAITORI_BANNER, YUNYUSHA_KAITORI_BANNER, HAISHAL_BANNER],
+  64: [UCARPAC_BANNER, CTN_KAITORI_BANNER, YUNYUSHA_KAITORI_BANNER, HAISHAL_BANNER, KENKIKAITORIYA_BANNER],
   65: [ETC_KUMIAI_MANGA_BANNER, GASOLINE_CARD_BANNER, FASIO_BANNER, ETC_SPEED_BANNER, ETC_GASOLINE_MANGA2_BANNER],
-  66: [MONEYFORWARD_BANNER],
+  66: [MONEYFORWARD_BANNER, FREEE_BANNER, YAYOI_BANNER],
   67: [DAREDEMO_WIFI_BANNER, LYPRIMO_BANNER, SMARTPHONE_PREPAID_BANNER],
   68: [VISA_GIFT_BANNER, KINKEN_NET_BANNER, SMARTPHONE_PREPAID_BANNER],
 };

@@ -124,6 +124,7 @@ const nextConfig: NextConfig = {
   // パッケージ最適化（バンドルサイズ削減）
   experimental: {
     optimizePackageImports: ["lucide-react"],
+    workerThreads: false,
   },
 };
 
