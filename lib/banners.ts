@@ -183,7 +183,28 @@ const SKILLHACKS_BANNER: BannerConfig = {
   imageUrl: "https://www25.a8.net/svt/bgt?aid=260425363938&wid=001&eno=01&mid=s00000021268001015000&mc=1",
 };
 
-// ─── Career ───────────────────────────────────────────────────
+// ─── Career / 転職 ────────────────────────────────────────────
+const CIRCUS_BANNER: BannerConfig = {
+  programName: "転職AGENT Navi（circus）", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THU+5EORLE+5BJK+5ZEMP",
+  width: 300, height: 250,
+  imageUrl: "https://www29.a8.net/svt/bgt?aid=260425362327&wid=001&eno=01&mid=s00000024824001005000&mc=1",
+};
+
+const IDA_BANNER: BannerConfig = {
+  programName: "iDA（アパレル・ファッション転職）", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+CULTTE+50TG+626XT",
+  width: 300, height: 250,
+  imageUrl: "https://www23.a8.net/svt/bgt?aid=260425363777&wid=001&eno=01&mid=s00000023434001018000&mc=1",
+};
+
+const OISHIRU_BANNER: BannerConfig = {
+  programName: "オイシルキャリア（生鮮業界転職）", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+9K4KFM+5UIW+5ZMCH",
+  width: 300, height: 250,
+  imageUrl: "https://www21.a8.net/svt/bgt?aid=260425363578&wid=001&eno=01&mid=s00000027284001006000&mc=1",
+};
+
 const GIFTS_BANNER: BannerConfig = {
   programName: "エストレ", affiliateId: "a26021579611",
   url: "https://px.a8.net/svt/ejp?a8mat=4AXCKE+66O50Y+5OBU+5YZ75",
@@ -248,6 +269,14 @@ const FXTF_BANNER: BannerConfig = {
   url: "https://px.a8.net/svt/ejp?a8mat=4B1THU+7DJCKY+48D0+626XT",
   width: 300, height: 250,
   imageUrl: "https://www20.a8.net/svt/bgt?aid=260425362446&wid=001&eno=01&mid=s00000019746001018000&mc=1",
+};
+
+// ─── マイカーリース ────────────────────────────────────────────
+const ENKIRO_BANNER: BannerConfig = {
+  programName: "エンキロ（距離で支払うマイカーリース）", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+8KEK4Y+5O9C+5YZ75",
+  width: 300, height: 250,
+  imageUrl: "https://www29.a8.net/svt/bgt?aid=260425363518&wid=001&eno=01&mid=s00000026472001003000&mc=1",
 };
 
 // ─── 車買取 ───────────────────────────────────────────────────
@@ -368,6 +397,13 @@ const YAYOI_BANNER: BannerConfig = {
 };
 
 // ─── WiFi・SIM ────────────────────────────────────────────────
+const GOENMOBILE_BANNER: BannerConfig = {
+  programName: "ごえんモバイル（格安SIM）", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+FVK5IQ+424K+TSQTT",
+  width: 300, height: 250,
+  imageUrl: "https://www20.a8.net/svt/bgt?aid=260425363960&wid=001&eno=01&mid=s00000018938005005000&mc=1",
+};
+
 const DAREDEMO_WIFI_BANNER: BannerConfig = {
   programName: "誰でもWi-Fi", affiliateId: "a26021579611",
   url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+FBBEYA+4G6O+1ZHAW1",
@@ -469,13 +505,13 @@ export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
   59: [FXTF_BANNER, DMMFX_BANNER, GAIATE_BANNER, FXBROAD_BANNER],
   // クレカ: 申請承認後に TODO_xxx を実URLに差し替え
   60: [RAKUTEN_CARD_BANNER, SMBC_CARD_BANNER, JCB_CARD_BANNER, DCARD_GOLD_BANNER, EPOS_CARD_BANNER, LIFECARD_BANNER],
-  61: [TECHCLIPS_BANNER, MASSMEDIAAN_BANNER, KARRICON_BANNER],
+  61: [CIRCUS_BANNER, OISHIRU_BANNER, IDA_BANNER, TECHCLIPS_BANNER, MASSMEDIAAN_BANNER, KARRICON_BANNER],
   62: [MCNURSENET_BANNER, MCCAREGIVING_BANNER],
   63: [ATGP_BANNER],
-  64: [UCARPAC_BANNER, CTN_KAITORI_BANNER, YUNYUSHA_KAITORI_BANNER, HAISHAL_BANNER, KENKIKAITORIYA_BANNER],
+  64: [ENKIRO_BANNER, UCARPAC_BANNER, CTN_KAITORI_BANNER, YUNYUSHA_KAITORI_BANNER, HAISHAL_BANNER, KENKIKAITORIYA_BANNER],
   65: [ETC_KUMIAI_MANGA_BANNER, GASOLINE_CARD_BANNER, FASIO_BANNER, ETC_SPEED_BANNER, ETC_GASOLINE_MANGA2_BANNER],
   66: [MONEYFORWARD_BANNER, FREEE_BANNER, YAYOI_BANNER],
-  67: [DAREDEMO_WIFI_BANNER, LYPRIMO_BANNER, SMARTPHONE_PREPAID_BANNER],
+  67: [GOENMOBILE_BANNER, DAREDEMO_WIFI_BANNER, LYPRIMO_BANNER, SMARTPHONE_PREPAID_BANNER],
   68: [VISA_GIFT_BANNER, KINKEN_NET_BANNER, SMARTPHONE_PREPAID_BANNER],
 };
 
@@ -570,10 +606,10 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
   809: [SMBC_CARD_BANNER, DCARD_GOLD_BANNER],
 
   // ── 転職/派遣/就活/車買取 ─────────────────────────────────────
-  900: [TECHCLIPS_BANNER, MASSMEDIAAN_BANNER],
+  900: [CIRCUS_BANNER, OISHIRU_BANNER, IDA_BANNER, TECHCLIPS_BANNER, MASSMEDIAAN_BANNER],
   910: [],
   920: [ATGP_BANNER],
-  930: [UCARPAC_BANNER, CTN_KAITORI_BANNER, YUNYUSHA_KAITORI_BANNER, HAISHAL_BANNER],
+  930: [ENKIRO_BANNER, UCARPAC_BANNER, CTN_KAITORI_BANNER, YUNYUSHA_KAITORI_BANNER, HAISHAL_BANNER],
 
   // ── 法人カード/ETC ───────────────────────────────────────────
   940: [ETC_KUMIAI_MANGA_BANNER, GASOLINE_CARD_BANNER, FASIO_BANNER, ETC_SPEED_BANNER, ETC_GASOLINE_MANGA2_BANNER],
@@ -582,7 +618,7 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
   950: [MONEYFORWARD_BANNER],
 
   // ── WiFi・SIM ────────────────────────────────────────────────
-  960: [DAREDEMO_WIFI_BANNER, LYPRIMO_BANNER, SMARTPHONE_PREPAID_BANNER],
+  960: [GOENMOBILE_BANNER, DAREDEMO_WIFI_BANNER, LYPRIMO_BANNER, SMARTPHONE_PREPAID_BANNER],
 
   // ── ギフトカード ──────────────────────────────────────────────
   970: [VISA_GIFT_BANNER, KINKEN_NET_BANNER, SMARTPHONE_PREPAID_BANNER],
