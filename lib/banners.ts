@@ -355,16 +355,16 @@ const MONEYFORWARD_BANNER: BannerConfig = {
 
 const FREEE_BANNER: BannerConfig = {
   programName: "freee会計", affiliateId: "a26021579611",
-  url: "https://px.a8.net/svt/ejp?a8mat=TODO_FREEE", // A8.net「広告リンク作成」→a8mat取得要
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THZ+2P1ODU+3SPO+9FFFOX",
   width: 300, height: 250,
-  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_FREEE&wid=001&eno=01&mid=s00000017718057&mc=1",
+  imageUrl: "https://www22.a8.net/svt/bgt?aid=260425367163&wid=001&eno=01&mid=s00000017718057011000&mc=1",
 };
 
 const YAYOI_BANNER: BannerConfig = {
   programName: "弥生シリーズ", affiliateId: "a26021579611",
-  url: "https://px.a8.net/svt/ejp?a8mat=TODO_YAYOI", // A8.net「広告リンク作成」→a8mat取得要（承認後）
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THZ+2QTZ76+35XE+661TT",
   width: 300, height: 250,
-  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_YAYOI&wid=001&eno=01&mid=s00000014765001&mc=1",
+  imageUrl: "https://www20.a8.net/svt/bgt?aid=260425367166&wid=001&eno=01&mid=s00000014765001036000&mc=1",
 };
 
 // ─── WiFi・SIM ────────────────────────────────────────────────
@@ -589,12 +589,13 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
 };
 
 export function getBannersForArticle(postId: number, categoryIds: number[]): BannerConfig[] {
+  const filter = (banners: BannerConfig[]) => banners.filter(b => !b.url.includes("TODO"));
   if (postId in POST_BANNERS) {
-    return POST_BANNERS[postId];
+    return filter(POST_BANNERS[postId]);
   }
   for (const categoryId of categoryIds) {
     if (CATEGORY_BANNERS[categoryId]?.length) {
-      return CATEGORY_BANNERS[categoryId];
+      return filter(CATEGORY_BANNERS[categoryId]);
     }
   }
   return [];
