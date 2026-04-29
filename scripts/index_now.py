@@ -118,6 +118,10 @@ URLS = [
     "/posts/atgp-shukatsu-agent-review-2026/",
     "/posts/miraifu-tensyoku-agent-review-2026/",
     "/posts/esports-eikaiwa-espi-review-2026/",
+    # ── 2026-04-29 格安SIM記事 ──
+    "/posts/sim-norikae-guide-2026/",
+    "/posts/pocket-wifi-vs-sim-2026/",
+    "/posts/simfree-iphone-android-setup-2026/",
 ]
 
 
