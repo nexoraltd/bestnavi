@@ -20,6 +20,9 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       // RSS フィード
+      // atGP就活 重複記事統合
+      { source: "/posts/atgp-shukatsu-review-2026", destination: "/posts/atgp-shukatsu-agent-review-2026", permanent: true },
+      { source: "/posts/atgp-shukatsu-review-2026/", destination: "/posts/atgp-shukatsu-agent-review-2026", permanent: true },
       { source: "/feed", destination: "/feed.xml", permanent: true },
       { source: "/feed/", destination: "/feed.xml", permanent: true },
       // WordPress ページネーション → トップへ
@@ -32,6 +35,9 @@ const nextConfig: NextConfig = {
       { source: "/author/:slug/", destination: "/", permanent: true },
       { source: "/author/:slug/page/:num", destination: "/", permanent: true },
       { source: "/author/:slug/page/:num/", destination: "/", permanent: true },
+      // /posts/ (複数形) → /post/ (単数形) 301リダイレクト
+      { source: "/posts/:slug", destination: "/post/:slug", permanent: true },
+      { source: "/posts/:slug/", destination: "/post/:slug", permanent: true },
       // GSCで404になっているURL → 最近似ページへ301リダイレクト
       {
         source: "/expressvpn-review-2026-2",
