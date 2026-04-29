@@ -29,46 +29,65 @@ export function BannerSection({ postId, categoryIds, position = "middle" }: Bann
           justifyItems: "center",
         }}
       >
-        {banners.map((banner, idx) => (
-          <a
-            key={idx}
-            href={banner.url}
-            target="_blank"
-            rel="noopener noreferrer sponsored"
-            onClick={() => {
-              if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
-                (window as any).gtag("event", "banner_click", {
-                  event_category: "affiliate_banner",
-                  event_label: banner.programName,
-                  position,
-                  page_path: window.location.pathname,
-                });
-              }
-            }}
-            style={{
-              display: "block",
-              textDecoration: "none",
-              borderRadius: "var(--radius-md)",
-              overflow: "hidden",
-            }}
-          >
-            <Image
-              src={banner.imageUrl}
-              alt={banner.programName}
+        {banners.map((banner, idx) =>
+          banner.iframeUrl ? (
+            <iframe
+              key={idx}
+              src={banner.iframeUrl}
               width={banner.width}
               height={banner.height}
-              priority={position === "top" && idx === 0}
-              quality={85}
+              scrolling="no"
+              frameBorder={0}
               style={{
                 maxWidth: "100%",
-                height: "auto",
                 display: "block",
+                border: 0,
                 borderRadius: "var(--radius-md)",
                 boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                overflow: "hidden",
               }}
             />
-          </a>
-        ))}
+          ) : (
+            <a
+              key={idx}
+              href={banner.url}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              onClick={() => {
+                if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+                  (window as any).gtag("event", "banner_click", {
+                    event_category: "affiliate_banner",
+                    event_label: banner.programName,
+                    position,
+                    page_path: window.location.pathname,
+                  });
+                }
+              }}
+              style={{
+                display: "block",
+                textDecoration: "none",
+                borderRadius: "var(--radius-md)",
+                overflow: "hidden",
+              }}
+            >
+              <Image
+                src={banner.imageUrl}
+                alt={banner.programName}
+                width={banner.width}
+                height={banner.height}
+                priority={position === "top" && idx === 0}
+                quality={85}
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                  display: "block",
+                  borderRadius: "var(--radius-md)",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                }}
+              />
+            </a>
+          )
+        )}
       </div>
     </div>
   );

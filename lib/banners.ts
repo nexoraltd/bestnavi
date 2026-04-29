@@ -480,7 +480,13 @@ const KINKEN_NET_BANNER: BannerConfig = {
 };
 
 // ─── クレジットカード ──────────────────────────────────────────
-// TODO: A8.net/バリューコマース/もしも で各カード申請後にURLを設定
+// 申請状況 (2026-04-29):
+//   楽天カード    : もしも申請中（A8.netに掲載なし・楽天独自ASP）
+//   三井住友NL    : A8.net申請中 (s00000023355003)
+//   JCBカードW    : A8.net掲載なし（独自ASP経由で申請要）
+//   dカードGOLD   : A8.net申請中 (s00000013470008 = GOLD U 版)
+//   ライフカード  : A8.net掲載なし
+// → 承認後: A8.net広告リンク作成 → url/imageUrl を実URLに差し替え
 const RAKUTEN_CARD_BANNER: BannerConfig = {
   programName: "楽天カード", affiliateId: "a26021579611",
   url: "https://px.a8.net/svt/ejp?a8mat=4B1K5O+TODO_RAKUTEN",
