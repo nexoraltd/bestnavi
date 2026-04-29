@@ -8,6 +8,7 @@ export interface BannerConfig {
   width: number;
   height: number;
   imageUrl: string;
+  iframeUrl?: string; // Impact iFrame embed URL (CORSのため画像直接参照不可の場合)
 }
 
 // ─── VPN ──────────────────────────────────────────────────────
@@ -53,6 +54,30 @@ const SURFSHARK_ANTIVIRUS_BANNER: BannerConfig = {
   url: "https://px.a8.net/svt/ejp?a8mat=4B1THW+SKTTE+4LSW+BXIYP",
   width: 300, height: 250,
   imageUrl: "https://www26.a8.net/svt/bgt?aid=260425364048&wid=001&eno=01&mid=s00000021488002004000&mc=1",
+};
+
+// ─── eSIM Airalo (Impact) ─────────────────────────────────────
+// 汎用EN: ongoing | JPキャンペーン(PHUKET/NAPLES/TOKYO): 〜2026-05-01
+const AIRALO_JP_PHUKET_300x250: BannerConfig = {
+  programName: "Airalo eSIM",
+  affiliateId: "7171485",
+  url: "https://airalo.pxf.io/c/7171485/3810612/15608",
+  width: 300, height: 250, imageUrl: "",
+  iframeUrl: "//a.impactradius-go.com/gen-ad-code/7171485/3810612/15608/",
+};
+const AIRALO_JP_PHUKET_300x600: BannerConfig = {
+  programName: "Airalo eSIM",
+  affiliateId: "7171485",
+  url: "https://airalo.pxf.io/c/7171485/3810613/15608",
+  width: 300, height: 600, imageUrl: "",
+  iframeUrl: "//a.impactradius-go.com/gen-ad-code/7171485/3810613/15608/",
+};
+const AIRALO_EN_GENERIC_320x1360: BannerConfig = {
+  programName: "Airalo eSIM",
+  affiliateId: "7171485",
+  url: "https://airalo.pxf.io/c/7171485/1349058/15608",
+  width: 320, height: 1360, imageUrl: "",
+  iframeUrl: "//a.impactradius-go.com/gen-ad-code/7171485/1349058/15608/",
 };
 
 // ─── eSIM ─────────────────────────────────────────────────────
@@ -496,7 +521,7 @@ const INFRAAI_BANNER: BannerConfig = {
 // カテゴリID → そのカテゴリの提携プログラムバナー
 export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
   48: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS, MILLENVPN_BANNER, EXPRESSVPN_BANNER, SUIKAVPN_BANNER, SEKAIVPN_BANNER, SURFSHARK_ANTIVIRUS_BANNER],
-  50: [SAILY_BANNER],
+  50: [AIRALO_JP_PHUKET_300x250, AIRALO_JP_PHUKET_300x600, SAILY_BANNER, AIRALO_EN_GENERIC_320x1360],
   51: [XSERVER_BANNER, CONOHA_BANNER, ...KINSTA_BANNERS.filter(b => b.width <= 300)],
   54: [BESTTEACHER_BANNER, GSA_BANNER, NOVA_BANNER, LANCUL_BANNER, BIZMATES_BANNER, WORLDIKIDS_BANNER, BWATASHI_BANNER, EIGOX_BANNER, STUDYSAPURI_ENGLISH_BANNER, WILLIES_BANNER, AQUES_BANNER],
   55: [WINSCHOOL_BANNER, LIFETECH_BANNER, SKILLHACKS_BANNER],
@@ -590,6 +615,10 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
   754: [DMMFX_BANNER],
   755: [DMMFX_BANNER],
 
+  // ── eSIM Airalo ──────────────────────────────────────────────
+  572: [AIRALO_JP_PHUKET_300x250, AIRALO_JP_PHUKET_300x600, AIRALO_EN_GENERIC_320x1360], // esim-airalo-review-2026
+  715: [AIRALO_JP_PHUKET_300x250, AIRALO_JP_PHUKET_300x600, AIRALO_EN_GENERIC_320x1360], // airalo-esim-kuchikomi-review-2026
+
   // ── 仮想通貨 ─────────────────────────────────────────────────
   758: [],
 
@@ -608,7 +637,10 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
   // ── 転職/派遣/就活/車買取 ─────────────────────────────────────
   900: [CIRCUS_BANNER, OISHIRU_BANNER, IDA_BANNER, TECHCLIPS_BANNER, MASSMEDIAAN_BANNER],
   910: [],
+  1009: [MCNURSENET_BANNER],             // MCナースネット（看護師派遣）
+  1010: [MCCAREGIVING_BANNER, MCNURSENET_BANNER],  // MC介護のお仕事
   920: [ATGP_BANNER],
+  1011: [ATGP_BANNER],                   // atGP就活エージェント
   930: [ENKIRO_BANNER, UCARPAC_BANNER, CTN_KAITORI_BANNER, YUNYUSHA_KAITORI_BANNER, HAISHAL_BANNER],
 
   // ── 法人カード/ETC ───────────────────────────────────────────
@@ -622,6 +654,36 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
 
   // ── ギフトカード ──────────────────────────────────────────────
   970: [VISA_GIFT_BANNER, KINKEN_NET_BANNER, SMARTPHONE_PREPAID_BANNER],
+
+  // ── WiFi・SIM 個別レビュー ────────────────────────────────────
+  991: [GOENMOBILE_BANNER, DAREDEMO_WIFI_BANNER, LYPRIMO_BANNER, SMARTPHONE_PREPAID_BANNER],
+  992: [DAREDEMO_WIFI_BANNER, GOENMOBILE_BANNER, LYPRIMO_BANNER],
+  993: [LYPRIMO_BANNER, GOENMOBILE_BANNER, DAREDEMO_WIFI_BANNER],
+  994: [SMARTPHONE_PREPAID_BANNER, GOENMOBILE_BANNER, LYPRIMO_BANNER],
+
+  // ── 会計 個別レビュー ─────────────────────────────────────────
+  995: [FREEE_BANNER, MONEYFORWARD_BANNER, YAYOI_BANNER],
+  996: [YAYOI_BANNER, MONEYFORWARD_BANNER, FREEE_BANNER],
+
+  // ── 転職 個別レビュー ─────────────────────────────────────────
+  997: [CIRCUS_BANNER, OISHIRU_BANNER, IDA_BANNER, KARRICON_BANNER],
+  998: [IDA_BANNER, CIRCUS_BANNER, GIFTS_BANNER],
+  999: [OISHIRU_BANNER, CIRCUS_BANNER, IDA_BANNER],
+  1000: [GIFTS_BANNER, CIRCUS_BANNER, OISHIRU_BANNER],
+  1001: [KARRICON_BANNER, CIRCUS_BANNER, IDA_BANNER],
+
+  // ── 車買取 個別レビュー ───────────────────────────────────────
+  1002: [ENKIRO_BANNER, UCARPAC_BANNER, CTN_KAITORI_BANNER],
+  1003: [KENKIKAITORIYA_BANNER, UCARPAC_BANNER, CTN_KAITORI_BANNER],
+
+  // ── 法人カード/ETC 個別レビュー ──────────────────────────────
+  1004: [ETC_KUMIAI_MANGA_BANNER, ETC_SPEED_BANNER, GASOLINE_CARD_BANNER, FASIO_BANNER],
+  1005: [FASIO_BANNER, ETC_KUMIAI_MANGA_BANNER, GASOLINE_CARD_BANNER],
+  1006: [GASOLINE_CARD_BANNER, ETC_KUMIAI_MANGA_BANNER, FASIO_BANNER],
+
+  // ── ギフトカード 個別レビュー ─────────────────────────────────
+  1007: [VISA_GIFT_BANNER, KINKEN_NET_BANNER],
+  1008: [KINKEN_NET_BANNER, VISA_GIFT_BANNER],
 };
 
 export function getBannersForArticle(postId: number, categoryIds: number[]): BannerConfig[] {
