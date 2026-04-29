@@ -116,6 +116,17 @@ const KINSTA_BANNERS: BannerConfig[] = [
 ];
 
 // ─── English ──────────────────────────────────────────────────
+// 申請状況 (2026-04-29):
+//   スピーク英会話    : A8.net/もしも申込中 (5,000円/件)
+// → 承認後: url/imageUrl を実URLに差し替え
+
+const SPEAK_BANNER: BannerConfig = {
+  programName: "スピーク英会話", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=TODO_SPEAK",
+  width: 300, height: 250,
+  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_SPEAK&wid=001&eno=01&mc=1",
+};
+
 const BESTTEACHER_BANNER: BannerConfig = {
   programName: "ベストティーチャー", affiliateId: "a26021579611",
   url: "https://px.a8.net/svt/ejp?a8mat=4AXCKE+68GFUA+2ZIK+60WN5",
@@ -340,6 +351,25 @@ const ATGP_BANNER: BannerConfig = {
 };
 
 // ─── FX (TCS) ─────────────────────────────────────────────────
+// 申請状況 (2026-04-29):
+//   GMOクリック証券FX : A8.net申込中 (10,500円/件)
+//   LIGHT FX          : A8.net申込中 (12,000円/件)
+// → 承認後: A8.net広告リンク作成 → url/imageUrl を実URLに差し替え
+
+const GMO_CLICK_FX_BANNER: BannerConfig = {
+  programName: "GMOクリック証券FX", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=TODO_GMOCLICK",
+  width: 300, height: 250,
+  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_GMOCLICK&wid=001&eno=01&mc=1",
+};
+
+const LIGHTFX_BANNER: BannerConfig = {
+  programName: "LIGHT FX", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=TODO_LIGHTFX",
+  width: 300, height: 250,
+  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_LIGHTFX&wid=001&eno=01&mc=1",
+};
+
 const DMMFX_BANNER: BannerConfig = {
   programName: "DMM FX", affiliateId: "C140972",
   url: "https://www.tcs-asp.net/alink?AC=C140972&LC=DMM2&SQ=0&isq=1",
@@ -413,6 +443,25 @@ const KENKIKAITORIYA_BANNER: BannerConfig = {
 };
 
 // ─── 医療・介護転職 ────────────────────────────────────────────
+// 申請状況 (2026-04-29):
+//   ナース専科転職    : A8.net申込中 (26,000円/件)
+//   ファルマスタッフ  : A8.net申込中 (65,000円/件)
+// → 承認後: A8.net広告リンク作成 → url/imageUrl を実URLに差し替え
+
+const NURSEJOY_BANNER: BannerConfig = {
+  programName: "ナース専科転職", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=TODO_NURSEJOY",
+  width: 300, height: 250,
+  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_NURSEJOY&wid=001&eno=01&mc=1",
+};
+
+const PHARMASTER_BANNER: BannerConfig = {
+  programName: "ファルマスタッフ（薬剤師転職）", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=TODO_PHARMASTER",
+  width: 300, height: 250,
+  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_PHARMASTER&wid=001&eno=01&mc=1",
+};
+
 const MCNURSENET_BANNER: BannerConfig = {
   programName: "MCナースネット（看護師転職）", affiliateId: "a26021579611",
   url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+DE94S2+28MI+62ENL",
@@ -595,15 +644,15 @@ export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
   48: [NORDVPN_A8_BANNER, ...NORDVPN_BANNERS, ...SURFSHARK_BANNERS, MILLENVPN_BANNER, EXPRESSVPN_BANNER, SUIKAVPN_BANNER, SEKAIVPN_BANNER, SURFSHARK_ANTIVIRUS_BANNER],
   50: [AIRALO_JP_PHUKET_300x250, AIRALO_JP_PHUKET_300x600, SAILY_BANNER, AIRALO_EN_GENERIC_320x1360],
   51: [XSERVER_BANNER, CONOHA_BANNER, ...KINSTA_BANNERS.filter(b => b.width <= 300)],
-  54: [BESTTEACHER_BANNER, GSA_BANNER, NOVA_KAIKYO_BANNER, NOVA_BANNER, LANCUL_BANNER, BIZMATES_BANNER, WORLDIKIDS_BANNER, BWATASHI_BANNER, EIGOX_BANNER, STUDYSAPURI_ENGLISH_BANNER, WILLIES_BANNER, AQUES_BANNER, ESPI_BANNER],
+  54: [SPEAK_BANNER, BESTTEACHER_BANNER, GSA_BANNER, NOVA_KAIKYO_BANNER, NOVA_BANNER, LANCUL_BANNER, BIZMATES_BANNER, WORLDIKIDS_BANNER, BWATASHI_BANNER, EIGOX_BANNER, STUDYSAPURI_ENGLISH_BANNER, WILLIES_BANNER, AQUES_BANNER, ESPI_BANNER],
   55: [WINSCHOOL_BANNER, LIFETECH_BANNER, SKILLHACKS_BANNER],
   56: [GIFTS_BANNER],
   57: [INFRAAI_BANNER, VIRTUALOFFICE1_BANNER],
-  59: [FXTF_BANNER, DMMFX_BANNER, GAIATE_BANNER, FXBROAD_BANNER],
+  59: [GMO_CLICK_FX_BANNER, LIGHTFX_BANNER, FXTF_BANNER, DMMFX_BANNER, GAIATE_BANNER, FXBROAD_BANNER],
   // クレカ: 申請承認後に TODO_xxx を実URLに差し替え
   60: [SMBC_CARD_BANNER, JCB_CARD_BANNER, DCARD_GOLD_BANNER, EPOS_CARD_BANNER, LIFECARD_BANNER],
   61: [TECHGO_BANNER, TWINPRO_BANNER, TAMESY_BANNER, MABEGINNERS_BANNER, HRCAGENT_BANNER, CIRCUS_BANNER, OISHIRU_BANNER, IDA_BANNER, TECHCLIPS_BANNER, MASSMEDIAAN_BANNER, KARRICON_BANNER, MIRAIFU_BANNER],
-  62: [MCNURSENET_BANNER, MCCAREGIVING_BANNER],
+  62: [PHARMASTER_BANNER, NURSEJOY_BANNER, MCNURSENET_BANNER, MCCAREGIVING_BANNER],
   63: [ATGP_BANNER],
   64: [ENKIRO_BANNER, UCARPAC_BANNER, CTN_KAITORI_BANNER, YUNYUSHA_KAITORI_BANNER, HAISHAL_BANNER, KENKIKAITORIYA_BANNER],
   65: [ETC_KUMIAI_MANGA_BANNER, GASOLINE_CARD_BANNER, FASIO_BANNER, ETC_SPEED_BANNER, ETC_GASOLINE_MANGA2_BANNER],
@@ -780,6 +829,11 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
   1014: [GOENMOBILE_BANNER, DAREDEMO_WIFI_BANNER, LYPRIMO_BANNER, SMARTPHONE_PREPAID_BANNER],  // 格安SIM乗り換えガイド
   1015: [DAREDEMO_WIFI_BANNER, GOENMOBILE_BANNER, LYPRIMO_BANNER, SMARTPHONE_PREPAID_BANNER],  // ポケットWiFivs格安SIM
   1016: [LYPRIMO_BANNER, GOENMOBILE_BANNER, DAREDEMO_WIFI_BANNER, SMARTPHONE_PREPAID_BANNER],  // SIMフリー設定ガイド
+  1017: [PHARMASTER_BANNER, NURSEJOY_BANNER, MCNURSENET_BANNER],          // 薬剤師転職ランキング
+  1018: [NURSEJOY_BANNER, MCNURSENET_BANNER, MCCAREGIVING_BANNER],        // 看護師転職エージェントランキング
+  1019: [MCCAREGIVING_BANNER, MCNURSENET_BANNER, NURSEJOY_BANNER],        // 介護転職サービスランキング
+  1020: [GMO_CLICK_FX_BANNER, LIGHTFX_BANNER, FXTF_BANNER, DMMFX_BANNER], // GMOクリック証券FX評判
+  1021: [SPEAK_BANNER, BESTTEACHER_BANNER, GSA_BANNER, NOVA_BANNER],      // スピーク英会話評判
   930: [ENKIRO_BANNER, UCARPAC_BANNER, CTN_KAITORI_BANNER, YUNYUSHA_KAITORI_BANNER, HAISHAL_BANNER],
   987: [UCARPAC_BANNER, CTN_KAITORI_BANNER, ENKIRO_BANNER, HAISHAL_BANNER],
   988: [CTN_KAITORI_BANNER, UCARPAC_BANNER, YUNYUSHA_KAITORI_BANNER],
