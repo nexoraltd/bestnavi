@@ -56,6 +56,13 @@ const SURFSHARK_ANTIVIRUS_BANNER: BannerConfig = {
   imageUrl: "https://www26.a8.net/svt/bgt?aid=260425364048&wid=001&eno=01&mid=s00000021488002004000&mc=1",
 };
 
+const NORDVPN_A8_BANNER: BannerConfig = {
+  programName: "NordVPN", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+FKUCMQ+3YFI+5ZU29",
+  width: 300, height: 250,
+  imageUrl: "https://www27.a8.net/svt/bgt?aid=260425363942&wid=001&eno=01&mid=s00000018459001007000&mc=1",
+};
+
 // ─── eSIM Airalo (Impact) ─────────────────────────────────────
 // 汎用EN: ongoing | JPキャンペーン(PHUKET/NAPLES/TOKYO): 〜2026-05-01
 const AIRALO_JP_PHUKET_300x250: BannerConfig = {
@@ -128,6 +135,13 @@ const NOVA_BANNER: BannerConfig = {
   url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+ES9JLE+320A+NV9N5",
   width: 300, height: 250,
   imageUrl: "https://www29.a8.net/svt/bgt?aid=260425363894&wid=001&eno=01&mid=s00000014257004009000&mc=1",
+};
+
+const NOVA_KAIKYO_BANNER: BannerConfig = {
+  programName: "駅前留学NOVA", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+ETGESY+320A+65U41",
+  width: 300, height: 250,
+  imageUrl: "https://www28.a8.net/svt/bgt?aid=260425363896&wid=001&eno=01&mid=s00000014257001035000&mc=1",
 };
 
 const LANCUL_BANNER: BannerConfig = {
@@ -578,10 +592,10 @@ const INFRAAI_BANNER: BannerConfig = {
 // ─── カテゴリ別バナー ──────────────────────────────────────────
 // カテゴリID → そのカテゴリの提携プログラムバナー
 export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
-  48: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS, MILLENVPN_BANNER, EXPRESSVPN_BANNER, SUIKAVPN_BANNER, SEKAIVPN_BANNER, SURFSHARK_ANTIVIRUS_BANNER],
+  48: [NORDVPN_A8_BANNER, ...NORDVPN_BANNERS, ...SURFSHARK_BANNERS, MILLENVPN_BANNER, EXPRESSVPN_BANNER, SUIKAVPN_BANNER, SEKAIVPN_BANNER, SURFSHARK_ANTIVIRUS_BANNER],
   50: [AIRALO_JP_PHUKET_300x250, AIRALO_JP_PHUKET_300x600, SAILY_BANNER, AIRALO_EN_GENERIC_320x1360],
   51: [XSERVER_BANNER, CONOHA_BANNER, ...KINSTA_BANNERS.filter(b => b.width <= 300)],
-  54: [BESTTEACHER_BANNER, GSA_BANNER, NOVA_BANNER, LANCUL_BANNER, BIZMATES_BANNER, WORLDIKIDS_BANNER, BWATASHI_BANNER, EIGOX_BANNER, STUDYSAPURI_ENGLISH_BANNER, WILLIES_BANNER, AQUES_BANNER, ESPI_BANNER],
+  54: [BESTTEACHER_BANNER, GSA_BANNER, NOVA_KAIKYO_BANNER, NOVA_BANNER, LANCUL_BANNER, BIZMATES_BANNER, WORLDIKIDS_BANNER, BWATASHI_BANNER, EIGOX_BANNER, STUDYSAPURI_ENGLISH_BANNER, WILLIES_BANNER, AQUES_BANNER, ESPI_BANNER],
   55: [WINSCHOOL_BANNER, LIFETECH_BANNER, SKILLHACKS_BANNER],
   56: [GIFTS_BANNER],
   57: [INFRAAI_BANNER, VIRTUALOFFICE1_BANNER],
