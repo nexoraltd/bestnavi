@@ -116,6 +116,8 @@ URLS = [
     "/posts/mcnursenet-kangoshi-haken-review-2026/",
     "/posts/mc-kaigo-haken-review-2026/",
     "/posts/atgp-shukatsu-agent-review-2026/",
+    "/posts/miraifu-tensyoku-agent-review-2026/",
+    "/posts/esports-eikaiwa-espi-review-2026/",
 ]
 
 
