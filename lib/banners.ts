@@ -457,9 +457,9 @@ const NURSEJOY_BANNER: BannerConfig = {
 
 const PHARMASTER_BANNER: BannerConfig = {
   programName: "ファルマスタッフ（薬剤師転職）", affiliateId: "a26021579611",
-  url: "https://px.a8.net/svt/ejp?a8mat=TODO_PHARMASTER",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1THV+CVSP0Y+276A+65EOH",
   width: 300, height: 250,
-  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_PHARMASTER&wid=001&eno=01&mc=1",
+  imageUrl: "https://www24.a8.net/svt/bgt?aid=260425363779&wid=001&eno=01&mid=s00000010261001033000&mc=1",
 };
 
 const MCNURSENET_BANNER: BannerConfig = {
@@ -586,6 +586,24 @@ const KINKEN_NET_BANNER: BannerConfig = {
   imageUrl: "https://www21.a8.net/svt/bgt?aid=260425363925&wid=001&eno=01&mid=s00000016469001008000&mc=1",
 };
 
+// ─── 総合転職 (A8.net申請中 2026-04-30) ─────────────────────────
+// リクルートエージェント: s00000011454002 / 2,000円 / 確定率50.93%
+// リクナビNEXT        : s00000021064001 / 1,700円 / 確定率75%
+// → 承認後: A8.net広告リンク作成 → url/imageUrl を実URLに差し替え
+const RECRUIT_AGENT_BANNER: BannerConfig = {
+  programName: "リクルートエージェント", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1K5O+TODO_RECRUIT_AGENT",
+  width: 300, height: 250,
+  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_RECRUIT_AGENT&wid=001&eno=01&mc=1",
+};
+
+const RIKUNABI_BANNER: BannerConfig = {
+  programName: "リクナビNEXT", affiliateId: "a26021579611",
+  url: "https://px.a8.net/svt/ejp?a8mat=4B1K5O+TODO_RIKUNABI",
+  width: 300, height: 250,
+  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_RIKUNABI&wid=001&eno=01&mc=1",
+};
+
 // ─── クレジットカード ──────────────────────────────────────────
 // 申請状況 (2026-04-29):
 //   楽天カード    : スキップ（A8.net/もしも掲載なし・楽天独自ASP申請省略）
@@ -603,10 +621,10 @@ const SMBC_CARD_BANNER: BannerConfig = {
 };
 
 const JCB_CARD_BANNER: BannerConfig = {
-  programName: "JCBカード W", affiliateId: "a26021579611",
-  url: "https://px.a8.net/svt/ejp?a8mat=4B1K5O+TODO_JCB",
+  programName: "JCBカード W", affiliateId: "3767107",
+  url: "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3767107&pid=892603894",
   width: 300, height: 250,
-  imageUrl: "https://www.a8.net/svt/bgt?aid=TODO_JCB&wid=001&eno=01&mc=1",
+  imageUrl: "https://ad.jp.ap.valuecommerce.com/servlet/gifbanner?sid=3767107&pid=892603894",
 };
 
 const DCARD_GOLD_BANNER: BannerConfig = {
@@ -651,7 +669,7 @@ export const CATEGORY_BANNERS: Record<number, BannerConfig[]> = {
   59: [GMO_CLICK_FX_BANNER, LIGHTFX_BANNER, FXTF_BANNER, DMMFX_BANNER, GAIATE_BANNER, FXBROAD_BANNER],
   // クレカ: 申請承認後に TODO_xxx を実URLに差し替え
   60: [SMBC_CARD_BANNER, JCB_CARD_BANNER, DCARD_GOLD_BANNER, EPOS_CARD_BANNER, LIFECARD_BANNER],
-  61: [TECHGO_BANNER, TWINPRO_BANNER, TAMESY_BANNER, MABEGINNERS_BANNER, HRCAGENT_BANNER, CIRCUS_BANNER, OISHIRU_BANNER, IDA_BANNER, TECHCLIPS_BANNER, MASSMEDIAAN_BANNER, KARRICON_BANNER, MIRAIFU_BANNER],
+  61: [RECRUIT_AGENT_BANNER, RIKUNABI_BANNER, TECHGO_BANNER, TWINPRO_BANNER, TAMESY_BANNER, MABEGINNERS_BANNER, HRCAGENT_BANNER, CIRCUS_BANNER, OISHIRU_BANNER, IDA_BANNER, TECHCLIPS_BANNER, MASSMEDIAAN_BANNER, KARRICON_BANNER, MIRAIFU_BANNER],
   62: [PHARMASTER_BANNER, NURSEJOY_BANNER, MCNURSENET_BANNER, MCCAREGIVING_BANNER],
   63: [ATGP_BANNER],
   64: [ENKIRO_BANNER, UCARPAC_BANNER, CTN_KAITORI_BANNER, YUNYUSHA_KAITORI_BANNER, HAISHAL_BANNER, KENKIKAITORIYA_BANNER],
@@ -675,7 +693,7 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
   206: SURFSHARK_BANNERS,
   261: [MILLENVPN_BANNER],
   339: [EXPRESSVPN_BANNER],
-  338: [],  // Rakulink: バナー画像なし
+  338: [AIRALO_JP_PHUKET_300x250, SAILY_BANNER, AIRALO_EN_GENERIC_320x1360],  // Rakulink: eSIM代替バナー
   756: [...NORDVPN_BANNERS, EXPRESSVPN_BANNER],
   757: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS],
   710: [...NORDVPN_BANNERS, ...SURFSHARK_BANNERS, MILLENVPN_BANNER, EXPRESSVPN_BANNER, SUIKAVPN_BANNER, SEKAIVPN_BANNER],
@@ -721,9 +739,9 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
   390: [BESTTEACHER_BANNER, GSA_BANNER],
   391: [GSA_BANNER, WORLDIKIDS_BANNER],
   367: [BESTTEACHER_BANNER],
-  369: [],  // ティントル: バナー画像なし
+  369: [BESTTEACHER_BANNER, GSA_BANNER, NOVA_BANNER, LANCUL_BANNER],  // ティントル: 英会話系バナー代替
   385: [GSA_BANNER],
-  388: [],  // ECC: バナー画像なし（承認後差し替え）
+  388: [BESTTEACHER_BANNER, GSA_BANNER, NOVA_BANNER, BIZMATES_BANNER],  // ECC: 英会話系バナー代替
   389: [NOVA_BANNER],
   392: [LANCUL_BANNER],
   393: [BIZMATES_BANNER],
@@ -738,7 +756,7 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
   376: [LIFETECH_BANNER, WINSCHOOL_BANNER],
   371: [LIFETECH_BANNER],
   373: [WINSCHOOL_BANNER],
-  374: [],  // インターノウス: バナー画像なし
+  374: [TECHGO_BANNER, WINSCHOOL_BANNER, LIFETECH_BANNER, SKILLHACKS_BANNER],  // インターノウス: IT/プログラミング系バナー代替
   563: [WINSCHOOL_BANNER, LIFETECH_BANNER, SKILLHACKS_BANNER],
   567: [WINSCHOOL_BANNER, LIFETECH_BANNER, SKILLHACKS_BANNER],
   574: [WINSCHOOL_BANNER, SKILLHACKS_BANNER],
@@ -749,8 +767,8 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
   290: [GIFTS_BANNER],
   291: [TECHGO_BANNER, TECHCLIPS_BANNER, MASSMEDIAAN_BANNER],  // テックゴー個別記事
   575: [TECHGO_BANNER, TECHCLIPS_BANNER, MASSMEDIAAN_BANNER],  // it-career-techgo-review-2026
-  292: [],  // ウズウズカレッジ個別記事
-  293: [],  // 社内SE転職ナビ個別記事
+  292: [TECHCLIPS_BANNER, TECHGO_BANNER, MASSMEDIAAN_BANNER],  // ウズウズカレッジ: IT転職系バナー代替
+  293: [TECHGO_BANNER, TECHCLIPS_BANNER, MASSMEDIAAN_BANNER],  // 社内SE転職ナビ: IT転職系バナー代替
   294: [GIFTS_BANNER],
   289: [GIFTS_BANNER],
   562: [TECHCLIPS_BANNER, TECHGO_BANNER, MASSMEDIAAN_BANNER, GIFTS_BANNER],
@@ -795,7 +813,7 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
   717: [AIRALO_JP_PHUKET_300x250, SAILY_BANNER],
   971: [SAILY_BANNER, AIRALO_JP_PHUKET_300x250],
   975: [AIRALO_JP_PHUKET_300x250, SAILY_BANNER],
-  977: [],  // Rakulink eSIM: バナーなし
+  977: [AIRALO_JP_PHUKET_300x250, SAILY_BANNER],  // Rakulink eSIM: eSIM代替バナー
   980: [AIRALO_JP_PHUKET_300x250, SAILY_BANNER],
 
   // ── 仮想通貨 ─────────────────────────────────────────────────
@@ -814,7 +832,7 @@ export const POST_BANNERS: Record<number, BannerConfig[]> = {
   809: [SMBC_CARD_BANNER, DCARD_GOLD_BANNER],
 
   // ── 転職/派遣/就活/車買取 ─────────────────────────────────────
-  900: [TECHGO_BANNER, TWINPRO_BANNER, MABEGINNERS_BANNER, HRCAGENT_BANNER, CIRCUS_BANNER, OISHIRU_BANNER, IDA_BANNER, TECHCLIPS_BANNER, MASSMEDIAAN_BANNER, MIRAIFU_BANNER],
+  900: [RECRUIT_AGENT_BANNER, RIKUNABI_BANNER, TECHGO_BANNER, TWINPRO_BANNER, MABEGINNERS_BANNER, HRCAGENT_BANNER, CIRCUS_BANNER, OISHIRU_BANNER, IDA_BANNER, TECHCLIPS_BANNER, MASSMEDIAAN_BANNER, MIRAIFU_BANNER],
   983: [TECHCLIPS_BANNER, TECHGO_BANNER, MASSMEDIAAN_BANNER, KARRICON_BANNER],
   984: [MASSMEDIAAN_BANNER, TECHCLIPS_BANNER, TECHGO_BANNER],
   985: [KARRICON_BANNER, MIRAIFU_BANNER, CIRCUS_BANNER, TAMESY_BANNER],
