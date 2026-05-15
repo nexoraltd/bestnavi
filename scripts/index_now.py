@@ -133,6 +133,18 @@ URLS = [
     "/post/dcard-gold-review-2026/",
     "/post/epos-card-review-2026/",
     "/post/gold-card-hikaku-2026/",
+    # ── 2026-04-29 高単価新記事 ──
+    "/post/yakuzaishi-tensyoku-ranking-2026/",
+    "/post/kangoshi-tensyoku-agent-ranking-2026/",
+    "/post/kaigo-tensyoku-service-ranking-2026/",
+    "/post/gmo-click-fx-review-2026/",
+    "/post/speak-eikaiwa-app-review-2026/",
+    # ── 2026-05-01 A8審査中カバー記事 ──
+    "/post/recruit-agent-review-2026/",
+    "/post/rikunabi-next-review-2026/",
+    "/post/light-fx-review-2026/",
+    "/post/nurse-senka-review-2026/",
+    "/post/pharmastaff-review-2026/",
 ]
 
 
