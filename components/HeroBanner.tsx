@@ -20,7 +20,7 @@ export function HeroBanner() {
     <>
       {/* Hero */}
       <section style={{ background: "#fff", borderBottom: "1px solid var(--border)" }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "52px 24px 44px" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "clamp(32px, 6vw, 52px) clamp(12px, 4vw, 24px) clamp(28px, 5vw, 44px)" }}>
           <div className="animate-fadeInUp" style={{ maxWidth: 720 }}>
             <h1 style={{
               fontSize: "clamp(28px, 4vw, 46px)",
@@ -42,7 +42,7 @@ export function HeroBanner() {
 
       {/* Category filter */}
       <section style={{ background: "#fff", borderBottom: "1px solid var(--border)", padding: "16px 0" }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(12px, 4vw, 24px)" }}>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
             <span style={{ fontSize: 12, color: "var(--text-muted)", fontWeight: 600, marginRight: 4 }}>カテゴリ:</span>
             {categories.map((cat) => {

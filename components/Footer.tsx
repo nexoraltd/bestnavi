@@ -3,7 +3,7 @@ import Link from "next/link";
 export function Footer() {
   return (
     <footer style={{ background: "#f9fafb", borderTop: "1px solid var(--border)", marginTop: 48 }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "48px 24px 0" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "48px clamp(12px, 4vw, 24px) 0" }}>
 
         {/* 3-column grid */}
         <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 40, marginBottom: 40 }}>

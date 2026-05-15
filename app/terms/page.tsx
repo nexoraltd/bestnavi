@@ -7,8 +7,8 @@ export default function TermsPage() {
   return (
     <div style={{ background: "var(--bg-warm)", minHeight: "100vh" }}>
       <Header />
-      <div style={{ maxWidth: 760, margin: "0 auto", padding: "32px 16px" }}>
-        <article style={{ background: "#fff", borderRadius: 12, border: "1px solid var(--border)", padding: 32, fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.8 }}>
+      <div style={{ maxWidth: 760, margin: "0 auto", padding: "clamp(20px, 4vw, 32px) clamp(12px, 4vw, 16px)" }}>
+        <article style={{ background: "#fff", borderRadius: 12, border: "1px solid var(--border)", padding: "clamp(16px, 4vw, 32px)", fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.8 }}>
           <h1 style={{ fontSize: 22, fontWeight: 800, marginBottom: 24, paddingBottom: 12, borderBottom: "2px solid var(--border)", color: "var(--text-primary)" }}>利用規約</h1>
           <h2 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8, color: "var(--text-primary)" }}>掲載情報について</h2>
           <p style={{ marginBottom: 16 }}>当サイトに掲載されている情報は、可能な限り正確な情報を提供するよう努めていますが、正確性や完全性を保証するものではありません。サービスの料金・機能・キャンペーン内容は各公式サイトでご確認ください。</p>

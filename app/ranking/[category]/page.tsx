@@ -184,9 +184,9 @@ export default async function RankingPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       {faqJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />}
       <Header />
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "28px 16px" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "clamp(20px, 4vw, 28px) clamp(12px, 4vw, 16px)" }}>
         <div
-          style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: 28, alignItems: "start" }}
+          style={{ display: "grid", gridTemplateColumns: "minmax(0,1fr) 280px", gap: 28, alignItems: "start" }}
           className="main-grid"
         >
           <main>

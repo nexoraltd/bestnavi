@@ -53,11 +53,11 @@ export default async function Home() {
       <Header />
       <HeroBanner />
 
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(12px, 4vw, 24px)" }}>
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 300px",
+            gridTemplateColumns: "minmax(0,1fr) 300px",
             gap: 32,
             alignItems: "start",
           }}

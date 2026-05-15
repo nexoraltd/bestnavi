@@ -161,7 +161,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       {faqJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />}
       <Header />
 
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "32px 16px" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "clamp(20px, 4vw, 32px) clamp(12px, 4vw, 16px)" }}>
         <nav style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 16 }}>
           <a href="/" style={{ color: "var(--accent)", textDecoration: "none" }}>ホーム</a>
           {catKey && catName && (
@@ -174,7 +174,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           <span dangerouslySetInnerHTML={{ __html: title }} />
         </nav>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 300px", gap: 32, alignItems: "start" }} className="main-grid">
+        <div style={{ display: "grid", gridTemplateColumns: "minmax(0,1fr) 300px", gap: 32, alignItems: "start" }} className="main-grid">
           <main>
             {/* LOW CVR記事にランキング導線バナー */}
             {relatedCategory && (() => {
@@ -205,7 +205,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               );
             })()}
 
-            <article style={{ background: "#fff", borderRadius: 12, border: "1px solid var(--border)", boxShadow: "var(--shadow-card)", padding: 32 }}>
+            <article style={{ background: "#fff", borderRadius: 12, border: "1px solid var(--border)", boxShadow: "var(--shadow-card)", padding: "clamp(16px, 4vw, 32px)", minWidth: 0 }}>
               {/* 日付 */}
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14, flexWrap: "wrap" }}>
                 <span style={{ fontSize: 12, color: "var(--text-muted)", display: "flex", alignItems: "center", gap: 4 }}>
@@ -214,7 +214,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 </span>
               </div>
 
-              <h1 style={{ fontSize: 26, fontWeight: 800, lineHeight: 1.5, color: "var(--text-primary)", borderBottom: "2px solid var(--border)", paddingBottom: 12, marginBottom: 24 }} dangerouslySetInnerHTML={{ __html: title }} />
+              <h1 style={{ fontSize: "clamp(20px, 4vw, 26px)", fontWeight: 800, lineHeight: 1.5, color: "var(--text-primary)", borderBottom: "2px solid var(--border)", paddingBottom: 12, marginBottom: 24 }} dangerouslySetInnerHTML={{ __html: title }} />
 
               {/* 目次 */}
               <TableOfContents headings={headings} />

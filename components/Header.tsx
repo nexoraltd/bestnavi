@@ -129,7 +129,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200" style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.06)" }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(12px, 4vw, 24px)" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 60 }}>
 
           {/* Logo */}

@@ -60,6 +60,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -69,6 +70,63 @@ body {
   font-size: 15px;
   line-height: 1.8;
   font-feature-settings: "palt";
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* ── Universal responsive media ── */
+img, svg, video, iframe, embed, object {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── Long-word break (avoid overflow from URLs / English words) ── */
+p, h1, h2, h3, h4, li, td, th, span, a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* ── wp-content tables: horizontal scroll on narrow screens ── */
+.wp-content table {
+  display: table;
+  width: 100%;
+  max-width: 100%;
+}
+@media (max-width: 640px) {
+  .wp-content > div[style*="overflow-x"],
+  .wp-content table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+  .wp-content table th,
+  .wp-content table td {
+    padding: 8px 10px !important;
+    font-size: 13px;
+  }
+  .wp-content h2 { font-size: 17px !important; margin: 24px 0 12px !important; padding: 4px 10px !important; }
+  .wp-content h3 { font-size: 15px !important; margin: 20px 0 10px !important; }
+  .wp-content p, .wp-content li { font-size: 14px; line-height: 1.8; }
+  .wp-content ul, .wp-content ol { padding-left: 20px !important; }
+  .wp-content blockquote { padding: 10px 14px !important; margin: 14px 0 !important; font-size: 14px; }
+  .wp-content pre {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    font-size: 12px;
+  }
+}
+
+/* Embedded iframes (YouTube, etc.) — keep aspect ratio */
+.wp-content iframe {
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
+/* Reserve space below content for MobileFixedCTA on phones */
+@media (max-width: 768px) {
+  body { padding-bottom: 70px; }
 }
 
 /* ── Typography ── */

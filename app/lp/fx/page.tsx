@@ -53,7 +53,7 @@ export default function FxLandingPage() {
         </span>
       </header>
 
-      <main style={{ maxWidth: 720, margin: "0 auto", padding: "32px 16px" }}>
+      <main style={{ maxWidth: 720, margin: "0 auto", padding: "clamp(20px, 4vw, 32px) clamp(12px, 4vw, 16px)" }}>
         {/* Hero */}
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <div
@@ -213,7 +213,7 @@ export default function FxLandingPage() {
             >
               口座開設数 業界No.1
             </div>
-            <div style={{ padding: 24 }}>
+            <div style={{ padding: "clamp(14px, 4vw, 24px)" }}>
               <h3
                 style={{ fontSize: 24, fontWeight: 900, marginBottom: 16 }}
               >
