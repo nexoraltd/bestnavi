@@ -58,6 +58,9 @@ SETUP_COMPLETE.md
 *.bak
 data/posts.json.bak
 data/drafts/
+drafts/
+assets/
+.code-review-graph/
 
 # local screenshots
 bestnavi_current.png
