@@ -53,3 +53,12 @@ SETUP_COMPLETE.md
 .aidesigner/
 
 .vercel
+
+# local backups & temp
+*.bak
+data/posts.json.bak
+data/drafts/
+
+# local screenshots
+bestnavi_current.png
+*.local.png
